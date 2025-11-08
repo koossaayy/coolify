@@ -14,8 +14,7 @@
                             <livewire:security.cloud-provider-token-form :modal_mode="true" provider="hetzner" />
                         </x-modal-input>
                     @endcan
-                    <x-forms.button canGate="update" :canResource="$server" isHighlighted
-                        wire:click.prevent='validateToken'>
+                    <x-forms.button canGate="update" :canResource="$server" isHighlighted wire:click.prevent='validateToken'>
                         Validate token
                     </x-forms.button>
                 </div>
@@ -53,6 +52,11 @@
                 <div class="p-4 border rounded-md dark:border-coolgray-300 dark:bg-coolgray-100">
                     <p class="dark:text-neutral-400">
                         Only servers created through Hetzner Cloud can have their tokens managed here.
+                    </p>
+                </div>
+                <div>
+                    <p class="dark:text-neutral-400">
+                        Hello World Again
                     </p>
                 </div>
             @endif
