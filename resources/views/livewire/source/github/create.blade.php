@@ -1,8 +1,6 @@
 @can('createAnyResource')
     <form wire:submit='createGitHubApp' class="flex flex-col w-full gap-2">
-        <div class="pb-2">This is required, if you would like to get full integration (commit / pull request
-            deployments, etc)
-            with GitHub.</div>
+        <div class="pb-2">{{ __('This is required, if you would like to get full integration (commit / pull request deployments, etc) with GitHub.') }}</div>
         <div class="flex gap-2">
             <x-forms.input id="name" label="Name" required />
             <x-forms.input helper="If empty, your GitHub user will be used."
@@ -17,9 +15,7 @@
                 <div x-show="showWarning" x-transition x-cloak class="w-full max-w-2xl mx-auto pt-2">
                     <x-callout type="warning" title="Not Recommended">
                         <div class="whitespace-normal break-words">
-                            System-wide GitHub Apps are shared across all teams on this Coolify instance. This means any team
-                            can use this GitHub App to deploy applications from your repositories. For better security and
-                            isolation, it's recommended to create team-specific GitHub Apps instead.
+                            {{ __("System-wide GitHub Apps are shared across all teams on this Coolify instance. This means any team can use this GitHub App to deploy applications from your repositories. For better security and isolation, it's recommended to create team-specific GitHub Apps instead.") }}
                         </div>
                     </x-callout>
                 </div>
@@ -35,7 +31,7 @@
                 <button @click="setActiveAccordion(id)"
                     class="flex items-center justify-between w-full px-1 py-2 text-left select-none dark:hover:text-white hover:bg-white/5"
                     type="button">
-                    <h4>Self-hosted / Enterprise GitHub</h4>
+                    <h4>{{ __('Self-hosted / Enterprise GitHub') }}</h4>
                     <svg class="w-4 h-4 duration-200 ease-out" :class="{ 'rotate-180': activeAccordion == id }"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -59,11 +55,11 @@
 
 
         <x-forms.button class="mt-4" type="submit">
-            Continue
+            {{ __('Continue') }}
         </x-forms.button>
     </form>
 @else
     <x-callout type="warning" title="Permission Required">
-        You don't have permission to create new GitHub Apps. Please contact your team administrator for access.
+        {{ __("You don't have permission to create new GitHub Apps. Please contact your team administrator for access.") }}
     </x-callout>
 @endcan

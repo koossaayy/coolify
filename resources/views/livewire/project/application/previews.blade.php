@@ -1,21 +1,21 @@
 <div>
     <livewire:project.application.preview.form :application="$application" />
     @if (count($application->additional_servers) > 0)
-        <div class="pb-4">Previews will be deployed on <span
+        <div class="pb-4">{{ __('Previews will be deployed on') }} <span
                 class="dark:text-warning">{{ $application->destination->server->name }}</span>.</div>
     @endif
     <div>
         @if ($application->is_github_based())
             <div class="flex items-center gap-2">
                 @can('update', $application)
-                    <h3>Pull Requests on Git</h3>
-                    <x-forms.button wire:click="load_prs">Load Pull Requests
+                    <h3>{{ __('Pull Requests on Git') }}</h3>
+                    <x-forms.button wire:click="load_prs">{{ __('Load Pull Requests') }}
                     </x-forms.button>
                 @endcan
             </div>
         @endif
         @isset($rate_limit_remaining)
-            <div class="pt-1 pb-4">Requests remaining till rate limited by Git: {{ $rate_limit_remaining }}</div>
+            <div class="pt-1 pb-4">{{ __('Requests remaining till rate limited by Git:') }} {{ $rate_limit_remaining }}</div>
         @endisset
         <div wire:loading.remove wire:target='load_prs'>
             @if ($pull_requests->count() > 0)
@@ -23,10 +23,10 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>PR Number</th>
-                                <th>PR Title</th>
-                                <th>Git</th>
-                                <th>Actions</th>
+                                <th>{{ __('PR Number') }}</th>
+                                <th>{{ __('PR Title') }}</th>
+                                <th>{{ __('Git') }}</th>
+                                <th>{{ __('Actions') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -36,8 +36,7 @@
                                     <td>{{ data_get($pull_request, 'title') }}</td>
                                     <td>
                                         <a target="_blank" class="text-xs"
-                                            href="{{ data_get($pull_request, 'html_url') }}">Open PR on
-                                            Git
+                                            href="{{ data_get($pull_request, 'html_url') }}">{{ __('Open PR on Git') }}
                                             <x-external-link />
                                         </a>
                                     </td>
@@ -45,7 +44,7 @@
                                         @can('update', $application)
                                             <x-forms.button
                                                 wire:click="add('{{ data_get($pull_request, 'number') }}', '{{ data_get($pull_request, 'html_url') }}')">
-                                                Configure
+                                                {{ __('Configure') }}
                                             </x-forms.button>
                                         @endcan
                                         @can('deploy', $application)
@@ -56,7 +55,7 @@
                                                     fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M7 4v16l13 -8z" />
-                                                </svg>Deploy
+                                                </svg>{{ __('Deploy') }}
                                             </x-forms.button>
                                         @endcan
                                     </td>
@@ -69,12 +68,12 @@
         </div>
     </div>
     @if ($application->previews->count() > 0)
-        <h3 class="py-4">Deployments</h3>
+        <h3 class="py-4">{{ __('Deployments') }}</h3>
         <div class="flex flex-wrap w-full gap-4">
             @foreach (data_get($application, 'previews') as $previewName => $preview)
                 <div class="flex flex-col w-full p-4 border dark:border-coolgray-200"
                     wire:key="preview-container-{{ $preview->pull_request_id }}">
-                    <div class="flex gap-2">PR #{{ data_get($preview, 'pull_request_id') }} |
+                    <div class="flex gap-2">{{ __('PR #') }}{{ data_get($preview, 'pull_request_id') }} |
                         @if (str(data_get($preview, 'status'))->startsWith('running'))
                             <x-status.running :status="data_get($preview, 'status')" />
                         @elseif(str(data_get($preview, 'status'))->startsWith('restarting'))
@@ -83,25 +82,24 @@
                             <x-status.stopped :status="data_get($preview, 'status')" />
                         @endif
                         @if (data_get($preview, 'status') !== 'exited')
-                            | <a target="_blank" href="{{ data_get($preview, 'fqdn') }}">Open Preview
+                            | <a target="_blank" href="{{ data_get($preview, 'fqdn') }}">{{ __('Open Preview') }}
                                 <x-external-link />
                             </a>
                         @endif
                         |
-                        <a target="_blank" href="{{ data_get($preview, 'pull_request_html_url') }}">Open
-                            PR on Git
+                        <a target="_blank" href="{{ data_get($preview, 'pull_request_html_url') }}">{{ __('Open PR on Git') }}
                             <x-external-link />
                         </a>
                         @if (count($parameters) > 0)
                             |
                             <a
                                 href="{{ route('project.application.deployment.index', [...$parameters, 'pull_request_id' => data_get($preview, 'pull_request_id')]) }}">
-                                Deployment Logs
+                                {{ __('Deployment Logs') }}
                             </a>
                             |
                             <a
                                 href="{{ route('project.application.logs', [...$parameters, 'pull_request_id' => data_get($preview, 'pull_request_id')]) }}">
-                                Application Logs
+                                {{ __('Application Logs') }}
                             </a>
                         @endif
                     </div>
@@ -114,9 +112,8 @@
                                     <x-forms.input label="Domain" helper="One domain per preview."
                                         id="previewFqdns.{{ $previewName }}" canGate="update" :canResource="$application"></x-forms.input>
                                     @can('update', $application)
-                                        <x-forms.button type="submit">Save</x-forms.button>
-                                        <x-forms.button wire:click="generate_preview('{{ $preview->id }}')">Generate
-                                            Domain</x-forms.button>
+                                        <x-forms.button type="submit">{{ __('Save') }}</x-forms.button>
+                                        <x-forms.button wire:click="generate_preview('{{ $preview->id }}')">{{ __('Generate Domain') }}</x-forms.button>
                                     @endcan
                                 </form>
                             @else
@@ -132,9 +129,8 @@
                             <x-forms.input label="Domain" helper="One domain per preview."
                                 id="previewFqdns.{{ $previewName }}" canGate="update" :canResource="$application"></x-forms.input>
                             @can('update', $application)
-                                <x-forms.button type="submit">Save</x-forms.button>
-                                <x-forms.button wire:click="generate_preview('{{ $preview->id }}')">Generate
-                                    Domain</x-forms.button>
+                                <x-forms.button type="submit">{{ __('Save') }}</x-forms.button>
+                                <x-forms.button wire:click="generate_preview('{{ $preview->id }}')">{{ __('Generate Domain') }}</x-forms.button>
                             @endcan
                         </form>
                     @endif
@@ -154,8 +150,7 @@
                                     <path d="M4 12v6c0 1.657 3.582 3 8 3c3.217 0 5.991 -.712 7.261 -1.74m.739 -3.26v-4" />
                                     <path d="M3 3l18 18" />
                                 </svg>
-                                Force deploy (without
-                                cache)
+                                {{ __('Force deploy (without cache)') }}
                             </x-forms.button>
                             <x-forms.button wire:click="deploy({{ data_get($preview, 'pull_request_id') }})">
                                 @if (data_get($preview, 'status') === 'exited')
@@ -165,7 +160,7 @@
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                         <path d="M7 4v16l13 -8z" />
                                     </svg>
-                                    Deploy
+                                    {{ __('Deploy') }}
                                 @else
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 dark:text-orange-400"
                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -175,7 +170,7 @@
                                             d="M10.09 4.01l.496 -.495a2 2 0 0 1 2.828 0l7.071 7.07a2 2 0 0 1 0 2.83l-7.07 7.07a2 2 0 0 1 -2.83 0l-7.07 -7.07a2 2 0 0 1 0 -2.83l3.535 -3.535h-3.988">
                                         </path>
                                         <path d="M7.05 11.038v-3.988"></path>
-                                    </svg> Redeploy
+                                    </svg> {{ __('Redeploy') }}
                                 @endif
                             </x-forms.button>
                         @endcan
@@ -200,7 +195,7 @@
                                                 d="M14 5m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z">
                                             </path>
                                         </svg>
-                                        Stop
+                                        {{ __('Stop') }}
                                     </x-slot:customButton>
                                 </x-modal-confirmation>
                             @endcan
@@ -224,13 +219,13 @@
         :conflicts="$domainConflicts" 
         :showModal="$showDomainConflictModal" 
         confirmAction="confirmDomainUsage">
-        The preview deployment domain is already in use by other resources. Using the same domain for multiple resources can cause routing conflicts and unpredictable behavior.
+        {{ __('The preview deployment domain is already in use by other resources. Using the same domain for multiple resources can cause routing conflicts and unpredictable behavior.') }}
         <x-slot:consequences>
             <ul class="mt-2 ml-4 list-disc">
-                <li>The preview deployment may not be accessible</li>
-                <li>Conflicts with production or other preview deployments</li>
-                <li>SSL certificates might not work correctly</li>
-                <li>Unpredictable routing behavior</li>
+                <li>{{ __('The preview deployment may not be accessible') }}</li>
+                <li>{{ __('Conflicts with production or other preview deployments') }}</li>
+                <li>{{ __('SSL certificates might not work correctly') }}</li>
+                <li>{{ __('Unpredictable routing behavior') }}</li>
             </ul>
         </x-slot:consequences>
     </x-domain-conflict-modal>

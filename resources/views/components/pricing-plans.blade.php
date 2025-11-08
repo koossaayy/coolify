@@ -6,28 +6,28 @@
         <div class="flex justify-center">
             <fieldset
                 class="grid grid-cols-2 p-1 text-xs font-semibold leading-5 text-center rounded-sm dark:text-white gap-x-1 bg-white/5">
-                <legend class="sr-only">Payment frequency</legend>
+                <legend class="sr-only">{{ __('Payment frequency') }}</legend>
                 <label class="cursor-pointer rounded-sm px-2.5 py-1"
                     :class="selected === 'monthly' ? 'bg-coollabs-100 text-white' : ''">
                     <input type="radio" x-on:click="selected = 'monthly'" name="frequency" value="monthly"
                         class="sr-only">
-                    <span>Monthly</span>
+                    <span>{{ __('Monthly') }}</span>
                 </label>
                 <label class="cursor-pointer rounded-sm px-2.5 py-1"
                     :class="selected === 'yearly' ? 'bg-coollabs-100 text-white' : ''">
                     <input type="radio" x-on:click="selected = 'yearly'" name="frequency" value="annually"
                         class="sr-only">
-                    <span>Annually</span>
+                    <span>{{ __('Annually') }}</span>
                 </label>
             </fieldset>
         </div>
         @if (config('constants.limits.trial_period') > 0)
             <div class="py-2 text-center"><span
                     class="font-bold dark:text-warning">{{ config('constants.limits.trial_period') }}
-                    days trial</span> included on all plans, without credit card details.</div>
+                    {{ __('days trial') }}</span> {{ __('included on all plans, without credit card details.') }}</div>
         @endif
         <div x-show="selected === 'monthly'" class="flex justify-center h-10 mt-3 text-sm leading-6 ">
-            <div>Save <span class="font-bold text-black dark:text-warning">10%</span> annually with the yearly plans.
+            <div>{{ __('Save') }} <span class="font-bold text-black dark:text-warning">10%</span> {{ __('annually with the yearly plans.') }}
             </div>
         </div>
         <div x-show="selected === 'yearly'" class="flex justify-center h-10 mt-3 text-sm leading-6 ">
@@ -35,24 +35,22 @@
             </div>
         </div>
         <div class="p-4 rounded-sm bg-coolgray-400">
-            <h2 id="tier-hobby" class="flex items-start gap-4 text-4xl font-bold tracking-tight">Unlimited Trial
+            <h2 id="tier-hobby" class="flex items-start gap-4 text-4xl font-bold tracking-tight">{{ __('Unlimited Trial') }}
                 <x-forms.button><a class="font-bold dark:text-white hover:no-underline"
-                        href="https://github.com/coollabsio/coolify">Get Started</a></x-forms.button>
+                        href="https://github.com/coollabsio/coolify">{{ __('Get Started') }}</a></x-forms.button>
             </h2>
-            <p class="mt-4 text-sm leading-6">Start self-hosting <span class="dark:text-warning">without limits</span>
-                with
-                our
-                OSS version. Same features as the paid version, but you have to manage by yourself.</p>
+            <p class="mt-4 text-sm leading-6">{{ __('Start self-hosting') }} <span class="dark:text-warning">{{ __('without limits') }}</span>
+                {{ __('with our OSS version. Same features as the paid version, but you have to manage by yourself.') }}</p>
         </div>
 
         <div class="flow-root mt-12">
-            <div class="pb-10 text-xl text-center">For the detailed list of features, please visit our landing page: <a
+            <div class="pb-10 text-xl text-center">{{ __('For the detailed list of features, please visit our landing page:') }} <a
                     class="font-bold underline dark:text-white" href="https://coolify.io">coolify.io</a></div>
             <div
                 class="grid max-w-sm grid-cols-1 -mt-16 divide-y divide-neutral-200 dark:divide-coolgray-500 isolate gap-y-16 sm:mx-auto lg:-mx-8 lg:mt-0 lg:max-w-none lg:grid-cols-3 lg:divide-x lg:divide-y-0 xl:-mx-4">
 
                 <div class="pt-16 lg:px-8 lg:pt-0 xl:px-14">
-                    <h3 id="tier-basic" class="text-base font-semibold leading-7 dark:text-white">Basic</h3>
+                    <h3 id="tier-basic" class="text-base font-semibold leading-7 dark:text-white">{{ __('Basic') }}</h3>
                     <p class="flex items-baseline mt-6 gap-x-1">
                         <span x-show="selected === 'monthly'" x-cloak>
                             <span class="text-4xl font-bold tracking-tight dark:text-white">$5</span>
@@ -64,18 +62,17 @@
                         </span>
                     </p>
                     <span x-show="selected === 'monthly'" x-cloak>
-                        <span>billed monthly</span>
+                        <span>{{ __('billed monthly') }}</span>
                     </span>
                     <span x-show="selected === 'yearly'" x-cloak>
-                        <span>billed annually</span>
+                        <span>{{ __('billed annually') }}</span>
                     </span>
                     @if ($showSubscribeButtons)
                         @isset($basic)
                             {{ $basic }}
                         @endisset
                     @endif
-                    <p class="mt-10 text-sm leading-6 dark:text-white h-[6.5rem]">Begin hosting your own services in the
-                        cloud.
+                    <p class="mt-10 text-sm leading-6 dark:text-white h-[6.5rem]">{{ __('Begin hosting your own services in the cloud.') }}
                     </p>
                     <ul role="list" class="space-y-3 text-sm leading-6 ">
                         <li class="flex">
@@ -85,7 +82,7 @@
                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.775 0 001.137-.089l4-5.5z"
                                     clip-rule="evenodd" />
                             </svg>
-                            Connect <span class="px-1 font-bold dark:text-white">2</span> servers
+                            {{ __('Connect') }} <span class="px-1 font-bold dark:text-white">2</span> {{ __('servers') }}
                         </li>
                         <li class="flex gap-x-3">
                             <svg class="flex-none w-5 h-6 dark:text-warning" viewBox="0 0 20 20" fill="currentColor"
@@ -94,7 +91,7 @@
                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
                                     clip-rule="evenodd" />
                             </svg>
-                            Included Email System
+                            {{ __('Included Email System') }}
                         </li>
                         <li class="flex gap-x-3">
                             <svg class="flex-none w-5 h-6 dark:text-warning" viewBox="0 0 20 20" fill="currentColor"
@@ -103,7 +100,7 @@
                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
                                     clip-rule="evenodd" />
                             </svg>
-                            Email Support
+                            {{ __('Email Support') }}
                         </li>
                         <li class="flex font-bold dark:text-white gap-x-3">
                             <svg width="512" height="512" class="flex-none w-5 h-6 text-green-600"
@@ -115,12 +112,12 @@
                                     <path d="M7 14a6 6 0 0 0-3 6a6 6 0 0 0 6-3m4-8a1 1 0 1 0 2 0a1 1 0 1 0-2 0" />
                                 </g>
                             </svg>
-                            + All upcoming features
+                            {{ __('+ All upcoming features') }}
                         </li>
                     </ul>
                 </div>
                 <div class="pt-16 lg:px-8 lg:pt-0 xl:px-14">
-                    <h3 id="tier-pro" class="text-base font-semibold leading-7 dark:text-white">Pro</h3>
+                    <h3 id="tier-pro" class="text-base font-semibold leading-7 dark:text-white">{{ __('Pro') }}</h3>
                     <p class="flex items-baseline mt-6 gap-x-1">
                         <span x-show="selected === 'monthly'" x-cloak>
                             <span class="text-4xl font-bold tracking-tight dark:text-white">$30</span>
@@ -132,19 +129,17 @@
                         </span>
                     </p>
                     <span x-show="selected === 'monthly'" x-cloak>
-                        <span>billed monthly</span>
+                        <span>{{ __('billed monthly') }}</span>
                     </span>
                     <span x-show="selected === 'yearly'" x-cloak>
-                        <span>billed annually</span>
+                        <span>{{ __('billed annually') }}</span>
                     </span>
                     @if ($showSubscribeButtons)
                         @isset($pro)
                             {{ $pro }}
                         @endisset
                     @endif
-                    <p class="h-20 mt-10 text-sm leading-6 dark:text-white">Expand your business or set up your own
-                        hosting
-                        environment.
+                    <p class="h-20 mt-10 text-sm leading-6 dark:text-white">{{ __('Expand your business or set up your own hosting environment.') }}
                     </p>
                     <ul role="list" class="mt-6 space-y-3 text-sm leading-6 ">
                         <li class="flex ">
@@ -154,7 +149,7 @@
                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
                                     clip-rule="evenodd" />
                             </svg>
-                            Connect <span class="px-1 font-bold dark:text-white">10</span> servers
+                            {{ __('Connect') }} <span class="px-1 font-bold dark:text-white">10</span> {{ __('servers') }}
                         </li>
                         <li class="flex gap-x-3">
                             <svg class="flex-none w-5 h-6 dark:text-warning" viewBox="0 0 20 20" fill="currentColor"
@@ -163,7 +158,7 @@
                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
                                     clip-rule="evenodd" />
                             </svg>
-                            Included Email System
+                            {{ __('Included Email System') }}
                         </li>
                         <li class="flex gap-x-3">
                             <svg class="flex-none w-5 h-6 dark:text-warning" viewBox="0 0 20 20" fill="currentColor"
@@ -172,7 +167,7 @@
                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
                                     clip-rule="evenodd" />
                             </svg>
-                            Priority Email Support
+                            {{ __('Priority Email Support') }}
                         </li>
                         <li class="flex font-bold dark:text-white gap-x-3">
                             <svg width="512" height="512" class="flex-none w-5 h-6 text-green-600"
@@ -184,35 +179,34 @@
                                     <path d="M7 14a6 6 0 0 0-3 6a6 6 0 0 0 6-3m4-8a1 1 0 1 0 2 0a1 1 0 1 0-2 0" />
                                 </g>
                             </svg>
-                            + All upcoming features
+                            {{ __('+ All upcoming features') }}
                         </li>
                     </ul>
                 </div>
                 <div class="pt-16 lg:px-8 lg:pt-0 xl:px-12">
-                    <h3 id="tier-ultimate" class="text-base font-semibold leading-7 dark:text-white">Ultimate</h3>
+                    <h3 id="tier-ultimate" class="text-base font-semibold leading-7 dark:text-white">{{ __('Ultimate') }}</h3>
                     <p class="flex items-baseline mt-6 gap-x-1">
                         <span x-show="selected === 'monthly'" x-cloak>
-                            <span class="text-4xl font-bold tracking-tight dark:text-white">Custom</span>
+                            <span class="text-4xl font-bold tracking-tight dark:text-white">{{ __('Custom') }}</span>
                             {{-- <span class="text-sm font-semibold leading-6 ">pay-as-you-go</span> --}}
                         </span>
                         <span x-show="selected === 'yearly'" x-cloak>
-                            <span class="text-4xl font-bold tracking-tight dark:text-white">Custom</span>
+                            <span class="text-4xl font-bold tracking-tight dark:text-white">{{ __('Custom') }}</span>
                             {{-- <span class="text-sm font-semibold leading-6 ">/month + VAT</span> --}}
                         </span>
                     </p>
                     <span x-show="selected === 'monthly'" x-cloak>
-                        <span>pay-as-you-go</span>
+                        <span>{{ __('pay-as-you-go') }}</span>
                     </span>
                     <span x-show="selected === 'yearly'" x-cloak>
-                        <span>pay-as-you-go</span>
+                        <span>{{ __('pay-as-you-go') }}</span>
                     </span>
                     @if ($showSubscribeButtons)
                         @isset($ultimate)
                             {{ $ultimate }}
                         @endisset
                     @endif
-                    <p class="h-20 mt-10 text-sm leading-6 dark:text-white">Easily manage complex infrastructures in a
-                        single location.</p>
+                    <p class="h-20 mt-10 text-sm leading-6 dark:text-white">{{ __('Easily manage complex infrastructures in a single location.') }}</p>
                     <ul role="list" class="mt-6 space-y-3 text-sm leading-6 ">
                         <li class="flex ">
                             <svg class="flex-none w-5 h-6 mr-3 dark:text-warning" viewBox="0 0 20 20"
@@ -221,7 +215,7 @@
                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
                                     clip-rule="evenodd" />
                             </svg>
-                            Connect <span class="px-1 font-bold dark:text-white">10+</span> servers
+                            {{ __('Connect') }} <span class="px-1 font-bold dark:text-white">10+</span> {{ __('servers') }}
                         </li>
 
                         <li class="flex gap-x-3">
@@ -231,7 +225,7 @@
                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
                                     clip-rule="evenodd" />
                             </svg>
-                            Included Email System
+                            {{ __('Included Email System') }}
                         </li>
                         <li class="flex font-bold dark:text-white gap-x-3">
                             <svg class="flex-none w-5 h-6 dark:text-warning" viewBox="0 0 20 20" fill="currentColor"
@@ -240,7 +234,7 @@
                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
                                     clip-rule="evenodd" />
                             </svg>
-                            Priority (Email/Chat) Support
+                            {{ __('Priority (Email/Chat) Support') }}
                         </li>
                         <li class="flex font-bold dark:text-white gap-x-3">
                             <svg width="512" height="512" class="flex-none w-5 h-6 text-green-600"
@@ -252,7 +246,7 @@
                                     <path d="M7 14a6 6 0 0 0-3 6a6 6 0 0 0 6-3m4-8a1 1 0 1 0 2 0a1 1 0 1 0-2 0" />
                                 </g>
                             </svg>
-                            + All upcoming features
+                            {{ __('+ All upcoming features') }}
                         </li>
                     </ul>
                 </div>

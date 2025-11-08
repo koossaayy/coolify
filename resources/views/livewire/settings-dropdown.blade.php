@@ -141,7 +141,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                                <span>What's New</span>
+                                <span>{{ __("What's New") }}</span>
                             </div>
                             <span
                                 class="bg-error text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
@@ -155,7 +155,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                             </svg>
-                            <span>Changelog</span>
+                            <span>{{ __('Changelog') }}</span>
                         </button>
                     @endif
 
@@ -164,14 +164,14 @@
 
                     <!-- Theme Section -->
                     <div class="font-bold border-b dark:border-coolgray-500 border-neutral-300 dark:text-white pb-1">
-                        Appearance</div>
+                        {{ __('Appearance') }}</div>
                     <button @click="setTheme('dark'); dropdownOpen = false"
                         class="px-1 dropdown-item-no-padding flex items-center gap-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                         </svg>
-                        <span>Dark</span>
+                        <span>{{ __('Dark') }}</span>
                     </button>
                     <button @click="setTheme('light'); dropdownOpen = false"
                         class="px-1 dropdown-item-no-padding flex items-center gap-2">
@@ -179,7 +179,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                         </svg>
-                        <span>Light</span>
+                        <span>{{ __('Light') }}</span>
                     </button>
                     <button @click="setTheme('system'); dropdownOpen = false"
                         class="px-1 dropdown-item-no-padding flex items-center gap-2">
@@ -187,20 +187,20 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
-                        <span>System</span>
+                        <span>{{ __('System') }}</span>
                     </button>
 
                     <!-- Width Section -->
                     <div
                         class="my-1 font-bold border-b dark:border-coolgray-500 border-neutral-300 dark:text-white text-md">
-                        Width</div>
+                        {{ __('Width') }}</div>
                     <button @click="switchWidth(); dropdownOpen = false"
                         class="px-1 dropdown-item-no-padding flex items-center gap-2" x-show="full === 'full'">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 6h16M4 12h16M4 18h7" />
                         </svg>
-                        <span>Center</span>
+                        <span>{{ __('Center') }}</span>
                     </button>
                     <button @click="switchWidth(); dropdownOpen = false"
                         class="px-1 dropdown-item-no-padding flex items-center gap-2" x-show="full === 'center'">
@@ -208,13 +208,13 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
-                        <span>Full</span>
+                        <span>{{ __('Full') }}</span>
                     </button>
 
                     <!-- Zoom Section -->
                     <div
                         class="my-1 font-bold border-b dark:border-coolgray-500 border-neutral-300 dark:text-white text-md">
-                        Zoom</div>
+                        {{ __('Zoom') }}</div>
                     <button @click="setZoom(100); dropdownOpen = false"
                         class="px-1 dropdown-item-no-padding flex items-center gap-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -251,13 +251,13 @@
                 <div class="flex items-center justify-between  pb-3">
                     <div>
                         <h3 class="text-2xl font-bold dark:text-white">
-                            Changelog
+                            {{ __('Changelog') }}
                         </h3>
                         <p class="mt-1 text-sm dark:text-neutral-400">
-                            Stay up to date with the latest features and improvements.
+                            {{ __('Stay up to date with the latest features and improvements.') }}
                         </p>
                         <p class="mt-1 text-xs dark:text-neutral-500">
-                            Current version: <span class="font-semibold dark:text-neutral-300">{{ $currentVersion }}</span>
+                            {{ __('Current version:') }} <span class="font-semibold dark:text-neutral-300">{{ $currentVersion }}</span>
                         </p>
                     </div>
                     <div class="flex items-center gap-2">
@@ -268,12 +268,12 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                                 </svg>
-                                Fetch Latest
+                                {{ __('Fetch Latest') }}
                             </x-forms.button>
                         @endif
                         @if ($unreadCount > 0)
                             <x-forms.button @click="markAllEntriesAsRead">
-                                Mark all as read
+                                {{ __('Mark all as read') }}
                             </x-forms.button>
                         @endif
                         <button wire:click="closeWhatsNewModal"
@@ -318,7 +318,7 @@
                                                     </a></span>
                                                 <span x-show="entry.tag_name === '{{ $currentVersion }}'"
                                                     class="px-2 py-1 text-xs font-semibold bg-success text-white rounded-sm">
-                                                    CURRENT VERSION
+                                                    {{ __('CURRENT VERSION') }}
                                                 </span>
                                                 <span class="text-xs dark:text-neutral-400"
                                                     x-text="new Date(entry.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })"></span>
@@ -331,7 +331,7 @@
                                         <button x-show="!entry.is_read" @click="markEntryAsRead(entry.tag_name)"
                                             class="ml-4 px-3 py-1 text-xs dark:text-neutral-400 hover:dark:text-white border dark:border-neutral-600 rounded hover:dark:bg-neutral-700 transition-colors cursor-pointer"
                                             title="Mark as read">
-                                            mark as read
+                                            {{ __('mark as read') }}
                                         </button>
                                     </div>
                                 </div>
@@ -345,10 +345,10 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
-                        <h3 class="mt-2 text-sm font-medium dark:text-white">No updates found</h3>
+                        <h3 class="mt-2 text-sm font-medium dark:text-white">{{ __('No updates found') }}</h3>
                         <p class="mt-1 text-sm dark:text-neutral-400">
-                            <span x-show="search.trim() !== ''">No updates match your search criteria.</span>
-                            <span x-show="search.trim() === ''">There are no updates available at the moment.</span>
+                            <span x-show="search.trim() !== ''">{{ __('No updates match your search criteria.') }}</span>
+                            <span x-show="search.trim() === ''">{{ __('There are no updates available at the moment.') }}</span>
                         </p>
                     </div>
                 </div>

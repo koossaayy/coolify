@@ -1,22 +1,22 @@
 <div>
     <x-slot:title>
-        Notifications | Coolify
+        {{ __('Notifications | Coolify') }}
     </x-slot>
     <x-notification.navbar />
     <form wire:submit='submit' class="flex flex-col gap-4 pb-4">
         <div class="flex items-center gap-2">
-            <h2>Telegram</h2>
+            <h2>{{ __('Telegram') }}</h2>
             <x-forms.button canGate="update" :canResource="$settings" type="submit">
-                Save
+                {{ __('Save') }}
             </x-forms.button>
             @if ($telegramEnabled)
                 <x-forms.button canGate="sendTest" :canResource="$settings" class="normal-case dark:text-white btn btn-xs no-animation btn-primary"
                     wire:click="sendTestNotification">
-                    Send Test Notification
+                    {{ __('Send Test Notification') }}
                 </x-forms.button>
             @else
                 <x-forms.button canGate="sendTest" :canResource="$settings" disabled class="normal-case dark:text-white btn btn-xs no-animation btn-primary">
-                    Send Test Notification
+                    {{ __('Send Test Notification') }}
                 </x-forms.button>
             @endif
         </div>
@@ -32,13 +32,13 @@
                 label="Chat ID" />
         </div>
     </form>
-    <h2 class="mt-4">Notification Settings</h2>
+    <h2 class="mt-4">{{ __('Notification Settings') }}</h2>
     <p class="mb-4">
-        Select events for which you would like to receive Telegram notifications.
+        {{ __('Select events for which you would like to receive Telegram notifications.') }}
     </p>
     <div class="flex flex-col gap-4 ">
         <div class="border dark:border-coolgray-300 border-neutral-200 p-4 rounded-lg">
-            <h3 class="text-lg font-medium mb-3">Deployments</h3>
+            <h3 class="text-lg font-medium mb-3">{{ __('Deployments') }}</h3>
             <div class="flex flex-col gap-1.5 pl-1">
                 <div class="pl-1 flex gap-2">
                     <div class="w-96">
@@ -68,7 +68,7 @@
             </div>
         </div>
         <div class="border dark:border-coolgray-300 border-neutral-200 p-4 rounded-lg">
-            <h3 class="text-lg font-medium mb-3">Backups</h3>
+            <h3 class="text-lg font-medium mb-3">{{ __('Backups') }}</h3>
             <div class="flex flex-col gap-1.5 pl-1">
                 <div class="pl-1 flex gap-2">
                     <div class="w-96">
@@ -91,7 +91,7 @@
         </div>
 
         <div class="border dark:border-coolgray-300 border-neutral-200 p-4 rounded-lg">
-            <h3 class="text-lg font-medium mb-3">Scheduled Tasks</h3>
+            <h3 class="text-lg font-medium mb-3">{{ __('Scheduled Tasks') }}</h3>
             <div class="flex flex-col gap-1.5 pl-1">
                 <div class="pl-1 flex gap-2">
                     <div class="w-96">
@@ -114,7 +114,7 @@
         </div>
 
         <div class="border dark:border-coolgray-300 border-neutral-200 p-4 rounded-lg">
-            <h3 class="text-lg font-medium mb-3">Server</h3>
+            <h3 class="text-lg font-medium mb-3">{{ __('Server') }}</h3>
             <div class="flex flex-col gap-1.5 pl-1">
                 <div class="pl-1 flex gap-2">
                     <div class="w-96">

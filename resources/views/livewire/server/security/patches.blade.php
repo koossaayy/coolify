@@ -1,10 +1,10 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($server, 'name')->limit(10) }} > Security | Coolify
+        {{ data_get_str($server, 'name')->limit(10) }} {{ __('> Security | Coolify') }}
     </x-slot>
     <livewire:server.navbar :server="$server" />
     <x-slide-over closeWithX fullScreen @startupdate.window="slideOverOpen = true">
-        <x-slot:title>Updating Packages</x-slot:title>
+        <x-slot:title>{{ __('Updating Packages') }}</x-slot:title>
         <x-slot:content>
             <livewire:activity-monitor header="Logs" />
         </x-slot:content>
@@ -15,31 +15,31 @@
         <form wire:submit='submit' class="w-full">
             <div>
                 <div class="flex items-center gap-2 flex-row">
-                    <h2>Server Patching</h2>
-                    <span class="text-xs text-neutral-500">(experimental)</span>
+                    <h2>{{ __('Server Patching') }}</h2>
+                    <span class="text-xs text-neutral-500">{{ __('(experimental)') }}</span>
                     <x-helper
                         helper="Only available for apt, dnf and zypper package managers atm, more coming
             soon.<br/>Status notifications sent every week.<br/>You can disable notifications in the <a class='dark:text-white underline' href='{{ route('notifications.email') }}'>notification settings</a>." />
                     @if (isDev())
                         <x-forms.button type="button" wire:click="sendTestEmail">
-                            Send Test Email (dev only)</x-forms.button>
+                            {{ __('Send Test Email (dev only)') }}</x-forms.button>
                     @endif
                 </div>
-                <div>Update your servers semi-automatically.</div>
+                <div>{{ __('Update your servers semi-automatically.') }}</div>
                 <div>
                     <div class="flex flex-col gap-6 pt-4">
                         <x-forms.button type="button" wire:click="$dispatch('checkForUpdates')">
-                            Check for Updates</x-forms.button>
+                            {{ __('Check for Updates') }}</x-forms.button>
                         <div class="flex flex-col">
                             <div>
                                 <div class="pb-2" wire:target="checkForUpdates" wire:loading>
-                                    Checking for updates. It may take a few minutes. <x-loading />
+                                    {{ __('Checking for updates. It may take a few minutes.') }} <x-loading />
                                 </div>
                                 @if ($error)
                                     <div class="text-red-500">{{ $error }}</div>
                                 @else
                                     @if ($totalUpdates === 0)
-                                        <div class="text-green-500">Your server is up to date.</div>
+                                        <div class="text-green-500">{{ __('Your server is up to date.') }}</div>
                                     @endif
                                     @if (isset($updates) && count($updates) > 0)
                                         <div class="pb-2">
@@ -60,9 +60,9 @@
                                             <table class="min-w-full">
                                                 <thead>
                                                     <tr>
-                                                        <th>Package</th>
-                                                        <th>Version</th>
-                                                        <th>Action</th>
+                                                        <th>{{ __('Package') }}</th>
+                                                        <th>{{ __('Version') }}</th>
+                                                        <th>{{ __('Action') }}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -96,7 +96,7 @@
                                                             </td>
                                                             <td class="whitespace-nowrap">
                                                                 <x-forms.button type="button"
-                                                                    wire:click="$dispatch('updatePackage', { package: '{{ data_get($update, 'package') }}' })">Update</x-forms.button>
+                                                                    wire:click="$dispatch('updatePackage', { package: '{{ data_get($update, 'package') }}' })">{{ __('Update') }}</x-forms.button>
                                                             </td>
                                                         </tr>
                                                     @endforeach

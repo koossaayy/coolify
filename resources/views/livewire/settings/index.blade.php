@@ -1,18 +1,18 @@
 <div>
     <x-slot:title>
-        Settings | Coolify
+        {{ __('Settings | Coolify') }}
     </x-slot>
     <x-settings.navbar />
     <div x-data="{ activeTab: window.location.hash ? window.location.hash.substring(1) : 'general' }" class="flex flex-col h-full gap-8 sm:flex-row">
         <x-settings.sidebar activeMenu="general" />
         <form wire:submit='submit' class="flex flex-col">
             <div class="flex items-center gap-2">
-                <h2>General</h2>
+                <h2>{{ __('General') }}</h2>
                 <x-forms.button type="submit">
-                    Save
+                    {{ __('Save') }}
                 </x-forms.button>
             </div>
-            <div class="pb-4">General configuration for your Coolify instance.</div>
+            <div class="pb-4">{{ __('General configuration for your Coolify instance.') }}</div>
 
             <div class="flex flex-col gap-2">
                 <div class="flex flex-wrap items-end gap-2">
@@ -36,8 +36,7 @@
                             }
                         }">
                             <div class="flex items-center mb-1">
-                                <label for="instance_timezone">Instance
-                                    Timezone</label>
+                                <label for="instance_timezone">{{ __('Instance Timezone') }}</label>
                                 <x-helper class="ml-2"
                                     helper="Timezone for the Coolify instance. This is used for the update check and automatic update frequency." />
                             </div>
@@ -93,10 +92,10 @@
             confirmAction="confirmDomainUsage">
             <x-slot:consequences>
                 <ul class="mt-2 ml-4 list-disc">
-                    <li>The Coolify instance domain will conflict with existing resources</li>
-                    <li>SSL certificates might not work correctly</li>
-                    <li>Routing behavior will be unpredictable</li>
-                    <li>You may not be able to access the Coolify dashboard properly</li>
+                    <li>{{ __('The Coolify instance domain will conflict with existing resources') }}</li>
+                    <li>{{ __('SSL certificates might not work correctly') }}</li>
+                    <li>{{ __('Routing behavior will be unpredictable') }}</li>
+                    <li>{{ __('You may not be able to access the Coolify dashboard properly') }}</li>
                 </ul>
             </x-slot:consequences>
         </x-domain-conflict-modal>

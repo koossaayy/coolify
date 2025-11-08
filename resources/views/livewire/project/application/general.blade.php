@@ -7,13 +7,13 @@
 }">
     <form wire:submit='submit' class="flex flex-col pb-32">
         <div class="flex items-center gap-2">
-            <h2>General</h2>
+            <h2>{{ __('General') }}</h2>
             @if (isDev())
                 <div>{{ $application->compose_parsing_version }}</div>
             @endif
-            <x-forms.button canGate="update" :canResource="$application" type="submit">Save</x-forms.button>
+            <x-forms.button canGate="update" :canResource="$application" type="submit">{{ __('Save') }}</x-forms.button>
         </div>
-        <div>General configuration for your application.</div>
+        <div>{{ __('General configuration for your application.') }}</div>
         <div class="flex flex-col gap-2 py-4">
             <div class="flex flex-col items-end gap-2 xl:flex-row">
                 <x-forms.input x-bind:disabled="shouldDisable()" id="name" label="Name" required />
@@ -25,15 +25,15 @@
                     <div class="flex gap-2">
                         <x-forms.select x-bind:disabled="shouldDisable()" wire:model.live="buildPack" label="Build Pack"
                             required>
-                            <option value="nixpacks">Nixpacks</option>
-                            <option value="static">Static</option>
-                            <option value="dockerfile">Dockerfile</option>
-                            <option value="dockercompose">Docker Compose</option>
+                            <option value="nixpacks">{{ __('Nixpacks') }}</option>
+                            <option value="static">{{ __('Static') }}</option>
+                            <option value="dockerfile">{{ __('Dockerfile') }}</option>
+                            <option value="dockercompose">{{ __('Docker Compose') }}</option>
                         </x-forms.select>
                         @if ($application->settings->is_static || $application->build_pack === 'static')
                             <x-forms.select x-bind:disabled="!canUpdate" id="staticImage" label="Static Image" required>
-                                <option value="nginx:alpine">nginx:alpine</option>
-                                <option disabled value="apache:alpine">apache:alpine</option>
+                                <option value="nginx:alpine">{{ __('nginx:alpine') }}</option>
+                                <option disabled value="apache:alpine">{{ __('apache:alpine') }}</option>
                             </x-forms.select>
                         @endif
                     </div>
@@ -43,7 +43,7 @@
                             !is_null($parsedServices) &&
                                 count($parsedServices) > 0 &&
                                 !$application->settings->is_raw_compose_deployment_enabled)
-                            <h3 class="pt-6">Domains</h3>
+                            <h3 class="pt-6">{{ __('Domains') }}</h3>
                             @foreach (data_get($parsedServices, 'services') as $serviceName => $service)
                                 @if (!isDatabaseImage(data_get($service, 'image')))
                                     <div class="flex items-end gap-2">
@@ -53,8 +53,7 @@
                                             id="parsedServiceDomains.{{ str($serviceName)->replace('-', '_')->replace('.', '_') }}.domain"
                                             x-bind:disabled="shouldDisable()"></x-forms.input>
                                         @can('update', $application)
-                                            <x-forms.button wire:click="generateDomain('{{ $serviceName }}')">Generate
-                                                Domain</x-forms.button>
+                                            <x-forms.button wire:click="generateDomain('{{ $serviceName }}')">{{ __('Generate Domain') }}</x-forms.button>
                                         @endcan
                                     </div>
                                 @endif
@@ -103,7 +102,7 @@
                             helper="You can specify one domain with path or more with comma. You can specify a port to bind the domain to.<br><br><span class='text-helper'>Example</span><br>- http://app.coolify.io,https://cloud.coolify.io/dashboard<br>- http://app.coolify.io/api/v3<br>- http://app.coolify.io:3000 -> app.coolify.io will point to port 3000 inside the container. "
                             x-bind:disabled="!canUpdate" />
                         @can('update', $application)
-                            <x-forms.button wire:click="getWildcardDomain">Generate Domain
+                            <x-forms.button wire:click="getWildcardDomain">{{ __('Generate Domain') }}
                             </x-forms.button>
                         @endcan
                     @endif
@@ -127,9 +126,9 @@
                         <x-forms.select label="Direction" id="redirect" required
                             helper="You must need to add www and non-www as an A DNS record. Make sure the www domain is added under Domains."
                             x-bind:disabled="!canUpdate">
-                            <option value="both">Allow www & non-www.</option>
-                            <option value="www">Redirect to www.</option>
-                            <option value="non-www">Redirect to non-www.</option>
+                            <option value="both">{{ __('Allow www & non-www.') }}</option>
+                            <option value="www">{{ __('Redirect to www.') }}</option>
+                            <option value="non-www">{{ __('Redirect to non-www.') }}</option>
                         </x-forms.select>
                         @if ($application->settings->is_container_label_readonly_enabled)
                             @can('update', $application)
@@ -140,7 +139,7 @@
                                     shortConfirmationLabel="Application URL" :confirmWithPassword="false"
                                     step2ButtonText="Set Direction">
                                     <x-slot:customButton>
-                                        <div class="w-[7.2rem]">Set Direction</div>
+                                        <div class="w-[7.2rem]">{{ __('Set Direction') }}</div>
                                     </x-slot:customButton>
                                 </x-modal-confirmation>
                             @endcan
@@ -151,7 +150,7 @@
 
             @if ($application->build_pack !== 'dockercompose')
                 <div class="flex items-center gap-2 pt-8">
-                    <h3>Docker Registry</h3>
+                    <h3>{{ __('Docker Registry') }}</h3>
                     @if ($application->build_pack !== 'dockerimage' && !$application->destination->server->isSwarm())
                         <x-helper
                             helper="Push the built image to a docker registry. More info <a class='underline' href='https://coolify.io/docs/knowledge-base/docker/registry' target='_blank'>here</a>." />
@@ -159,9 +158,9 @@
                 </div>
                 @if ($application->destination->server->isSwarm())
                     @if ($application->build_pack !== 'dockerimage')
-                        <div>Docker Swarm requires the image to be available in a registry. More info <a
+                        <div>{{ __('Docker Swarm requires the image to be available in a registry. More info') }} <a
                                 class="underline" href="https://coolify.io/docs/knowledge-base/docker/registry"
-                                target="_blank">here</a>.</div>
+                                target="_blank">{{ __('here') }}</a>.</div>
                     @endif
                 @endif
                 <div class="flex flex-col gap-2 xl:flex-row">
@@ -204,7 +203,7 @@
                 </div>
             @endif
             <div>
-                <h3>Build</h3>
+                <h3>{{ __('Build') }}</h3>
                 @if ($application->build_pack === 'dockerimage')
                     <x-forms.input
                         helper="You can add custom docker run options that will be used when your container is started.<br>Note: Not all options are supported, as they could mess up Coolify's automation and could cause bad experience for users.<br><br>Check the <a class='underline dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/custom-commands'>docs.</a>"
@@ -221,10 +220,8 @@
                                 <x-forms.input helper="If you modify this, you probably need to have a nixpacks.toml"
                                     id="startCommand" label="Start Command" x-bind:disabled="!canUpdate" />
                             </div>
-                            <div class="pt-1 text-xs">Nixpacks will detect the required configuration
-                                automatically.
-                                <a class="underline" href="https://coolify.io/docs/applications/">Framework
-                                    Specific Docs</a>
+                            <div class="pt-1 text-xs">{{ __('Nixpacks will detect the required configuration automatically.') }}
+                                <a class="underline" href="https://coolify.io/docs/applications/">{{ __('Framework Specific Docs') }}</a>
                             </div>
                         @endif
 
@@ -251,11 +248,7 @@
                                             helper="Git repository (based on the base directory settings) will be copied to the deployment directory."
                                             x-bind:disabled="shouldDisable()" />
                                     </div>
-                                    <div class="pt-4">The following commands are for advanced use cases.
-                                        Only
-                                        modify them if you
-                                        know what are
-                                        you doing.</div>
+                                    <div class="pt-4">{{ __('The following commands are for advanced use cases. Only modify them if you know what are you doing.') }}</div>
                                     <div class="flex gap-2">
                                         <x-forms.input x-bind:disabled="shouldDisable()"
                                             placeholder="docker compose build" id="dockerComposeCustomBuildCommand"
@@ -331,10 +324,10 @@
             </div>
             @if ($application->build_pack === 'dockercompose')
                 <div class="flex items-center gap-2 pb-4">
-                    <h3>Docker Compose</h3>
+                    <h3>{{ __('Docker Compose') }}</h3>
                     @can('update', $application)
                         <x-forms.button wire:target='initLoadingCompose'
-                            x-on:click="$wire.dispatch('loadCompose', false)">Reload Compose File</x-forms.button>
+                            x-on:click="$wire.dispatch('loadCompose', false)">{{ __('Reload Compose File') }}</x-forms.button>
                     @endcan
                 </div>
                 @if ($application->settings->is_raw_compose_deployment_enabled)
@@ -368,7 +361,7 @@
                     useMonacoEditor rows="6" x-bind:disabled="!canUpdate"> </x-forms.textarea>
             @endif
             @if ($application->build_pack !== 'dockercompose')
-                <h3 class="pt-8">Network</h3>
+                <h3 class="pt-8">{{ __('Network') }}</h3>
                 <div class="flex flex-col gap-2 xl:flex-row">
                     @if ($application->settings->is_static || $application->build_pack === 'static')
                         <x-forms.input id="portsExposes" label="Ports Exposes" readonly
@@ -396,7 +389,7 @@
                     @endif
                 </div>
 
-                <h3 class="pt-8">HTTP Basic Authentication</h3>
+                <h3 class="pt-8">{{ __('HTTP Basic Authentication') }}</h3>
                 <div>
                     <div class="w-96">
                         <x-forms.checkbox helper="This will add the proper proxy labels to the container." instantSave
@@ -442,7 +435,7 @@
                 @endcan
             @endif
 
-            <h3 class="pt-8">Pre/Post Deployment Commands</h3>
+            <h3 class="pt-8">{{ __('Pre/Post Deployment Commands') }}</h3>
             <div class="flex flex-col gap-2 xl:flex-row">
                 <x-forms.input x-bind:disabled="shouldDisable()" placeholder="php artisan migrate"
                     id="preDeploymentCommand" label="Pre-deployment "

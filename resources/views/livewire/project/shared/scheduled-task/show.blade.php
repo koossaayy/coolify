@@ -1,9 +1,9 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($resource, 'name')->limit(10) }} > Scheduled Tasks | Coolify
+        {{ data_get_str($resource, 'name')->limit(10) }} {{ __('> Scheduled Tasks | Coolify') }}
     </x-slot>
     @if ($type === 'application')
-        <h1>Scheduled Task</h1>
+        <h1>{{ __('Scheduled Task') }}</h1>
         <livewire:project.application.heading :application="$resource" />
     @elseif ($type === 'service')
         <livewire:project.service.heading :service="$resource" :parameters="$parameters" />
@@ -12,13 +12,13 @@
     <form wire:submit="submit" class="w-full">
         <div class="flex flex-col gap-2 pb-2">
             <div class="flex gap-2 items-end">
-                <h2>Scheduled Task</h2>
+                <h2>{{ __('Scheduled Task') }}</h2>
                 <x-forms.button type="submit">
-                    Save
+                    {{ __('Save') }}
                 </x-forms.button>
                 @if ($resource->isRunning())
                     <x-forms.button type="button" wire:click="executeNow">
-                        Execute Now
+                        {{ __('Execute Now') }}
                     </x-forms.button>
                 @endif
                 <x-modal-confirmation title="Confirm Scheduled Task Deletion?" isErrorButton buttonTitle="Delete"
@@ -48,7 +48,7 @@
     </form>
 
     <div class="pt-4">
-        <h3 class="py-4">Recent executions <span class="text-xs text-neutral-500">(click to check output)</span></h3>
+        <h3 class="py-4">{{ __('Recent executions') }} <span class="text-xs text-neutral-500">{{ __('(click to check output)') }}</span></h3>
         <livewire:project.shared.scheduled-task.executions :taskId="$task->id" />
     </div>
 </div>

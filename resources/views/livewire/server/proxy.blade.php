@@ -5,7 +5,7 @@
             @if ($selectedProxy !== 'NONE')
                 <form wire:submit='submit'>
                     <div class="flex items-center gap-2">
-                        <h2>Configuration</h2>
+                        <h2>{{ __('Configuration') }}</h2>
                         @if ($server->proxy->status === 'exited' || $server->proxy->status === 'removing')
                             @can('update', $server)
                                 <x-modal-confirmation title="Confirm Proxy Switching?" buttonTitle="Switch Proxy"
@@ -16,13 +16,12 @@
                             @endcan
                         @else
                             <x-forms.button canGate="update" :canResource="$server"
-                                wire:click="$dispatch('error', 'Currently running proxy must be stopped before switching proxy')">Switch
-                                Proxy</x-forms.button>
+                                wire:click="$dispatch('error', 'Currently running proxy must be stopped before switching proxy')">{{ __('Switch Proxy') }}</x-forms.button>
                         @endif
-                        <x-forms.button canGate="update" :canResource="$server" type="submit">Save</x-forms.button>
+                        <x-forms.button canGate="update" :canResource="$server" type="submit">{{ __('Save') }}</x-forms.button>
                     </div>
-                    <div class="subtitle">Configure your proxy settings and advanced options.</div>
-                    <h3>Advanced</h3>
+                    <div class="subtitle">{{ __('Configure your proxy settings and advanced options.') }}</div>
+                    <h3>{{ __('Advanced') }}</h3>
                     <div class="pb-6 w-96">
                         <x-forms.checkbox canGate="update" :canResource="$server"
                             helper="If set, all resources will only have docker container labels for {{ str($server->proxyType())->title() }}.<br>For applications, labels needs to be regenerated manually. <br>Resources needs to be restarted."
@@ -65,8 +64,7 @@
                     @if (
                         $server->proxy->last_applied_settings &&
                             $server->proxy->last_saved_settings !== $server->proxy->last_applied_settings)
-                        <div class="text-red-500 ">Configuration out of sync. Restart the proxy to apply the new
-                            configurations.
+                        <div class="text-red-500 ">{{ __('Configuration out of sync. Restart the proxy to apply the new configurations.') }}
                         </div>
                     @endif
                     <div wire:loading wire:target="loadProxyConfiguration" class="pt-4">
@@ -85,34 +83,34 @@
                 </form>
             @elseif($selectedProxy === 'NONE')
                 <div class="flex items-center gap-2">
-                    <h2>Configuration</h2>
+                    <h2>{{ __('Configuration') }}</h2>
                     @can('update', $server)
-                        <x-forms.button wire:click.prevent="changeProxy">Switch Proxy</x-forms.button>
+                        <x-forms.button wire:click.prevent="changeProxy">{{ __('Switch Proxy') }}</x-forms.button>
                     @endcan
                 </div>
-                <div class="pt-2 pb-4">Custom (None) Proxy Selected</div>
+                <div class="pt-2 pb-4">{{ __('Custom (None) Proxy Selected') }}</div>
             @else
                 <div class="flex items-center gap-2">
-                    <h2>Configuration</h2>
+                    <h2>{{ __('Configuration') }}</h2>
                     @can('update', $server)
-                        <x-forms.button wire:click.prevent="changeProxy">Switch Proxy</x-forms.button>
+                        <x-forms.button wire:click.prevent="changeProxy">{{ __('Switch Proxy') }}</x-forms.button>
                     @endcan
                 </div>
             @endif
         @else
             <div>
-                <h2>Configuration</h2>
-                <div class="subtitle">Select a proxy you would like to use on this server.</div>
+                <h2>{{ __('Configuration') }}</h2>
+                <div class="subtitle">{{ __('Select a proxy you would like to use on this server.') }}</div>
                 @can('update', $server)
                     <div class="grid gap-4">
                         <x-forms.button class="box" wire:click="selectProxy('NONE')">
-                            Custom (None)
+                            {{ __('Custom (None)') }}
                         </x-forms.button>
                         <x-forms.button class="box" wire:click="selectProxy('TRAEFIK')">
-                            Traefik
+                            {{ __('Traefik') }}
                         </x-forms.button>
                         <x-forms.button class="box" wire:click="selectProxy('CADDY')">
-                            Caddy
+                            {{ __('Caddy') }}
                         </x-forms.button>
                         {{-- <x-forms.button disabled class="box">
                             Nginx
@@ -120,7 +118,7 @@
                     </div>
                 @else
                     <x-callout type="warning" title="Permission Required" class="mb-4">
-                        You don't have permission to configure proxy settings for this server.
+                        {{ __("You don't have permission to configure proxy settings for this server.") }}
                     </x-callout>
                 @endcan
             </div>

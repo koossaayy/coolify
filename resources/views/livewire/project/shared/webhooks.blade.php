@@ -1,6 +1,6 @@
 <div class="flex flex-col gap-2">
     <div class="flex items-center gap-2">
-        <h2>Webhooks</h2>
+        <h2>{{ __('Webhooks') }}</h2>
         <x-helper
             helper="For more details goto our <a class='underline dark:text-white' href='https://coolify.io/docs/api/operations/deploy-by-tag-or-uuid' target='_blank'>docs</a>." />
     </div>
@@ -11,7 +11,7 @@
     </div>
     @if ($resource->type() === 'application')
         <div>
-            <h3>Manual Git Webhooks</h3>
+            <h3>{{ __('Manual Git Webhooks') }}</h3>
             @if ($githubManualWebhook && $gitlabManualWebhook)
                 <form wire:submit='submit' class="flex flex-col gap-2">
                     <div class="flex items-end gap-2">
@@ -28,7 +28,7 @@
                         @endcan
                     </div>
                     <a target="_blank" class="flex hover:no-underline" href="{{ $resource?->gitWebhook }}">
-                        <x-forms.button>Webhook Configuration on GitHub
+                        <x-forms.button>{{ __('Webhook Configuration on GitHub') }}
                             <x-external-link />
                         </x-forms.button>
                     </a>
@@ -69,12 +69,12 @@
                         @endcan
                     </div>
                     @can('update', $resource)
-                        <x-forms.button type="submit">Save</x-forms.button>
+                        <x-forms.button type="submit">{{ __('Save') }}</x-forms.button>
                     @endcan
                 </form>
             @else
                 <x-callout type="info" title="Information">
-                    You are using an official Git App. You do not need manual webhooks.
+                    {{ __('You are using an official Git App. You do not need manual webhooks.') }}
                 </x-callout>
             @endif
         </div>

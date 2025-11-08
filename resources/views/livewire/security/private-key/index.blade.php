@@ -1,7 +1,7 @@
 <div>
     <x-security.navbar />
     <div class="flex gap-2">
-        <h2 class="pb-4">Private Keys</h2>
+        <h2 class="pb-4">{{ __('Private Keys') }}</h2>
         @can('create', App\Models\PrivateKey::class)
             <x-modal-input buttonTitle="+ Add" title="New Private Key">
                 <livewire:security.private-key.create />
@@ -26,7 +26,7 @@
                             {{ $key->description }}
                             @if (!$key->isInUse())
                                 <span
-                                    class="inline-flex items-center px-2 py-0.5 rounded-sm text-xs font-medium bg-yellow-400 text-black">Unused</span>
+                                    class="inline-flex items-center px-2 py-0.5 rounded-sm text-xs font-medium bg-yellow-400 text-black">{{ __('Unused') }}</span>
                             @endif
                         </div>
                     </div>
@@ -37,20 +37,20 @@
                     <div class="flex flex-col justify-center mx-6">
                         <div class="box-title">
                             {{ data_get($key, 'name') }}
-                            <span class="ml-2 inline-flex items-center px-2 py-0.5 rounded-sm text-xs font-medium bg-gray-400 dark:bg-gray-600 text-white">View Only</span>
+                            <span class="ml-2 inline-flex items-center px-2 py-0.5 rounded-sm text-xs font-medium bg-gray-400 dark:bg-gray-600 text-white">{{ __('View Only') }}</span>
                         </div>
                         <div class="box-description">
                             {{ $key->description }}
                             @if (!$key->isInUse())
                                 <span
-                                    class="inline-flex items-center px-2 py-0.5 rounded-sm text-xs font-medium bg-yellow-400 text-black">Unused</span>
+                                    class="inline-flex items-center px-2 py-0.5 rounded-sm text-xs font-medium bg-yellow-400 text-black">{{ __('Unused') }}</span>
                             @endif
                         </div>
                     </div>
                 </div>
             @endcan
         @empty
-            <div>No private keys found.</div>
+            <div>{{ __('No private keys found.') }}</div>
         @endforelse
     </div>
 </div>

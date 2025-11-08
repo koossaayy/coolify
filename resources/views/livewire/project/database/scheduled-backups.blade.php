@@ -2,19 +2,18 @@
     <div class="flex flex-col gap-2">
         @if ($database->is_migrated && blank($database->custom_type))
             <div>
-                <div>Select the type of
-                    database to enable automated backups.</div>
-                <div class="pb-4"> If your database is not listed, automated backups are not supported.</div>
+                <div>{{ __('Select the type of database to enable automated backups.') }}</div>
+                <div class="pb-4"> {{ __('If your database is not listed, automated backups are not supported.') }}</div>
                 <form wire:submit="setCustomType" class="flex gap-2 items-end">
                     <div class="w-96">
                         <x-forms.select label="Type" id="custom_type">
-                            <option selected value="mysql">MySQL</option>
-                            <option value="mariadb">MariaDB</option>
-                            <option value="postgresql">PostgreSQL</option>
-                            <option value="mongodb">MongoDB</option>
+                            <option selected value="mysql">{{ __('MySQL') }}</option>
+                            <option value="mariadb">{{ __('MariaDB') }}</option>
+                            <option value="postgresql">{{ __('PostgreSQL') }}</option>
+                            <option value="mongodb">{{ __('MongoDB') }}</option>
                         </x-forms.select>
                     </div>
-                    <x-forms.button type="submit">Set</x-forms.button>
+                    <x-forms.button type="submit">{{ __('Set') }}</x-forms.button>
                 </form>
             </div>
         @else
@@ -63,7 +62,7 @@
                             @else
                                 <span
                                     class="px-3 py-1 rounded-md text-xs font-medium tracking-wide shadow-xs bg-gray-100 text-gray-800 dark:bg-neutral-800 dark:text-gray-200">
-                                    No executions yet
+                                    {{ __('No executions yet') }}
                                 </span>
                             @endif
                             <h3 class="font-semibold">{{ $backup->frequency }}</h3>
@@ -73,15 +72,15 @@
                                 Started:
                                 {{ formatDateInServerTimezone(data_get($backup->latest_log, 'created_at'), $backup->server()) }}
                                 @if (data_get($backup->latest_log, 'status') !== 'running')
-                                    <br>Ended:
+                                    <br>{{ __('Ended:') }}
                                     {{ formatDateInServerTimezone(data_get($backup->latest_log, 'finished_at'), $backup->server()) }}
-                                    <br>Duration:
+                                    <br>{{ __('Duration:') }}
                                     {{ calculateDuration(data_get($backup->latest_log, 'created_at'), data_get($backup->latest_log, 'finished_at')) }}
-                                    <br>Finished
+                                    <br>{{ __('Finished') }}
                                     {{ \Carbon\Carbon::parse(data_get($backup->latest_log, 'finished_at'))->diffForHumans() }}
                                 @endif
                                 @if ($backup->save_s3)
-                                    <br>S3 Storage: Enabled
+                                    <br>{{ __('S3 Storage: Enabled') }}
                                 @endif
                                 @if (data_get($backup->latest_log, 'status') === 'success')
                                     @php
@@ -89,13 +88,13 @@
                                         $sizeFormatted =
                                             $size > 0 ? number_format($size / 1024 / 1024, 2) . ' MB' : 'Unknown';
                                     @endphp
-                                    <br>Last Backup Size: {{ $sizeFormatted }}
+                                    <br>{{ __('Last Backup Size:') }} {{ $sizeFormatted }}
                                 @endif
                             @else
                                 Last Run: Never
-                                <br>Total Executions: 0
+                                <br>{{ __('Total Executions: 0') }}
                                 @if ($backup->save_s3)
-                                    <br>S3 Storage: Enabled
+                                    <br>{{ __('S3 Storage: Enabled') }}
                                 @endif
                             @endif
                         </div>
@@ -147,26 +146,26 @@
                             @else
                                 <span
                                     class="px-3 py-1 rounded-md text-xs font-medium tracking-wide shadow-xs bg-gray-100 text-gray-800 dark:bg-neutral-800 dark:text-gray-200">
-                                    No executions yet
+                                    {{ __('No executions yet') }}
                                 </span>
                             @endif
-                            <h3 class="font-semibold">{{ $backup->frequency }} Backup</h3>
+                            <h3 class="font-semibold">{{ $backup->frequency }} {{ __('Backup') }}</h3>
                         </div>
                         <div class="text-gray-600 dark:text-gray-400 text-sm">
                             @if ($backup->latest_log)
                                 Started:
                                 {{ formatDateInServerTimezone(data_get($backup->latest_log, 'created_at'), $backup->server()) }}
                                 @if (data_get($backup->latest_log, 'status') !== 'running')
-                                    <br>Ended:
+                                    <br>{{ __('Ended:') }}
                                     {{ formatDateInServerTimezone(data_get($backup->latest_log, 'finished_at'), $backup->server()) }}
-                                    <br>Duration:
+                                    <br>{{ __('Duration:') }}
                                     {{ calculateDuration(data_get($backup->latest_log, 'created_at'), data_get($backup->latest_log, 'finished_at')) }}
-                                    <br>Finished
+                                    <br>{{ __('Finished') }}
                                     {{ \Carbon\Carbon::parse(data_get($backup->latest_log, 'finished_at'))->diffForHumans() }}
                                 @endif
-                                <br><br>Total Executions: {{ $backup->executions()->count() }}
+                                <br><br>{{ __('Total Executions:') }} {{ $backup->executions()->count() }}
                                 @if ($backup->save_s3)
-                                    <br>S3 Storage: Enabled
+                                    <br>{{ __('S3 Storage: Enabled') }}
                                 @endif
                                 @php
                                     $successCount = $backup->executions()->where('status', 'success')->count();
@@ -174,7 +173,7 @@
                                     $successRate = $totalCount > 0 ? round(($successCount / $totalCount) * 100) : 0;
                                 @endphp
                                 @if ($totalCount > 0)
-                                    <br>Success Rate: <span @class([
+                                    <br>{{ __('Success Rate:') }} <span @class([
                                         'font-medium',
                                         'text-green-600' => $successRate >= 80,
                                         'text-yellow-600' => $successRate >= 50 && $successRate < 80,
@@ -188,20 +187,20 @@
                                         $sizeFormatted =
                                             $size > 0 ? number_format($size / 1024 / 1024, 2) . ' MB' : 'Unknown';
                                     @endphp
-                                    <br>Last Backup Size: {{ $sizeFormatted }}
+                                    <br>{{ __('Last Backup Size:') }} {{ $sizeFormatted }}
                                 @endif
                             @else
                                 Last Run: Never
-                                <br>Total Executions: 0
+                                <br>{{ __('Total Executions: 0') }}
                                 @if ($backup->save_s3)
-                                    <br>S3 Storage: Enabled
+                                    <br>{{ __('S3 Storage: Enabled') }}
                                 @endif
                             @endif
                         </div>
                     </div>
                 @endif
             @empty
-                <div>No scheduled backups configured.</div>
+                <div>{{ __('No scheduled backups configured.') }}</div>
             @endforelse
         @endif
     </div>

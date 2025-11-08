@@ -14,10 +14,10 @@ $email = getOldOrLocal('email', 'test3@example.com');
             <div class="w-full max-w-md space-y-8">
                 <div class="text-center space-y-2">
                     <h1 class="!text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-                        Coolify
+                        {{ __('Coolify') }}
                     </h1>
                     <p class="text-lg dark:text-neutral-400">
-                        Create your account
+                        {{ __('Create your account') }}
                     </p>
                 </div>
 
@@ -32,9 +32,8 @@ $email = getOldOrLocal('email', 'test3@example.com');
                                         clip-rule="evenodd" />
                                 </svg>
                                 <div>
-                                    <p class="font-bold text-warning">Root User Setup</p>
-                                    <p class="text-sm dark:text-white text-black">This user will be the root user with full
-                                        admin access.</p>
+                                    <p class="font-bold text-warning">{{ __('Root User Setup') }}</p>
+                                    <p class="text-sm dark:text-white text-black">{{ __('This user will be the root user with full admin access.') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -62,14 +61,13 @@ $email = getOldOrLocal('email', 'test3@example.com');
                         <div
                             class="p-4 bg-neutral-50 dark:bg-coolgray-200 rounded-lg border border-neutral-200 dark:border-coolgray-400">
                             <p class="text-xs dark:text-neutral-400">
-                                Your password should be min 8 characters long and contain at least one uppercase letter,
-                                one lowercase letter, one number, and one symbol.
+                                {{ __('Your password should be min 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one symbol.') }}
                             </p>
                         </div>
 
                         <x-forms.button class="w-full justify-center py-3 box-boarding mt-2" type="submit"
                             isHighlighted>
-                            Create Account
+                            {{ __('Create Account') }}
                         </x-forms.button>
                     </form>
 
@@ -79,7 +77,7 @@ $email = getOldOrLocal('email', 'test3@example.com');
                         </div>
                         <div class="relative flex justify-center text-sm">
                             <span class="px-2 bg-gray-50 dark:bg-base text-neutral-500 dark:text-neutral-400">
-                                Already have an account?
+                                {{ __('Already have an account?') }}
                             </span>
                         </div>
                     </div>

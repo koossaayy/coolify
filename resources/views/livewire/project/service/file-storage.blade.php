@@ -45,8 +45,7 @@
                                     shortConfirmationLabel="Filepath" :confirmWithPassword="false"
                                     step2ButtonText="Convert to directory" />
                             @endif
-                            <x-forms.button type="button" wire:click="loadStorageOnServer">Load from
-                                server</x-forms.button>
+                            <x-forms.button type="button" wire:click="loadStorageOnServer">{{ __('Load from server') }}</x-forms.button>
                             <x-modal-confirmation :ignoreWire="false" title="Confirm File Deletion?" buttonTitle="Delete"
                                 isErrorButton submitAction="delete" :checkboxes="$fileDeletionCheckboxes" :actions="['The selected file will be permanently deleted from the container.']"
                                 confirmationText="{{ $fs_path }}"
@@ -68,7 +67,7 @@
                             rows="20" id="content"
                             readonly="{{ $fileStorage->is_based_on_git || $fileStorage->is_binary }}"></x-forms.textarea>
                         @if (!$fileStorage->is_based_on_git && !$fileStorage->is_binary)
-                            <x-forms.button class="w-full" type="submit">Save</x-forms.button>
+                            <x-forms.button class="w-full" type="submit">{{ __('Save') }}</x-forms.button>
                         @endif
                     @else
                         @if (data_get($resource, 'settings.is_preserve_repository_enabled'))

@@ -1,11 +1,11 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($project, 'name')->limit(10) }} > Edit | Coolify
+        {{ data_get_str($project, 'name')->limit(10) }} {{ __('> Edit | Coolify') }}
     </x-slot>
     <form wire:submit='submit' class="flex flex-col">
         <div class="flex items-end gap-2">
-            <h1>Environment: {{ data_get_str($environment, 'name')->limit(15) }}</h1>
-            <x-forms.button canGate="update" :canResource="$environment" type="submit">Save</x-forms.button>
+            <h1>{{ __('Environment:') }} {{ data_get_str($environment, 'name')->limit(15) }}</h1>
+            <x-forms.button canGate="update" :canResource="$environment" type="submit">{{ __('Save') }}</x-forms.button>
             @can('delete', $environment)
                 <livewire:project.delete-environment :disabled="!$environment->isEmpty()" :environment_id="$environment->id" />
             @endcan
@@ -41,7 +41,7 @@
                                 d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                 clip-rule="evenodd"></path>
                         </svg>
-                        Edit
+                        {{ __('Edit') }}
                     </div>
                 </li>
             </ol>

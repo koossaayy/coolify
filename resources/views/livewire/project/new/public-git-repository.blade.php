@@ -1,6 +1,6 @@
 <div x-data x-init="$nextTick(() => { if ($refs.autofocusInput) $refs.autofocusInput.focus(); })">
-    <h1>Create a new Application</h1>
-    <div class="pb-8">Deploy any public Git repositories.</div>
+    <h1>{{ __('Create a new Application') }}</h1>
+    <div class="pb-8">{{ __('Deploy any public Git repositories.') }}</div>
 
     <!-- Repository URL Form -->
     <form class="flex flex-col gap-2" wire:submit='loadBranch'>
@@ -9,13 +9,12 @@
                 <x-forms.input required id="repository_url" label="Repository URL (https://)"
                     helper="{!! __('repository.url') !!}" autofocus />
                 <x-forms.button type="submit">
-                    Check repository
+                    {{ __('Check repository') }}
                 </x-forms.button>
             </div>
             <div>
-                For example application deployments, checkout <a class="underline dark:text-white"
-                    href="https://github.com/coollabsio/coolify-examples/" target="_blank">Coolify
-                    Examples</a>.
+                {{ __('For example application deployments, checkout') }} <a class="underline dark:text-white"
+                    href="https://github.com/coollabsio/coolify-examples/" target="_blank">{{ __('Coolify Examples') }}</a>.
             </div>
         </div>
     </form>
@@ -23,7 +22,7 @@
     @if ($branchFound)
         @if ($rate_limit_remaining && $rate_limit_reset)
             <div class="flex gap-2 py-2">
-                <div>Rate Limit</div>
+                <div>{{ __('Rate Limit') }}</div>
                 <x-helper
                     helper="Rate limit remaining: {{ $rate_limit_remaining }}<br>Rate limit reset at: {{ $rate_limit_reset }} UTC" />
             </div>
@@ -41,10 +40,10 @@
                             helper="You can select other branches after configuration is done." />
                     @endif
                     <x-forms.select wire:model.live="build_pack" label="Build Pack" required>
-                        <option value="nixpacks">Nixpacks</option>
-                        <option value="static">Static</option>
-                        <option value="dockerfile">Dockerfile</option>
-                        <option value="dockercompose">Docker Compose</option>
+                        <option value="nixpacks">{{ __('Nixpacks') }}</option>
+                        <option value="static">{{ __('Static') }}</option>
+                        <option value="dockerfile">{{ __('Dockerfile') }}</option>
+                        <option value="dockercompose">{{ __('Docker Compose') }}</option>
                     </x-forms.select>
                     @if ($isStatic)
                         <x-forms.input id="publish_directory" label="Publish Directory"
@@ -60,7 +59,7 @@
                             x-model="composeLocation" />
                         <div class="pt-2">
                             <span>
-                                Compose file location in your repository: </span><span class='dark:text-warning'
+                                {{ __('Compose file location in your repository:') }} </span><span class='dark:text-warning'
                                 x-text='(baseDir === "/" ? "" : baseDir) + (composeLocation.startsWith("/") ? composeLocation : "/" + composeLocation)'></span>
                         </div>
                     </div>
@@ -78,7 +77,7 @@
                 @endif
             </div>
             <x-forms.button type="submit">
-                Continue
+                {{ __('Continue') }}
             </x-forms.button>
         </form>
     @endif

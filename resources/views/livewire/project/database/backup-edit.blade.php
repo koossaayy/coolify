@@ -1,8 +1,8 @@
 <form wire:submit="submit">
     <div class="flex gap-2 pb-2">
-        <h2>Scheduled Backup</h2>
+        <h2>{{ __('Scheduled Backup') }}</h2>
         <x-forms.button type="submit">
-            Save
+            {{ __('Save') }}
         </x-forms.button>
         @if (str($status)->startsWith('running'))
             <livewire:project.database.backup-now :backup="$backup" />
@@ -37,7 +37,7 @@
     @if ($backup->save_s3)
         <div class="pb-6">
             <x-forms.select id="s3StorageId" label="S3 Storage" required>
-                <option value="default" disabled>Select a S3 storage</option>
+                <option value="default" disabled>{{ __('Select a S3 storage') }}</option>
                 @foreach ($s3s as $s3)
                     <option value="{{ $s3->id }}">{{ $s3->name }}</option>
                 @endforeach
@@ -45,7 +45,7 @@
         </div>
     @endif
     <div class="flex flex-col gap-2">
-        <h3>Settings</h3>
+        <h3>{{ __('Settings') }}</h3>
         <div class="flex gap-2 flex-col ">
             @if ($backup->database_type === 'App\Models\StandalonePostgresql' && $backup->database_id !== 0)
                 <div class="w-48">
@@ -87,17 +87,17 @@
             <x-forms.input label="Timeout" id="timeout" helper="The timeout of the backup job in seconds." />
         </div>
 
-        <h3 class="mt-6 mb-2 text-lg font-medium">Backup Retention Settings</h3>
+        <h3 class="mt-6 mb-2 text-lg font-medium">{{ __('Backup Retention Settings') }}</h3>
         <div class="mb-4">
             <ul class="list-disc pl-6 space-y-2">
-                <li>Setting a value to 0 means unlimited retention.</li>
-                <li>The retention rules work independently - whichever limit is reached first will trigger cleanup.</li>
+                <li>{{ __('Setting a value to 0 means unlimited retention.') }}</li>
+                <li>{{ __('The retention rules work independently - whichever limit is reached first will trigger cleanup.') }}</li>
             </ul>
         </div>
 
         <div class="flex gap-6 flex-col">
             <div>
-                <h4 class="mb-3 font-medium">Local Backup Retention</h4>
+                <h4 class="mb-3 font-medium">{{ __('Local Backup Retention') }}</h4>
                 <div class="flex gap-2">
                     <x-forms.input label="Number of backups to keep" id="databaseBackupRetentionAmountLocally"
                         type="number" min="0"
@@ -113,7 +113,7 @@
 
             @if ($backup->save_s3)
                 <div>
-                    <h4 class="mb-3 font-medium">S3 Storage Retention</h4>
+                    <h4 class="mb-3 font-medium">{{ __('S3 Storage Retention') }}</h4>
                     <div class="flex gap-2">
                         <x-forms.input label="Number of backups to keep" id="databaseBackupRetentionAmountS3"
                             type="number" min="0"

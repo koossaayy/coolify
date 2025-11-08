@@ -1,7 +1,7 @@
 <div wire:poll.10000ms="checkStatus" class="pb-6">
     <livewire:project.shared.configuration-checker :resource="$service" />
     <x-slide-over @startservice.window="slideOverOpen = true" closeWithX fullScreen>
-        <x-slot:title>Service Startup</x-slot:title>
+        <x-slot:title>{{ __('Service Startup') }}</x-slot:title>
         <x-slot:content>
             <livewire:activity-monitor header="Logs" fullHeight />
         </x-slot:content>
@@ -12,16 +12,16 @@
         <nav class="flex shrink-0 gap-6 items-center whitespace-nowrap scrollbar min-h-10">
             <a class="{{ request()->routeIs('project.service.configuration') ? 'dark:text-white' : '' }}"
                 href="{{ route('project.service.configuration', $parameters) }}">
-                <button>Configuration</button>
+                <button>{{ __('Configuration') }}</button>
             </a>
             <a class="{{ request()->routeIs('project.service.logs') ? 'dark:text-white' : '' }}"
                 href="{{ route('project.service.logs', $parameters) }}">
-                <button>Logs</button>
+                <button>{{ __('Logs') }}</button>
             </a>
             @can('canAccessTerminal')
                 <a class="{{ request()->routeIs('project.service.command') ? 'dark:text-white' : '' }}"
                     href="{{ route('project.service.command', $parameters) }}">
-                    <button>Terminal</button>
+                    <button>{{ __('Terminal') }}</button>
                 </a>
             @endcan
             <x-services.links :service="$service" />
@@ -38,7 +38,7 @@
                                 <path d="M20 4v5h-5" />
                             </g>
                         </svg>
-                        Restart
+                        {{ __('Restart') }}
                     </x-forms.button>
                     <x-modal-confirmation title="Confirm Service Stopping?" buttonTitle="Stop" :dispatchEvent="true"
                         submitAction="stop" dispatchEventType="stopEvent" :checkboxes="$checkboxes" :actions="[__('service.stop'), __('resource.non_persistent')]"
@@ -54,7 +54,7 @@
                                     d="M14 5m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z">
                                 </path>
                             </svg>
-                            Stop
+                            {{ __('Stop') }}
                         </x-slot:button-title>
                     </x-modal-confirmation>
                 @elseif (str($service->status)->contains('degraded'))
@@ -66,7 +66,7 @@
                                 <path d="M20 4v5h-5" />
                             </g>
                         </svg>
-                        Restart
+                        {{ __('Restart') }}
                     </x-forms.button>
                     <x-modal-confirmation title="Confirm Service Stopping?" buttonTitle="Stop" :dispatchEvent="true"
                         submitAction="stop" dispatchEventType="stopEvent" :checkboxes="$checkboxes" :actions="[__('service.stop'), __('resource.non_persistent')]"
@@ -82,7 +82,7 @@
                                     d="M14 5m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z">
                                 </path>
                             </svg>
-                            Stop
+                            {{ __('Stop') }}
                         </x-slot:button-title>
                     </x-modal-confirmation>
                 @elseif (str($service->status)->contains('exited'))
@@ -93,7 +93,7 @@
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M7 4v16l13 -8z" />
                         </svg>
-                        Deploy
+                        {{ __('Deploy') }}
                     </button>
                 @else
                     <x-modal-confirmation title="Confirm Service Stopping?" buttonTitle="Stop" :dispatchEvent="true"
@@ -110,7 +110,7 @@
                                     d="M14 5m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z">
                                 </path>
                             </svg>
-                            Stop
+                            {{ __('Stop') }}
                         </x-slot:button-title>
                     </x-modal-confirmation>
                     <button @click="$wire.dispatch('startEvent')" class="gap-2 button">
@@ -120,16 +120,16 @@
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M7 4v16l13 -8z" />
                         </svg>
-                        Deploy
+                        {{ __('Deploy') }}
                     </button>
                 @endif
             </div>
         @else
             <div class="flex flex-wrap order-first gap-2 items-center sm:order-last">
                 <div class="text-error">
-                    Unable to deploy. <a class="underline font-bold cursor-pointer"
+                    {{ __('Unable to deploy.') }} <a class="underline font-bold cursor-pointer"
                         href="{{ route('project.service.environment-variables', $parameters) }}">
-                        Required environment variables missing.</a>
+                        {{ __('Required environment variables missing.') }}</a>
                 </div>
             </div>
         @endif

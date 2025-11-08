@@ -1,8 +1,8 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($application, 'name')->limit(10) }} > Deployment | Coolify
+        {{ data_get_str($application, 'name')->limit(10) }} {{ __('> Deployment | Coolify') }}
     </x-slot>
-    <h1 class="py-0">Deployment</h1>
+    <h1 class="py-0">{{ __('Deployment') }}</h1>
     <livewire:project.shared.configuration-checker :resource="$application" />
     <livewire:project.application.heading :application="$application" />
     <div x-data="{
@@ -42,7 +42,7 @@
     }">
         <livewire:project.application.deployment-navbar :application_deployment_queue="$application_deployment_queue" />
         @if (data_get($application_deployment_queue, 'status') === 'in_progress')
-            <div class="flex items-center gap-1 pt-2 ">Deployment is
+            <div class="flex items-center gap-1 pt-2 ">{{ __('Deployment is') }}
                 <div class="dark:text-warning">
                     {{ Str::headline(data_get($this->application_deployment_queue, 'status')) }}.
                 </div>
@@ -50,7 +50,7 @@
             </div>
             {{-- <div class="">Logs will be updated automatically.</div> --}}
         @else
-            <div class="pt-2 ">Deployment is <span
+            <div class="pt-2 ">{{ __('Deployment is') }} <span
                     class="dark:text-warning">{{ Str::headline(data_get($application_deployment_queue, 'status')) }}</span>.
             </div>
         @endif
@@ -120,7 +120,7 @@
                             ])>{!! (isset($line['command']) && $line['command'] ? '[CMD]: ' : '') . trim($line['line']) !!}</span>
                         </div>
                     @empty
-                        <span class="font-mono text-neutral-400 mb-2">No logs yet.</span>
+                        <span class="font-mono text-neutral-400 mb-2">{{ __('No logs yet.') }}</span>
                     @endforelse
                 </div>
             </div>

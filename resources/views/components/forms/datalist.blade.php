@@ -128,7 +128,7 @@
 
                 <template x-if="filteredOptions.length === 0">
                     <div class="px-3 py-2 text-sm text-neutral-500 dark:text-neutral-400">
-                        No options found
+                        {{ __('No options found') }}
                     </div>
                 </template>
 
@@ -256,7 +256,7 @@
 
                     <template x-if="filteredOptions.length === 0">
                         <div class="px-3 py-2 text-sm text-neutral-500 dark:text-neutral-400">
-                            No options found
+                            {{ __('No options found') }}
                         </div>
                     </template>
 

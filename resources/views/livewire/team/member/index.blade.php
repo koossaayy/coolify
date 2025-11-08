@@ -1,11 +1,11 @@
 <div>
     <x-slot:title>
-        Team Members | Coolify
+        {{ __('Team Members | Coolify') }}
     </x-slot>
     <x-team.navbar />
-    <h2>Members</h2>
+    <h2>{{ __('Members') }}</h2>
     <div class="subtitle">
-        Manage or invite members of this team.
+        {{ __('Manage or invite members of this team.') }}
     </div>
     <div class="flex flex-col">
         <div class="flex flex-col">
@@ -15,11 +15,11 @@
                         <table class="min-w-full">
                             <thead>
                                 <tr>
-                                    <th class="px-5 py-3 text-xs font-medium text-left uppercase">Name
+                                    <th class="px-5 py-3 text-xs font-medium text-left uppercase">{{ __('Name') }}
                                     </th>
-                                    <th class="px-5 py-3 text-xs font-medium text-left uppercase">Email</th>
-                                    <th class="px-5 py-3 text-xs font-medium text-left uppercase">Role</th>
-                                    <th class="px-5 py-3 text-xs font-medium text-left uppercase">Actions</th>
+                                    <th class="px-5 py-3 text-xs font-medium text-left uppercase">{{ __('Email') }}</th>
+                                    <th class="px-5 py-3 text-xs font-medium text-left uppercase">{{ __('Role') }}</th>
+                                    <th class="px-5 py-3 text-xs font-medium text-left uppercase">{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,19 +36,13 @@
     @can('manageInvitations', currentTeam())
         <div class="py-4">
             @if (is_transactional_emails_enabled())
-                <h2 class="pb-4">Invite New Member</h2>
+                <h2 class="pb-4">{{ __('Invite New Member') }}</h2>
             @else
-                <h2>Invite New Member</h2>
+                <h2>{{ __('Invite New Member') }}</h2>
                 @if (isInstanceAdmin())
-                    <div class="pb-4 text-xs dark:text-warning">You need to configure (as root team) <a
-                            href="/settings/email" class="underline dark:text-warning">Transactional
-                            Emails</a>
-                        before
-                        you can invite a
-                        new
-                        member
-                        via
-                        email.
+                    <div class="pb-4 text-xs dark:text-warning">{{ __('You need to configure (as root team)') }} <a
+                            href="/settings/email" class="underline dark:text-warning">{{ __('Transactional Emails') }}</a>
+                        {{ __('before you can invite a new member via email.') }}
                     </div>
                 @endif
             @endif

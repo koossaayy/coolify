@@ -1,18 +1,14 @@
 <x-emails.layout>
-{{ $total_updates }} package updates are available for your server {{ $name }}.
+{{ $total_updates }} {{ __('package updates are available for your server') }} {{ $name }}{{ __('. ## Summary - Operating System:') }} {{ ucfirst($osId) }}
+{{ __('- Package Manager:') }} {{ $package_manager }}
+{{ __('- Total Updates:') }} {{ $total_updates }}
 
-## Summary
-
-- Operating System: {{ ucfirst($osId) }}
-- Package Manager: {{ $package_manager }}
-- Total Updates: {{ $total_updates }}
-
-## Available Updates
+{{ __('## Available Updates') }}
 
 @if ($total_updates > 0)
 @foreach ($updates as $update)
 
-Package: {{ $update['package'] }} ({{ $update['architecture'] }}), from version {{ $update['current_version'] }} to {{ $update['new_version'] }} at repository {{ $update['repository'] ?? 'Unknown' }}
+Package: {{ $update['package'] }} ({{ $update['architecture'] }}{{ __('), from version') }} {{ $update['current_version'] }} {{ __('to') }} {{ $update['new_version'] }} {{ __('at repository') }} {{ $update['repository'] ?? 'Unknown' }}
 @endforeach
 
 ## Security Considerations

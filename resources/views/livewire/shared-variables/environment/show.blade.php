@@ -1,16 +1,16 @@
 <div>
     <x-slot:title>
-        Environment Variable | Coolify
+        {{ __('Environment Variable | Coolify') }}
     </x-slot>
     <div class="flex gap-2">
-        <h1>Shared Variables for {{ $project->name }}/{{ $environment->name }}</h1>
+        <h1>{{ __('Shared Variables for') }} {{ $project->name }}/{{ $environment->name }}</h1>
         @can('update', $environment)
             <x-modal-input buttonTitle="+ Add" title="New Shared Variable">
                 <livewire:project.shared.environment-variable.add :shared="true" />
             </x-modal-input>
         @endcan
     </div>
-    <div class="flex items-center gap-1 subtitle">You can use these variables anywhere with <span
+    <div class="flex items-center gap-1 subtitle">{{ __('You can use these variables anywhere with') }} <span
             class="dark:text-warning text-coollabs">@{{ environment.VARIABLENAME }}</span><x-helper
             helper="More info <a class='underline dark:text-white' href='https://coolify.io/docs/knowledge-base/environment-variables#shared-variables' target='_blank'>here</a>."></x-helper>
     </div>
@@ -19,7 +19,7 @@
             <livewire:project.shared.environment-variable.show wire:key="environment-{{ $env->id }}"
                 :env="$env" type="environment" />
         @empty
-            <div>No environment variables found.</div>
+            <div>{{ __('No environment variables found.') }}</div>
         @endforelse
     </div>
 </div>

@@ -1,23 +1,23 @@
 <div>
     <dialog id="newInitScript" class="modal">
         <form method="dialog" class="flex flex-col gap-2 rounded-sm modal-box" wire:submit='save_new_init_script'>
-            <h3 class="text-lg font-bold">Add Init Script</h3>
+            <h3 class="text-lg font-bold">{{ __('Add Init Script') }}</h3>
             <x-forms.input placeholder="create_test_db.sql" id="new_filename" label="Filename" required />
             <x-forms.textarea placeholder="CREATE DATABASE test;" id="new_content" label="Content" required />
             <x-forms.button onclick="newInitScript.close()" type="submit">
-                Save
+                {{ __('Save') }}
             </x-forms.button>
         </form>
         <form method="dialog" class="modal-backdrop">
-            <button>close</button>
+            <button>{{ __('close') }}</button>
         </form>
     </dialog>
 
     <form wire:submit="submit" class="flex flex-col gap-2">
         <div class="flex items-center gap-2">
-            <h2>General</h2>
+            <h2>{{ __('General') }}</h2>
             <x-forms.button type="submit" canGate="update" :canResource="$database">
-                Save
+                {{ __('Save') }}
             </x-forms.button>
         </div>
         <div class="flex flex-wrap gap-2 sm:flex-nowrap">
@@ -26,8 +26,7 @@
             <x-forms.input label="Image" id="image" required canGate="update" :canResource="$database"
                 helper="For all available images, check here:<br><br><a target='_blank' href='https://hub.docker.com/_/postgres'>https://hub.docker.com/_/postgres</a>" />
         </div>
-        <div class="pt-2 dark:text-warning">If you change the values in the database, please sync it here, otherwise
-            automations (like backups) won't work.
+        <div class="pt-2 dark:text-warning">{{ __("If you change the values in the database, please sync it here, otherwise automations (like backups) won't work.") }}
         </div>
         @if ($database->started_at)
             <div class="flex xl:flex-row flex-col gap-2">
@@ -62,7 +61,7 @@
             placeholder="--cap-add SYS_ADMIN --device=/dev/fuse --security-opt apparmor:unconfined --ulimit nofile=1024:1024 --tmpfs /run:rw,noexec,nosuid,size=65536k"
             id="customDockerRunOptions" label="Custom Docker Options" canGate="update" :canResource="$database" />
         <div class="flex flex-col gap-2">
-            <h3 class="py-2">Network</h3>
+            <h3 class="py-2">{{ __('Network') }}</h3>
             <div class="flex items-end gap-2">
                 <x-forms.input placeholder="3000:5432" id="portsMappings" label="Ports Mappings"
                     helper="A comma separated list of ports you would like to map to the host system.<br><span class='inline-block font-bold dark:text-warning'>Example</span>3000:5432,3002:5433"
@@ -80,7 +79,7 @@
         </div>
         <div class="flex flex-col gap-2">
             <div class="flex items-center gap-2 py-2">
-                <h3>SSL Configuration</h3>
+                <h3>{{ __('SSL Configuration') }}</h3>
                 @if ($enableSsl && $certificateValidUntil)
                     <x-modal-confirmation title="Regenerate SSL Certificates" buttonTitle="Regenerate SSL Certificates"
                         :actions="[
@@ -91,12 +90,11 @@
                 @endif
             </div>
             @if ($enableSsl && $certificateValidUntil)
-                <span class="text-sm">Valid until:
+                <span class="text-sm">{{ __('Valid until:') }}
                     @if (now()->gt($certificateValidUntil))
-                        <span class="text-red-500">{{ $certificateValidUntil->format('d.m.Y H:i:s') }} - Expired</span>
+                        <span class="text-red-500">{{ $certificateValidUntil->format('d.m.Y H:i:s') }} {{ __('- Expired') }}</span>
                     @elseif(now()->addDays(30)->gt($certificateValidUntil))
-                        <span class="text-red-500">{{ $certificateValidUntil->format('d.m.Y H:i:s') }} - Expiring
-                            soon</span>
+                        <span class="text-red-500">{{ $certificateValidUntil->format('d.m.Y H:i:s') }} {{ __('- Expiring soon') }}</span>
                     @else
                         <span>{{ $certificateValidUntil->format('d.m.Y H:i:s') }}</span>
                     @endif
@@ -122,21 +120,21 @@
                                 instantSave="instantSaveSSL"
                                 helper="Choose the SSL verification mode for PostgreSQL connections" canGate="update"
                                 :canResource="$database">
-                                <option value="allow" title="Allow insecure connections">allow (insecure)</option>
-                                <option value="prefer" title="Prefer secure connections">prefer (secure)</option>
-                                <option value="require" title="Require secure connections">require (secure)</option>
-                                <option value="verify-ca" title="Verify CA certificate">verify-ca (secure)</option>
-                                <option value="verify-full" title="Verify full certificate">verify-full (secure)
+                                <option value="allow" title="Allow insecure connections">{{ __('allow (insecure)') }}</option>
+                                <option value="prefer" title="Prefer secure connections">{{ __('prefer (secure)') }}</option>
+                                <option value="require" title="Require secure connections">{{ __('require (secure)') }}</option>
+                                <option value="verify-ca" title="Verify CA certificate">{{ __('verify-ca (secure)') }}</option>
+                                <option value="verify-full" title="Verify full certificate">{{ __('verify-full (secure)') }}
                                 </option>
                             </x-forms.select>
                         @else
                             <x-forms.select id="sslMode" label="SSL Mode" instantSave="instantSaveSSL" disabled
                                 helper="Database should be stopped to change this settings.">
-                                <option value="allow" title="Allow insecure connections">allow (insecure)</option>
-                                <option value="prefer" title="Prefer secure connections">prefer (secure)</option>
-                                <option value="require" title="Require secure connections">require (secure)</option>
-                                <option value="verify-ca" title="Verify CA certificate">verify-ca (secure)</option>
-                                <option value="verify-full" title="Verify full certificate">verify-full (secure)
+                                <option value="allow" title="Allow insecure connections">{{ __('allow (insecure)') }}</option>
+                                <option value="prefer" title="Prefer secure connections">{{ __('prefer (secure)') }}</option>
+                                <option value="require" title="Require secure connections">{{ __('require (secure)') }}</option>
+                                <option value="verify-ca" title="Verify CA certificate">{{ __('verify-ca (secure)') }}</option>
+                                <option value="verify-full" title="Verify full certificate">{{ __('verify-full (secure)') }}
                                 </option>
                             </x-forms.select>
                         @endif
@@ -145,17 +143,17 @@
 
                 <div class="flex flex-col gap-2">
                     <div class="flex items-center gap-2 py-2">
-                        <h3>Proxy</h3>
+                        <h3>{{ __('Proxy') }}</h3>
                         <x-loading wire:loading wire:target="instantSave" />
                         @if (data_get($database, 'is_public'))
                             <x-slide-over fullScreen>
-                                <x-slot:title>Proxy Logs</x-slot:title>
+                                <x-slot:title>{{ __('Proxy Logs') }}</x-slot:title>
                                 <x-slot:content>
                                     <livewire:project.shared.get-logs :server="$server" :resource="$database"
                                         container="{{ data_get($database, 'uuid') }}-proxy" lazy />
                                 </x-slot:content>
                                 <x-forms.button disabled="{{ !data_get($database, 'is_public') }}"
-                                    @click="slideOverOpen=true">Logs</x-forms.button>
+                                    @click="slideOverOpen=true">{{ __('Logs') }}</x-forms.button>
                             </x-slide-over>
                         @endif
                     </div>
@@ -176,7 +174,7 @@
     </form>
 
     <div class="flex flex-col gap-4 pt-4">
-        <h3>Advanced</h3>
+        <h3>{{ __('Advanced') }}</h3>
         <div class="flex flex-col">
             <x-forms.checkbox helper="Drain logs to your configured log drain endpoint in your Server settings."
                 instantSave="instantSaveAdvanced" id="isLogDrainEnabled" label="Drain Logs" canGate="update"
@@ -186,7 +184,7 @@
         <div class="pb-16">
             <div class="flex items-center gap-2 pb-2">
 
-                <h3>Initialization scripts</h3>
+                <h3>{{ __('Initialization scripts') }}</h3>
                 @can('update', $database)
                     <x-modal-input buttonTitle="+ Add" title="New Init Script">
                         <form class="flex flex-col w-full gap-2 rounded-sm" wire:submit='save_new_init_script'>
@@ -195,7 +193,7 @@
                             <x-forms.textarea rows="20" placeholder="CREATE DATABASE test;" id="new_content"
                                 label="Content" required />
                             <x-forms.button type="submit">
-                                Save
+                                {{ __('Save') }}
                             </x-forms.button>
                         </form>
                     </x-modal-input>
@@ -205,7 +203,7 @@
                 @forelse($initScripts ?? [] as $script)
                     <livewire:project.database.init-script :script="$script" :wire:key="$script['index']" />
                 @empty
-                    <div>No initialization scripts found.</div>
+                    <div>{{ __('No initialization scripts found.') }}</div>
                 @endforelse
             </div>
         </div>

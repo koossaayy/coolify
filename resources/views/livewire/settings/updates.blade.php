@@ -1,18 +1,18 @@
 <div>
     <x-slot:title>
-        Auto Update | Coolify
+        {{ __('Auto Update | Coolify') }}
     </x-slot>
     <x-settings.navbar />
     <div x-data="{ activeTab: window.location.hash ? window.location.hash.substring(1) : 'general' }" class="flex flex-col h-full gap-8 sm:flex-row">
         <x-settings.sidebar activeMenu="updates" />
         <form wire:submit='submit' class="flex flex-col w-full">
             <div class="flex items-center gap-2">
-                <h2>Updates</h2>
+                <h2>{{ __('Updates') }}</h2>
                 <x-forms.button type="submit">
-                    Save
+                    {{ __('Save') }}
                 </x-forms.button>
             </div>
-            <div class="pb-4">Your instance's update settings.</div>
+            <div class="pb-4">{{ __("Your instance's update settings.") }}</div>
 
 
             <div class="flex flex-col gap-2">
@@ -20,10 +20,10 @@
                     <x-forms.input required id="update_check_frequency" label="Update Check Frequency"
                         placeholder="0 * * * *"
                         helper="Frequency (cron expression) to check for new Coolify versions and pull new Service Templates from CDN.<br>You can use every_minute, hourly, daily, weekly, monthly, yearly.<br><br>Default is every hour." />
-                    <x-forms.button wire:click='checkManually'>Check Manually</x-forms.button>
+                    <x-forms.button wire:click='checkManually'>{{ __('Check Manually') }}</x-forms.button>
                 </div>
 
-                <h4 class="pt-4">Auto Update</h4>
+                <h4 class="pt-4">{{ __('Auto Update') }}</h4>
 
                 <div class="text-right md:w-64">
                     @if (!is_null(config('constants.coolify.autoupdate', null)))

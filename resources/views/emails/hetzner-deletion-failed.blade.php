@@ -1,7 +1,5 @@
 <x-emails.layout>
-Failed to delete Hetzner server #{{ $hetznerServerId }} from Hetzner Cloud.
-
-Error:
+{{ __('Failed to delete Hetzner server #') }}{{ $hetznerServerId }} {{ __('from Hetzner Cloud. Error:') }}
 <pre>
 {{ $errorMessage }}
 </pre>

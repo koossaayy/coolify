@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($server, 'name')->limit(10) }} > Log Drains | Coolify
+        {{ data_get_str($server, 'name')->limit(10) }} {{ __('> Log Drains | Coolify') }}
     </x-slot>
     <livewire:server.navbar :server="$server" />
     <div class="flex flex-col h-full gap-8 sm:flex-row">
@@ -8,14 +8,14 @@
         <div class="w-full">
             @if ($server->isFunctional())
                 <div class="flex gap-2 items-center">
-                    <h2>Log Drains</h2>
+                    <h2>{{ __('Log Drains') }}</h2>
                     <x-loading wire:target="instantSave" wire:loading.delay />
                 </div>
-                <div>Sends service logs to 3rd party tools.</div>
+                <div>{{ __('Sends service logs to 3rd party tools.') }}</div>
                 <div class="flex flex-col gap-4 pt-4">
                     <div class="p-4 border dark:border-coolgray-300 border-neutral-200">
                         <form wire:submit='submit("newrelic")' class="flex flex-col">
-                            <h3>New Relic</h3>
+                            <h3>{{ __('New Relic') }}</h3>
                             <div class="w-32">
                                 @if ($isLogDrainAxiomEnabled || $isLogDrainCustomEnabled)
                                     <x-forms.checkbox disabled id="isLogDrainNewRelicEnabled" label="Enabled" />
@@ -46,12 +46,12 @@
                             </div>
                             <div class="flex justify-end gap-4 pt-6">
                                 <x-forms.button canGate="update" :canResource="$server" type="submit">
-                                    Save
+                                    {{ __('Save') }}
                                 </x-forms.button>
                             </div>
                         </form>
 
-                        <h3>Axiom</h3>
+                        <h3>{{ __('Axiom') }}</h3>
                         <div class="w-32">
                             @if ($isLogDrainNewRelicEnabled || $isLogDrainCustomEnabled)
                                 <x-forms.checkbox disabled id="isLogDrainAxiomEnabled" label="Enabled" />
@@ -78,11 +78,11 @@
                             </div>
                             <div class="flex justify-end gap-4 pt-6">
                                 <x-forms.button canGate="update" :canResource="$server" type="submit">
-                                    Save
+                                    {{ __('Save') }}
                                 </x-forms.button>
                             </div>
                         </form>
-                        <h3>Custom FluentBit</h3>
+                        <h3>{{ __('Custom FluentBit') }}</h3>
                         <div class="w-32">
                             @if ($isLogDrainNewRelicEnabled || $isLogDrainAxiomEnabled)
                                 <x-forms.checkbox disabled id="isLogDrainCustomEnabled" label="Enabled" />
@@ -108,7 +108,7 @@
                             </div>
                             <div class="flex justify-end gap-4 pt-6">
                                 <x-forms.button canGate="update" :canResource="$server" type="submit">
-                                    Save
+                                    {{ __('Save') }}
                                 </x-forms.button>
                             </div>
                         </form>
@@ -116,7 +116,7 @@
                     </div>
                 </div>
             @else
-                <div>Server is not validated. Validate first.</div>
+                <div>{{ __('Server is not validated. Validate first.') }}</div>
             @endif
         </div>
     </div>

@@ -1,14 +1,14 @@
 <div>
     <x-security.navbar />
     <div class="flex gap-2">
-        <h2 class="pb-4">Cloud-Init Scripts</h2>
+        <h2 class="pb-4">{{ __('Cloud-Init Scripts') }}</h2>
         @can('create', App\Models\CloudInitScript::class)
             <x-modal-input buttonTitle="+ Add" title="New Cloud-Init Script">
                 <livewire:security.cloud-init-script-form />
             </x-modal-input>
         @endcan
     </div>
-    <div class="pb-4 text-sm">Manage reusable cloud-init scripts for server initialization. Currently working only with <span class="text-red-500 font-bold">Hetzner's</span> integration.</div>
+    <div class="pb-4 text-sm">{{ __('Manage reusable cloud-init scripts for server initialization. Currently working only with') }} <span class="text-red-500 font-bold">{{ __("Hetzner's") }}</span> {{ __('integration.') }}</div>
 
     <div class="grid gap-4 lg:grid-cols-2">
         @forelse ($scripts as $script)
@@ -18,7 +18,7 @@
                     <div class="flex-1">
                         <div class="font-bold dark:text-white">{{ $script->name }}</div>
                         <div class="text-xs text-neutral-500 dark:text-neutral-400">
-                            Created {{ $script->created_at->diffForHumans() }}
+                            {{ __('Created') }} {{ $script->created_at->diffForHumans() }}
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                 </div>
             </div>
         @empty
-            <div class="text-neutral-500">No cloud-init scripts found. Create one to get started.</div>
+            <div class="text-neutral-500">{{ __('No cloud-init scripts found. Create one to get started.') }}</div>
         @endforelse
     </div>
 </div>

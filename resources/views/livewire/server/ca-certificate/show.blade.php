@@ -1,13 +1,13 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($server, 'name')->limit(10) }} > CA Certificate | Coolify
+        {{ data_get_str($server, 'name')->limit(10) }} {{ __('> CA Certificate | Coolify') }}
     </x-slot>
     <livewire:server.navbar :server="$server" />
     <div class="flex flex-col h-full gap-8 sm:flex-row">
         <x-server.sidebar :server="$server" activeMenu="ca-certificate" />
         <div class="flex flex-col gap-4">
             <div class="flex items-center gap-2">
-                <h2>CA Certificate</h2>
+                <h2>{{ __('CA Certificate') }}</h2>
                 @can('update', $server)
                     <div class="flex gap-2">
                         <x-modal-confirmation title="Confirm changing of CA Certificate?" buttonTitle="Save"
@@ -35,12 +35,11 @@
             </div>
             <div class="space-y-4">
                 <div class="text-sm">
-                    <p class="font-medium mb-2">Recommended Configuration:</p>
+                    <p class="font-medium mb-2">{{ __('Recommended Configuration:') }}</p>
                     <ul class="list-disc pl-5 space-y-1">
-                        <li>Mount this CA certificate of Coolify into all containers that need to connect to one of
-                            your databases over SSL. You can see and copy the bind mount below.</li>
-                        <li>Read more when and why this is needed <a class="underline dark:text-white"
-                                href="https://coolify.io/docs/databases/ssl" target="_blank">here</a>.</li>
+                        <li>{{ __('Mount this CA certificate of Coolify into all containers that need to connect to one of your databases over SSL. You can see and copy the bind mount below.') }}</li>
+                        <li>{{ __('Read more when and why this is needed') }} <a class="underline dark:text-white"
+                                href="https://coolify.io/docs/databases/ssl" target="_blank">{{ __('here') }}</a>.</li>
                     </ul>
                 </div>
                 <div class="relative">
@@ -50,15 +49,13 @@
             <div>
                 <div class="flex items-center justify-between mb-2">
                     <div class="flex items-center gap-2">
-                        <span class="text-sm">CA Certificate</span>
+                        <span class="text-sm">{{ __('CA Certificate') }}</span>
                         @if ($certificateValidUntil)
-                            <span class="text-sm">(Valid until:
+                            <span class="text-sm">{{ __('(Valid until:') }}
                                 @if (now()->gt($certificateValidUntil))
-                                    <span class="text-red-500">{{ $certificateValidUntil->format('d.m.Y H:i:s') }} -
-                                        Expired)</span>
+                                    <span class="text-red-500">{{ $certificateValidUntil->format('d.m.Y H:i:s') }} {{ __('- Expired)') }}</span>
                                 @elseif(now()->addDays(30)->gt($certificateValidUntil))
-                                    <span class="text-red-500">{{ $certificateValidUntil->format('d.m.Y H:i:s') }} -
-                                        Expiring soon)</span>
+                                    <span class="text-red-500">{{ $certificateValidUntil->format('d.m.Y H:i:s') }} {{ __('- Expiring soon)') }}</span>
                                 @else
                                     <span>{{ $certificateValidUntil->format('d.m.Y H:i:s') }})</span>
                                 @endif
@@ -78,10 +75,10 @@
                     <div class="w-full h-[370px] input">
                         <div class="h-full flex flex-col items-center justify-center text-gray-300">
                             <div class="mb-2">
-                                ━━━━━━━━ CERTIFICATE CONTENT ━━━━━━━━
+                                {{ __('━━━━━━━━ CERTIFICATE CONTENT ━━━━━━━━') }}
                             </div>
                             <div class="text-sm">
-                                Click "Show" to view or edit
+                                {{ __('Click "Show" to view or edit') }}
                             </div>
                         </div>
                     </div>

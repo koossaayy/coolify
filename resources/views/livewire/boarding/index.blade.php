@@ -1,21 +1,21 @@
 @php use App\Enums\ProxyTypes; @endphp
 <x-slot:title>
-    Onboarding | Coolify
+    {{ __('Onboarding | Coolify') }}
     </x-slot>
     <section class="w-full">
         <div class="flex flex-col items-center w-full space-y-8">
             @if ($currentState === 'welcome')
                 <div class="w-full max-w-2xl text-center space-y-8">
                     <div class="space-y-4">
-                        <h1 class="text-4xl font-bold lg:text-6xl">Welcome to Coolify</h1>
+                        <h1 class="text-4xl font-bold lg:text-6xl">{{ __('Welcome to Coolify') }}</h1>
                         <p class="text-lg lg:text-xl dark:text-neutral-400">
-                            Connect your first server and start deploying in minutes
+                            {{ __('Connect your first server and start deploying in minutes') }}
                         </p>
                     </div>
 
                     <div class="text-left space-y-4 p-8 rounded-lg border border-neutral-200 dark:border-coolgray-400">
                         <h2 class="text-sm font-bold uppercase tracking-wide dark:text-neutral-400">
-                            What You'll Set Up
+                            {{ __("What You'll Set Up") }}
                         </h2>
                         <div class="space-y-3">
                             <div class="flex items-start gap-3">
@@ -28,8 +28,8 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <div class="font-semibold text-base dark:text-white">Server Connection</div>
-                                    <div class="text-sm dark:text-neutral-400">Connect via SSH to deploy your resources
+                                    <div class="font-semibold text-base dark:text-white">{{ __('Server Connection') }}</div>
+                                    <div class="text-sm dark:text-neutral-400">{{ __('Connect via SSH to deploy your resources') }}
                                     </div>
                                 </div>
                             </div>
@@ -43,8 +43,8 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <div class="font-semibold text-base dark:text-white">Docker Environment</div>
-                                    <div class="text-sm dark:text-neutral-400">Automated installation and configuration
+                                    <div class="font-semibold text-base dark:text-white">{{ __('Docker Environment') }}</div>
+                                    <div class="text-sm dark:text-neutral-400">{{ __('Automated installation and configuration') }}
                                     </div>
                                 </div>
                             </div>
@@ -58,8 +58,8 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <div class="font-semibold text-base dark:text-white">Project Structure</div>
-                                    <div class="text-sm dark:text-neutral-400">Organize your applications and resources
+                                    <div class="font-semibold text-base dark:text-white">{{ __('Project Structure') }}</div>
+                                    <div class="text-sm dark:text-neutral-400">{{ __('Organize your applications and resources') }}
                                     </div>
                                 </div>
                             </div>
@@ -69,11 +69,11 @@
                     <div class="flex flex-col items-center gap-3 pt-4">
                         <x-forms.button class="justify-center px-12 py-4 text-lg font-bold box-boarding"
                             wire:click="explanation">
-                            Let's go!
+                            {{ __("Let's go!") }}
                         </x-forms.button>
                         <button wire:click="skipBoarding"
                             class="text-sm dark:text-neutral-400 hover:text-coollabs dark:hover:text-warning hover:underline transition-colors">
-                            Skip Setup
+                            {{ __('Skip Setup') }}
                         </button>
                     </div>
                 </div>
@@ -81,28 +81,23 @@
                 <x-boarding-progress :currentStep="0" />
                 <x-boarding-step title="Platform Overview">
                     <x-slot:question>
-                        Coolify automates deployment and infrastructure management on your own servers. Deploy applications
-                        from Git, manage databases, and monitor everything—without vendor lock-in.
+                        {{ __('Coolify automates deployment and infrastructure management on your own servers. Deploy applications from Git, manage databases, and monitor everything—without vendor lock-in.') }}
                     </x-slot:question>
                     <x-slot:explanation>
                         <p>
-                            <x-highlighted text="Automation:" /> Coolify handles server configuration, Docker management,
-                            and
-                            deployments automatically.
+                            <x-highlighted text="Automation:" /> {{ __('Coolify handles server configuration, Docker management, and deployments automatically.') }}
                         </p>
                         <p>
-                            <x-highlighted text="Self-hosted:" /> All data and configurations live on your infrastructure.
-                            Works offline except for external integrations.
+                            <x-highlighted text="Self-hosted:" /> {{ __('All data and configurations live on your infrastructure. Works offline except for external integrations.') }}
                         </p>
                         <p>
-                            <x-highlighted text="Monitoring & Alerts:" /> Get real-time notifications via Discord, Telegram,
-                            Email, and other platforms.
+                            <x-highlighted text="Monitoring & Alerts:" /> {{ __('Get real-time notifications via Discord, Telegram, Email, and other platforms.') }}
                         </p>
                     </x-slot:explanation>
                     <x-slot:actions>
                         <x-forms.button class="justify-center w-full lg:w-auto px-8 py-3 box-boarding"
                             wire:click="explanation">
-                            Continue
+                            {{ __('Continue') }}
                         </x-forms.button>
                     </x-slot:actions>
                 </x-boarding-step>
@@ -110,7 +105,7 @@
                 <x-boarding-progress :currentStep="1" />
                 <x-boarding-step title="Choose Server Type">
                     <x-slot:question>
-                        Select where to deploy your applications and databases. You can add more servers later.
+                        {{ __('Select where to deploy your applications and databases. You can add more servers later.') }}
                     </x-slot:question>
                     <x-slot:actions>
                         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 w-full">
@@ -126,13 +121,13 @@
                                         </svg>
                                         <span
                                             class="px-2 py-1 text-xs font-bold uppercase tracking-wide bg-neutral-100 dark:bg-coolgray-300 dark:text-neutral-400 rounded">
-                                            Quick Start
+                                            {{ __('Quick Start') }}
                                         </span>
                                     </div>
                                     <div>
-                                        <h3 class="text-xl font-bold mb-2">This Machine</h3>
+                                        <h3 class="text-xl font-bold mb-2">{{ __('This Machine') }}</h3>
                                         <p class="text-sm dark:text-neutral-400">
-                                            Deploy on the server running Coolify. Best for testing and single-server setups.
+                                            {{ __('Deploy on the server running Coolify. Best for testing and single-server setups.') }}
                                         </p>
                                     </div>
                                 </div>
@@ -152,13 +147,13 @@
                                         </svg>
                                         <span
                                             class="px-2 py-1 text-xs font-bold uppercase tracking-wide bg-coollabs/10 dark:bg-warning/20 text-coollabs dark:text-warning rounded">
-                                            Recommended
+                                            {{ __('Recommended') }}
                                         </span>
                                     </div>
                                     <div>
-                                        <h3 class="text-xl font-bold mb-2">Remote Server</h3>
+                                        <h3 class="text-xl font-bold mb-2">{{ __('Remote Server') }}</h3>
                                         <p class="text-sm dark:text-neutral-400">
-                                            Connect via SSH to any server—cloud VPS, bare metal, or home infrastructure.
+                                            {{ __('Connect via SSH to any server—cloud VPS, bare metal, or home infrastructure.') }}
                                         </p>
                                     </div>
                                 </div>
@@ -179,13 +174,13 @@
                                                         </svg>
                                                         <span
                                                             class="px-2 py-1 text-xs font-bold uppercase tracking-wide bg-coollabs/10 dark:bg-warning/20 text-coollabs dark:text-warning rounded">
-                                                            Recommended
+                                                            {{ __('Recommended') }}
                                                         </span>
                                                     </div>
                                                     <div>
-                                                        <h3 class="text-xl font-bold mb-2">Hetzner Cloud</h3>
+                                                        <h3 class="text-xl font-bold mb-2">{{ __('Hetzner Cloud') }}</h3>
                                                         <p class="text-sm dark:text-neutral-400">
-                                                            Deploy servers directly from your Hetzner Cloud account.
+                                                            {{ __('Deploy servers directly from your Hetzner Cloud account.') }}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -199,9 +194,8 @@
 
                         @if (!$serverReachable)
                             <div class="mt-6 p-4 border border-error rounded-lg text-gray-800 dark:text-gray-200">
-                                <h2 class="text-lg font-bold mb-2">Server is not reachable</h2>
-                                <p class="mb-4">Please check the connection details below and correct them if they are
-                                    incorrect.</p>
+                                <h2 class="text-lg font-bold mb-2">{{ __('Server is not reachable') }}</h2>
+                                <p class="mb-4">{{ __('Please check the connection details below and correct them if they are incorrect.') }}</p>
 
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                     <x-forms.input placeholder="Default is 22" label="Port" id="remoteServerPort"
@@ -210,50 +204,46 @@
                                         <x-forms.input placeholder="Default is root" label="User" id="remoteServerUser"
                                             wire:model="remoteServerUser" :value="$remoteServerUser" />
                                         <p class="text-xs mt-1">
-                                            Non-root user is experimental:
+                                            {{ __('Non-root user is experimental:') }}
                                             <a class="font-bold underline" target="_blank"
-                                                href="https://coolify.io/docs/knowledge-base/server/non-root-user">docs</a>
+                                                href="https://coolify.io/docs/knowledge-base/server/non-root-user">{{ __('docs') }}</a>
                                         </p>
                                     </div>
                                 </div>
 
                                 <div class="mb-4">
-                                    <p class="mb-2">If the connection details are correct, please ensure:</p>
+                                    <p class="mb-2">{{ __('If the connection details are correct, please ensure:') }}</p>
                                     <ul class="list-disc list-inside">
-                                        <li>The correct public key is in your <code
+                                        <li>{{ __('The correct public key is in your') }} <code
                                                 class="bg-red-200 dark:bg-red-900 px-1 rounded-sm">~/.ssh/authorized_keys</code>
                                             file for the specified user</li>
-                                        <li>Or skip the boarding process and manually add a new private key to Coolify and
-                                            the server</li>
+                                        <li>{{ __('Or skip the boarding process and manually add a new private key to Coolify and the server') }}</li>
                                     </ul>
                                 </div>
 
                                 <p class="mb-4">
-                                    For more help, check this <a target="_blank" class="underline font-semibold"
-                                        href="https://coolify.io/docs/knowledge-base/server/openssh">documentation</a>.
+                                    {{ __('For more help, check this') }} <a target="_blank" class="underline font-semibold"
+                                        href="https://coolify.io/docs/knowledge-base/server/openssh">{{ __('documentation') }}</a>.
                                 </p>
 
                                 <x-forms.input readonly id="serverPublicKey" class="mb-4"
                                     label="Current Public Key"></x-forms.input>
 
                                 <x-forms.button class="w-full box-boarding" wire:click="saveAndValidateServer">
-                                    Check Again
+                                    {{ __('Check Again') }}
                                 </x-forms.button>
                             </div>
                         @endif
                     </x-slot:actions>
                     <x-slot:explanation>
                         <p>
-                            <x-highlighted text="Servers" /> host your applications, databases, and services (collectively
-                            called resources). All CPU-intensive operations run on the target server.
+                            <x-highlighted text="Servers" /> {{ __('host your applications, databases, and services (collectively called resources). All CPU-intensive operations run on the target server.') }}
                         </p>
                         <p>
-                            <x-highlighted text="Localhost:" /> The machine running Coolify. Not recommended for production
-                            workloads due to resource contention.
+                            <x-highlighted text="Localhost:" /> {{ __('The machine running Coolify. Not recommended for production workloads due to resource contention.') }}
                         </p>
                         <p>
-                            <x-highlighted text="Remote Server:" /> Any SSH-accessible server—cloud providers (AWS, Hetzner,
-                            DigitalOcean), bare metal, or self-hosted infrastructure.
+                            <x-highlighted text="Remote Server:" /> {{ __('Any SSH-accessible server—cloud providers (AWS, Hetzner, DigitalOcean), bare metal, or self-hosted infrastructure.') }}
                         </p>
                     </x-slot:explanation>
                 </x-boarding-step>
@@ -261,7 +251,7 @@
                 <x-boarding-progress :currentStep="2" />
                 <x-boarding-step title="SSH Authentication">
                     <x-slot:question>
-                        Configure SSH key-based authentication for secure server access.
+                        {{ __('Configure SSH key-based authentication for secure server access.') }}
                     </x-slot:question>
                     <x-slot:actions>
                         @if ($privateKeys && $privateKeys->count() > 0)
@@ -275,7 +265,7 @@
                                                 </option>
                                             @endforeach
                                         </x-forms.select>
-                                        <x-forms.button type="submit" class="w-full lg:w-auto">Use Selected Key</x-forms.button>
+                                        <x-forms.button type="submit" class="w-full lg:w-auto">{{ __('Use Selected Key') }}</x-forms.button>
                                     </form>
                                 </div>
                                 <div class="relative">
@@ -285,7 +275,7 @@
                                     <div class="relative flex justify-center text-sm">
                                         <div
                                             class="px-2 py-1 bg-white dark:bg-coolgray-100 border border-neutral-300 dark:border-coolgray-300 rounded text-xs font-bold text-neutral-500 dark:text-neutral-400">
-                                            OR
+                                            {{ __('OR') }}
                                         </div>
                                     </div>
                                 </div>
@@ -302,8 +292,8 @@
                                             d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" />
                                     </svg>
                                     <div class="text-center">
-                                        <h3 class="text-xl font-bold mb-2">Use Existing Key</h3>
-                                        <p class="text-sm dark:text-neutral-400">I have my own SSH key</p>
+                                        <h3 class="text-xl font-bold mb-2">{{ __('Use Existing Key') }}</h3>
+                                        <p class="text-sm dark:text-neutral-400">{{ __('I have my own SSH key') }}</p>
                                     </div>
                                 </div>
                             </x-forms.button>
@@ -317,8 +307,8 @@
                                             d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
                                     </svg>
                                     <div class="text-center">
-                                        <h3 class="text-xl font-bold mb-2">Generate New Key</h3>
-                                        <p class="text-sm dark:text-neutral-400">Create ED25519 key pair</p>
+                                        <h3 class="text-xl font-bold mb-2">{{ __('Generate New Key') }}</h3>
+                                        <p class="text-sm dark:text-neutral-400">{{ __('Create ED25519 key pair') }}</p>
                                     </div>
                                 </div>
                             </x-forms.button>
@@ -326,18 +316,16 @@
                     </x-slot:actions>
                     <x-slot:explanation>
                         <p>
-                            <x-highlighted text="SSH Key Authentication:" /> Uses public-key cryptography for secure,
-                            password-less server access.
+                            <x-highlighted text="SSH Key Authentication:" /> {{ __('Uses public-key cryptography for secure, password-less server access.') }}
                         </p>
                         <p>
-                            <x-highlighted text="Public Key Deployment:" /> Add the public key to your server's
+                            <x-highlighted text="Public Key Deployment:" /> {{ __("Add the public key to your server's") }}
                             <code
                                 class="text-xs bg-coolgray-300 dark:bg-coolgray-400 px-1 py-0.5 rounded">~/.ssh/authorized_keys</code>
                             file.
                         </p>
                         <p>
-                            <x-highlighted text="Key Generation:" /> Coolify generates ED25519 keys by default for optimal
-                            security and performance.
+                            <x-highlighted text="Key Generation:" /> {{ __('Coolify generates ED25519 keys by default for optimal security and performance.') }}
                         </p>
                     </x-slot:explanation>
                 </x-boarding-step>
@@ -345,7 +333,7 @@
                 <x-boarding-progress :currentStep="2" />
                 <x-boarding-step title="SSH Key Configuration">
                     <x-slot:question>
-                        Configure your SSH key for server authentication.
+                        {{ __('Configure your SSH key for server authentication.') }}
                     </x-slot:question>
                     <x-slot:actions>
                         <form wire:submit='savePrivateKey' class="flex flex-col w-full gap-4">
@@ -370,9 +358,9 @@
                                                 clip-rule="evenodd" />
                                         </svg>
                                         <div>
-                                            <p class="font-bold text-warning mb-1">Action Required</p>
+                                            <p class="font-bold text-warning mb-1">{{ __('Action Required') }}</p>
                                             <p class="text-sm dark:text-white text-black">
-                                                Copy the public key above and add it to your server's
+                                                {{ __("Copy the public key above and add it to your server's") }}
                                                 <code
                                                     class="text-xs bg-coolgray-300 dark:bg-coolgray-400 px-1 py-0.5 rounded">~/.ssh/authorized_keys</code>
                                                 file.
@@ -381,22 +369,21 @@
                                     </div>
                                 </div>
                             @endif
-                            <x-forms.button type="submit" class="w-full lg:w-auto">Save SSH Key</x-forms.button>
+                            <x-forms.button type="submit" class="w-full lg:w-auto">{{ __('Save SSH Key') }}</x-forms.button>
                         </form>
                     </x-slot:actions>
                     <x-slot:explanation>
                         <p>
-                            <x-highlighted text="Key Storage:" /> Private keys are encrypted at rest in Coolify's database.
+                            <x-highlighted text="Key Storage:" /> {{ __("Private keys are encrypted at rest in Coolify's database.") }}
                         </p>
                         <p>
-                            <x-highlighted text="Public Key Distribution:" /> Deploy the public key to
+                            <x-highlighted text="Public Key Distribution:" /> {{ __('Deploy the public key to') }}
                             <code
                                 class="text-xs bg-coolgray-300 dark:bg-coolgray-400 px-1 py-0.5 rounded">~/.ssh/authorized_keys</code>
                             on your target server for the specified user.
                         </p>
                         <p>
-                            <x-highlighted text="Key Format:" /> Supports RSA, ED25519, ECDSA, and DSA key types in OpenSSH
-                            format.
+                            <x-highlighted text="Key Format:" /> {{ __('Supports RSA, ED25519, ECDSA, and DSA key types in OpenSSH format.') }}
                         </p>
                     </x-slot:explanation>
                 </x-boarding-step>
@@ -404,7 +391,7 @@
                 <x-boarding-progress :currentStep="2" />
                 <x-boarding-step title="Server Configuration">
                     <x-slot:question>
-                        Provide connection details for your remote server.
+                        {{ __('Provide connection details for your remote server.') }}
                     </x-slot:question>
                     <x-slot:actions>
                         <form wire:submit='saveServer' class="flex flex-col w-full gap-4">
@@ -432,7 +419,7 @@
                                             d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
                                             clip-rule="evenodd" />
                                     </svg>
-                                    Advanced Connection Settings
+                                    {{ __('Advanced Connection Settings') }}
                                 </button>
                                 <div x-show="showAdvanced" x-cloak
                                     class="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4 rounded-lg border border-neutral-200 dark:border-coolgray-400">
@@ -442,30 +429,25 @@
                                         <x-forms.input placeholder="Default: root" label="SSH User" id="remoteServerUser"
                                             wire:model="remoteServerUser" />
                                         <p class="mt-1 text-xs dark:text-white text-black">
-                                            Non-root user support is experimental.
+                                            {{ __('Non-root user support is experimental.') }}
                                             <a class="font-bold underline hover:text-coollabs" target="_blank"
-                                                href="https://coolify.io/docs/knowledge-base/server/non-root-user">Learn
-                                                more</a>
+                                                href="https://coolify.io/docs/knowledge-base/server/non-root-user">{{ __('Learn more') }}</a>
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                            <x-forms.button type="submit" class="w-full lg:w-auto">Validate Connection</x-forms.button>
+                            <x-forms.button type="submit" class="w-full lg:w-auto">{{ __('Validate Connection') }}</x-forms.button>
                         </form>
                     </x-slot:actions>
                     <x-slot:explanation>
                         <p>
-                            <x-highlighted text="Connection Requirements:" /> Server must be accessible via SSH on the
-                            specified port (default 22).
+                            <x-highlighted text="Connection Requirements:" /> {{ __('Server must be accessible via SSH on the specified port (default 22).') }}
                         </p>
                         <p>
-                            <x-highlighted text="Hostname Resolution:" /> Use IP addresses for direct connections or ensure
-                            DNS resolution is configured.
+                            <x-highlighted text="Hostname Resolution:" /> {{ __('Use IP addresses for direct connections or ensure DNS resolution is configured.') }}
                         </p>
                         <p>
-                            <x-highlighted text="User Permissions:" /> Root or sudo-enabled users recommended for full
-                            Docker
-                            management capabilities.
+                            <x-highlighted text="User Permissions:" /> {{ __('Root or sudo-enabled users recommended for full Docker management capabilities.') }}
                         </p>
                     </x-slot:explanation>
                 </x-boarding-step>
@@ -473,13 +455,13 @@
                 <x-boarding-progress :currentStep="2" />
                 <x-boarding-step title="Server Validation">
                     <x-slot:question>
-                        Coolify will automatically install Docker {{ $minDockerVersion }}+ if not present.
+                        {{ __('Coolify will automatically install Docker') }} {{ $minDockerVersion }}{{ __('+ if not present.') }}
                     </x-slot:question>
                     <x-slot:actions>
                         <div class="w-full space-y-6">
                             <div
                                 class="p-6 bg-neutral-50 dark:bg-coolgray-200 rounded-lg border border-neutral-200 dark:border-coolgray-400">
-                                <h3 class="font-bold text-black dark:text-white mb-4">Validation Steps</h3>
+                                <h3 class="font-bold text-black dark:text-white mb-4">{{ __('Validation Steps') }}</h3>
                                 <div class="space-y-3">
                                     <div class="flex items-start gap-3">
                                         <div class="flex-shrink-0 mt-0.5">
@@ -491,8 +473,8 @@
                                             </svg>
                                         </div>
                                         <div>
-                                            <div class="font-semibold text-base dark:text-white">Test SSH Connection</div>
-                                            <div class="text-sm dark:text-neutral-400">Verify key-based authentication</div>
+                                            <div class="font-semibold text-base dark:text-white">{{ __('Test SSH Connection') }}</div>
+                                            <div class="text-sm dark:text-neutral-400">{{ __('Verify key-based authentication') }}</div>
                                         </div>
                                     </div>
                                     <div class="flex items-start gap-3">
@@ -505,26 +487,9 @@
                                             </svg>
                                         </div>
                                         <div>
-                                            <div class="font-semibold text-base dark:text-white">Check OS Compatibility
+                                            <div class="font-semibold text-base dark:text-white">{{ __('Check OS Compatibility') }}
                                             </div>
-                                            <div class="text-sm dark:text-neutral-400">Verify supported Linux distribution
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-start gap-3">
-                                        <div class="flex-shrink-0 mt-0.5">
-                                            <svg class="size-5 text-success" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 20 20" fill="currentColor">
-                                                <path fill-rule="evenodd"
-                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <div class="font-semibold text-base dark:text-white">Install Docker Engine</div>
-                                            <div class="text-sm dark:text-neutral-400">Auto-install if version
-                                                {{ $minDockerVersion }}+ not
-                                                found
+                                            <div class="text-sm dark:text-neutral-400">{{ __('Verify supported Linux distribution') }}
                                             </div>
                                         </div>
                                     </div>
@@ -538,8 +503,24 @@
                                             </svg>
                                         </div>
                                         <div>
-                                            <div class="font-semibold text-base dark:text-white">Configure Network</div>
-                                            <div class="text-sm dark:text-neutral-400">Set up Docker networks and proxy
+                                            <div class="font-semibold text-base dark:text-white">{{ __('Install Docker Engine') }}</div>
+                                            <div class="text-sm dark:text-neutral-400">{{ __('Auto-install if version') }}
+                                                {{ $minDockerVersion }}{{ __('+ not found') }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <div class="flex-shrink-0 mt-0.5">
+                                            <svg class="size-5 text-success" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd"
+                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-base dark:text-white">{{ __('Configure Network') }}</div>
+                                            <div class="text-sm dark:text-neutral-400">{{ __('Set up Docker networks and proxy') }}
                                             </div>
                                         </div>
                                     </div>
@@ -547,31 +528,28 @@
                             </div>
 
                             <x-slide-over closeWithX fullScreen>
-                                <x-slot:title>Server Validation</x-slot:title>
+                                <x-slot:title>{{ __('Server Validation') }}</x-slot:title>
                                 <x-slot:content>
                                     <livewire:server.validate-and-install :server="$this->createdServer" />
                                 </x-slot:content>
                                 <x-forms.button @click="slideOverOpen=true" class="w-full font-bold py-4 box-boarding"
                                     wire:click.prevent='installServer' isHighlighted>
-                                    Start Validation
+                                    {{ __('Start Validation') }}
                                 </x-forms.button>
                             </x-slide-over>
                         </div>
                     </x-slot:actions>
                     <x-slot:explanation>
                         <p>
-                            <x-highlighted text="Automated Setup:" /> Coolify installs Docker Engine, Docker Compose, and
-                            configures system requirements automatically.
+                            <x-highlighted text="Automated Setup:" /> {{ __('Coolify installs Docker Engine, Docker Compose, and configures system requirements automatically.') }}
                         </p>
                         <p>
-                            <x-highlighted text="Version Requirements:" /> Minimum Docker Engine {{ $minDockerVersion }}.x
-                            required.
+                            <x-highlighted text="Version Requirements:" /> {{ __('Minimum Docker Engine') }} {{ $minDockerVersion }}{{ __('.x required.') }}
                             <a target="_blank" class="underline hover:text-coollabs"
-                                href="https://docs.docker.com/engine/install/#server">Manual installation guide</a>
+                                href="https://docs.docker.com/engine/install/#server">{{ __('Manual installation guide') }}</a>
                         </p>
                         <p>
-                            <x-highlighted text="System Configuration:" /> Sets up Docker networks, proxy configuration, and
-                            resource monitoring.
+                            <x-highlighted text="System Configuration:" /> {{ __('Sets up Docker networks, proxy configuration, and resource monitoring.') }}
                         </p>
                     </x-slot:explanation>
                 </x-boarding-step>
@@ -589,7 +567,7 @@
                         <div class="w-full space-y-4">
                             <x-forms.button class="justify-center w-full py-4 font-bold box-boarding"
                                 wire:click="createNewProject" isHighlighted>
-                                Create "My First Project"
+                                {{ __('Create "My First Project"') }}
                             </x-forms.button>
 
                             @if ($projects && $projects->count() > 0)
@@ -598,7 +576,7 @@
                                         <div class="w-full border-t border-neutral-300 dark:border-coolgray-400"></div>
                                     </div>
                                     <div class="relative flex justify-center text-sm">
-                                        <span class="px-2 text-neutral-500 dark:text-neutral-400">Or use existing</span>
+                                        <span class="px-2 text-neutral-500 dark:text-neutral-400">{{ __('Or use existing') }}</span>
                                     </div>
                                 </div>
                                 <form wire:submit='selectExistingProject' class="flex flex-col gap-4">
@@ -609,25 +587,20 @@
                                             </option>
                                         @endforeach
                                     </x-forms.select>
-                                    <x-forms.button type="submit" class="w-full lg:w-auto">Use Selected Project</x-forms.button>
+                                    <x-forms.button type="submit" class="w-full lg:w-auto">{{ __('Use Selected Project') }}</x-forms.button>
                                 </form>
                             @endif
                         </div>
                     </x-slot:actions>
                     <x-slot:explanation>
                         <p>
-                            <x-highlighted text="Project Organization:" /> Group related resources (apps, databases,
-                            services)
-                            into logical projects.
+                            <x-highlighted text="Project Organization:" /> {{ __('Group related resources (apps, databases, services) into logical projects.') }}
                         </p>
                         <p>
-                            <x-highlighted text="Environments:" /> Each project includes a production environment by
-                            default.
-                            Add staging, development, or custom environments as needed.
+                            <x-highlighted text="Environments:" /> {{ __('Each project includes a production environment by default. Add staging, development, or custom environments as needed.') }}
                         </p>
                         <p>
-                            <x-highlighted text="Team Access:" /> Projects inherit team permissions and can be managed
-                            collaboratively.
+                            <x-highlighted text="Team Access:" /> {{ __('Projects inherit team permissions and can be managed collaboratively.') }}
                         </p>
                     </x-slot:explanation>
                 </x-boarding-step>
@@ -642,15 +615,15 @@
                                     d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                         </div>
-                        <h1 class="text-4xl font-bold lg:text-5xl">Setup Complete!</h1>
+                        <h1 class="text-4xl font-bold lg:text-5xl">{{ __('Setup Complete!') }}</h1>
                         <p class="text-lg dark:text-neutral-400">
-                            Your server is connected and ready. Start deploying your first resource.
+                            {{ __('Your server is connected and ready. Start deploying your first resource.') }}
                         </p>
                     </div>
 
                     <div class="text-left space-y-4 p-8 rounded-lg border border-neutral-200 dark:border-coolgray-400">
                         <h2 class="text-sm font-bold uppercase tracking-wide dark:text-neutral-400">
-                            What's Configured
+                            {{ __("What's Configured") }}
                         </h2>
                         <div class="space-y-3">
                             <div class="flex items-start gap-3">
@@ -663,7 +636,7 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <div class="font-semibold text-base dark:text-white">Server: {{ $createdServer->name }}
+                                    <div class="font-semibold text-base dark:text-white">{{ __('Server:') }} {{ $createdServer->name }}
                                     </div>
                                     <div class="text-sm dark:text-neutral-400">{{ $createdServer->ip }}</div>
                                 </div>
@@ -678,10 +651,10 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <div class="font-semibold text-base dark:text-white">Project:
+                                    <div class="font-semibold text-base dark:text-white">{{ __('Project:') }}
                                         {{ $createdProject->name }}
                                     </div>
-                                    <div class="text-sm dark:text-neutral-400">Production environment ready</div>
+                                    <div class="text-sm dark:text-neutral-400">{{ __('Production environment ready') }}</div>
                                 </div>
                             </div>
                             <div class="flex items-start gap-3">
@@ -694,8 +667,8 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <div class="font-semibold text-base dark:text-white">Docker Engine</div>
-                                    <div class="text-sm dark:text-neutral-400">Installed and running</div>
+                                    <div class="font-semibold text-base dark:text-white">{{ __('Docker Engine') }}</div>
+                                    <div class="text-sm dark:text-neutral-400">{{ __('Installed and running') }}</div>
                                 </div>
                             </div>
                         </div>
@@ -704,11 +677,11 @@
                     <div class="flex flex-col gap-3">
                         <x-forms.button class="justify-center w-full py-4 text-lg font-bold box-boarding"
                             wire:click="showNewResource" isHighlighted>
-                            Deploy Your First Resource
+                            {{ __('Deploy Your First Resource') }}
                         </x-forms.button>
                         <button wire:click="skipBoarding"
                             class="text-sm dark:text-neutral-400 hover:text-coollabs dark:hover:text-warning hover:underline transition-colors">
-                            Go to Dashboard
+                            {{ __('Go to Dashboard') }}
                         </button>
                     </div>
                 </div>
@@ -720,18 +693,18 @@
                 <div class="flex justify-center gap-6 text-sm">
                     <button wire:click='skipBoarding'
                         class="dark:text-neutral-400 hover:text-coollabs dark:hover:text-warning hover:underline transition-colors">
-                        Skip Setup
+                        {{ __('Skip Setup') }}
                     </button>
                     <button wire:click='restartBoarding'
                         class="dark:text-neutral-400 hover:text-coollabs dark:hover:text-warning hover:underline transition-colors">
-                        Restart
+                        {{ __('Restart') }}
                     </button>
                 </div>
                 <x-modal-input title="Need Help?">
                     <x-slot:content>
                         <button
                             class="text-sm dark:text-neutral-400 hover:text-coollabs dark:hover:text-warning hover:underline transition-colors">
-                            Contact Support
+                            {{ __('Contact Support') }}
                         </button>
                     </x-slot:content>
                     <livewire:help />

@@ -1,25 +1,25 @@
 <div>
     <x-slot:title>
-        API Tokens | Coolify
+        {{ __('API Tokens | Coolify') }}
     </x-slot>
     <x-security.navbar />
     <div class="pb-4">
-        <h2>API Tokens</h2>
+        <h2>{{ __('API Tokens') }}</h2>
         @if (!$isApiEnabled)
-            <div>API is disabled. If you want to use the API, please enable it in the <a
-                    href="{{ route('settings.advanced') }}" class="underline dark:text-white">Settings</a> menu.</div>
+            <div>{{ __('API is disabled. If you want to use the API, please enable it in the') }} <a
+                    href="{{ route('settings.advanced') }}" class="underline dark:text-white">{{ __('Settings') }}</a> {{ __('menu.') }}</div>
         @else
-            <div>Tokens are created with the current team as scope.</div>
+            <div>{{ __('Tokens are created with the current team as scope.') }}</div>
     </div>
-    <h3>New Token</h3>
+    <h3>{{ __('New Token') }}</h3>
     @can('create', App\Models\PersonalAccessToken::class)
         <form class="flex flex-col gap-2" wire:submit='addNewToken'>
             <div class="flex gap-2 items-end w-96">
                 <x-forms.input required id="description" label="Description" />
-                <x-forms.button type="submit">Create</x-forms.button>
+                <x-forms.button type="submit">{{ __('Create') }}</x-forms.button>
             </div>
             <div class="flex">
-                Permissions
+                {{ __('Permissions') }}
                 <x-helper class="px-1" helper="These permissions will be granted to the token." /><span
                     class="pr-1">:</span>
                 <div class="flex gap-1 font-bold dark:text-white">
@@ -31,7 +31,7 @@
                 </div>
             </div>
 
-            <h4>Token Permissions</h4>
+            <h4>{{ __('Token Permissions') }}</h4>
             <div class="w-64">
                 @if ($canUseRootPermissions)
                     <x-forms.checkbox label="root" wire:model.live="permissions" domValue="root"
@@ -60,23 +60,22 @@
                 @endif
             </div>
             @if (in_array('root', $permissions))
-                <div class="font-bold dark:text-warning">Root access, be careful!</div>
+                <div class="font-bold dark:text-warning">{{ __('Root access, be careful!') }}</div>
             @endif
         </form>
     @endcan
     @if (session()->has('token'))
-        <div class="py-4 font-bold dark:text-warning">Please copy this token now. For your security, it won't be shown
-            again.
+        <div class="py-4 font-bold dark:text-warning">{{ __("Please copy this token now. For your security, it won't be shown again.") }}
         </div>
         <div class="pb-4 font-bold dark:text-white"> {{ session('token') }}</div>
     @endif
-    <h3 class="py-4">Issued Tokens</h3>
+    <h3 class="py-4">{{ __('Issued Tokens') }}</h3>
     <div class="grid gap-2 lg:grid-cols-1">
         @forelse ($tokens as $token)
             <div wire:key="token-{{ $token->id }}"
                 class="flex flex-col gap-1 p-2 border dark:border-coolgray-200 hover:no-underline">
-                <div>Description: {{ $token->name }}</div>
-                <div>Last used: {{ $token->last_used_at ? $token->last_used_at->diffForHumans() : 'Never' }}</div>
+                <div>{{ __('Description:') }} {{ $token->name }}</div>
+                <div>{{ __('Last used:') }} {{ $token->last_used_at ? $token->last_used_at->diffForHumans() : 'Never' }}</div>
                 <div class="flex gap-1">
                     @if ($token->abilities)
                         Permissions:
@@ -100,7 +99,7 @@
             </div>
         @empty
             <div>
-                <div>No API tokens found.</div>
+                <div>{{ __('No API tokens found.') }}</div>
             </div>
         @endforelse
     </div>

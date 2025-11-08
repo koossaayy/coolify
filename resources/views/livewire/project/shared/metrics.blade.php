@@ -1,31 +1,31 @@
 <div>
     <div class="flex items-center gap-2">
-        <h2>Metrics</h2>
+        <h2>{{ __('Metrics') }}</h2>
     </div>
-    <div class="pb-4">Basic metrics for your application container.</div>
+    <div class="pb-4">{{ __('Basic metrics for your application container.') }}</div>
     <div>
         @if ($resource->getMorphClass() === 'App\Models\Application' && $resource->build_pack === 'dockercompose')
-            <div class="alert alert-warning">Metrics are not available for Docker Compose applications yet!</div>
+            <div class="alert alert-warning">{{ __('Metrics are not available for Docker Compose applications yet!') }}</div>
         @elseif(!$resource->destination->server->isMetricsEnabled())
-            <div class="alert alert-warning">Metrics are only available for servers with Sentinel & Metrics enabled!</div>
-            <div>Go to <a class="underline dark:text-white" href="{{ route('server.show', $resource->destination->server->uuid) }}">Server settings</a> to enable it.</div>
+            <div class="alert alert-warning">{{ __('Metrics are only available for servers with Sentinel & Metrics enabled!') }}</div>
+            <div>{{ __('Go to') }} <a class="underline dark:text-white" href="{{ route('server.show', $resource->destination->server->uuid) }}">{{ __('Server settings') }}</a> {{ __('to enable it.') }}</div>
         @else
             @if (!str($resource->status)->contains('running'))
-                <div class="alert alert-warning">Metrics are only available when the application container is running!</div>
+                <div class="alert alert-warning">{{ __('Metrics are only available when the application container is running!') }}</div>
             @else
                 <div>
                 <x-forms.select label="Interval" wire:change="setInterval" id="interval">
-                <option value="5">5 minutes (live)</option>
-                <option value="10">10 minutes (live)</option>
-                <option value="30">30 minutes</option>
-                <option value="60">1 hour</option>
-                <option value="720">12 hours</option>
-                <option value="10080">1 week</option>
-                <option value="43200">30 days</option>
+                <option value="5">{{ __('5 minutes (live)') }}</option>
+                <option value="10">{{ __('10 minutes (live)') }}</option>
+                <option value="30">{{ __('30 minutes') }}</option>
+                <option value="60">{{ __('1 hour') }}</option>
+                <option value="720">{{ __('12 hours') }}</option>
+                <option value="10080">{{ __('1 week') }}</option>
+                <option value="43200">{{ __('30 days') }}</option>
             </x-forms.select>
             <div @if ($poll) wire:poll.5000ms='pollData' @endif x-init="$wire.loadData()"
                 class="pt-5">
-                <h4>CPU Usage</h4>
+                <h4>{{ __('CPU Usage') }}</h4>
                 <div wire:ignore id="{!! $chartId !!}-cpu"></div>
 
                 <script>
@@ -151,7 +151,7 @@
                      });
                 </script>
 
-                <h4>Memory Usage</h4>
+                <h4>{{ __('Memory Usage') }}</h4>
                 <div wire:ignore id="{!! $chartId !!}-memory"></div>
 
                 <script>

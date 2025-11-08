@@ -75,7 +75,7 @@
                                 </p>
                                 @if ($deployment->pull_request_id)
                                     <p class="text-xs dark:text-neutral-400 text-gray-600">
-                                        PR #{{ $deployment->pull_request_id }}
+                                        {{ __('PR #') }}{{ $deployment->pull_request_id }}
                                     </p>
                                 @endif
                                 <p class="text-xs mt-1 capitalize"

@@ -4,10 +4,10 @@
             <div class="w-full max-w-md space-y-8">
                 <div class="text-center space-y-2">
                     <h1 class="!text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-                        Coolify
+                        {{ __('Coolify') }}
                     </h1>
                     <p class="text-lg dark:text-neutral-400">
-                        Confirm Your Password
+                        {{ __('Confirm Your Password') }}
                     </p>
                 </div>
 
@@ -32,7 +32,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                             <p class="text-sm dark:text-neutral-400">
-                                This is a secure area. Please confirm your password before continuing.
+                                {{ __('This is a secure area. Please confirm your password before continuing.') }}
                             </p>
                         </div>
                     </div>

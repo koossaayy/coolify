@@ -1,17 +1,17 @@
 <div>
     <x-slot:title>
-        Team Admin | Coolify
+        {{ __('Team Admin | Coolify') }}
     </x-slot>
     <x-team.navbar />
-    <h2>Admin View</h2>
+    <h2>{{ __('Admin View') }}</h2>
     <div class="subtitle">
-        Manage users of this instance.
+        {{ __('Manage users of this instance.') }}
     </div>
     <form wire:submit="submitSearch" class="flex flex-col gap-2 lg:flex-row">
         <x-forms.input wire:model="search" placeholder="Search for a user" />
-        <x-forms.button type="submit">Search</x-forms.button>
+        <x-forms.button type="submit">{{ __('Search') }}</x-forms.button>
     </form>
-    <h3 class="py-4">Users</h3>
+    <h3 class="py-4">{{ __('Users') }}</h3>
     <div class="grid grid-cols-1 gap-2 lg:grid-cols-2">
         @forelse ($users as $user)
             <div wire:key="user-{{ $user->id }}"
@@ -31,10 +31,10 @@
                 </div>
             </div>
         @empty
-            <div>No users found other than the root.</div>
+            <div>{{ __('No users found other than the root.') }}</div>
         @endforelse
         @if ($lots_of_users)
-            <div>There are more users than shown. Please use the search bar to find the user you are looking for.</div>
+            <div>{{ __('There are more users than shown. Please use the search bar to find the user you are looking for.') }}</div>
         @endif
     </div>
 </div>

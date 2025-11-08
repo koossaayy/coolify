@@ -1,6 +1,6 @@
 <x-dropdown>
     <x-slot:title>
-        Links
+        {{ __('Links') }}
     </x-slot>
     @if (
         (data_get($application, 'fqdn') ||
@@ -12,7 +12,7 @@
             @if (data_get($application, 'gitBrancLocation'))
                 <a target="_blank" class="dropdown-item" href="{{ $application->gitBranchLocation }}">
                     <x-git-icon git="{{ $application->source?->getMorphClass() }}" />
-                    Git Repository
+                    {{ __('Git Repository') }}
                 </a>
             @endif
             @if (data_get($application, 'build_pack') === 'dockercompose')
@@ -40,7 +40,7 @@
                             @if (data_get($fqdn, 'domain'))
                                 @foreach (explode(',', data_get($fqdn, 'domain')) as $domain)
                                     <a class="dropdown-item" target="_blank" href="{{ getFqdnWithoutPort($domain) }}">
-                                        <x-external-link class="size-4" />PR{{ data_get($preview, 'pull_request_id') }}
+                                        <x-external-link class="size-4" />{{ __('PR') }}{{ data_get($preview, 'pull_request_id') }}
                                         |
                                         {{ getFqdnWithoutPort($domain) }}
                                     </a>
@@ -54,7 +54,7 @@
                             <a class="dropdown-item" target="_blank"
                                 href="{{ getFqdnWithoutPort(data_get($preview, 'fqdn')) }}">
                                 <x-external-link class="size-4" />
-                                PR{{ data_get($preview, 'pull_request_id') }} |
+                                {{ __('PR') }}{{ data_get($preview, 'pull_request_id') }} |
                                 {{ data_get($preview, 'fqdn') }}
                             </a>
                         @endif
@@ -66,7 +66,7 @@
                     @if ($application->destination->server->id === 0)
                         <a class="dropdown-item" target="_blank" href="http://localhost:{{ explode(':', $port)[0] }}">
                             <x-external-link class="size-4" />
-                            Port {{ $port }}
+                            {{ __('Port') }} {{ $port }}
                         </a>
                     @else
                         <a class="dropdown-item" target="_blank"
@@ -88,6 +88,6 @@
             @endif
         </div>
     @else
-        <div class="px-2 py-1.5 text-xs">No links available</div>
+        <div class="px-2 py-1.5 text-xs">{{ __('No links available') }}</div>
     @endif
 </x-dropdown>

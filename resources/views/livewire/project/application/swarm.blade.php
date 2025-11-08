@@ -1,15 +1,15 @@
 <div>
     <form wire:submit='submit' class="flex flex-col">
         <div class="flex items-center gap-2">
-            <h2>Swarm Configuration</h2>
+            <h2>{{ __('Swarm Configuration') }}</h2>
             @can('update', $application)
                 <x-forms.button type="submit">
-                    Save
+                    {{ __('Save') }}
                 </x-forms.button>
             @else
                 <x-forms.button type="submit" disabled
                     title="You don't have permission to update this application. Contact your team administrator for access.">
-                    Save
+                    {{ __('Save') }}
                 </x-forms.button>
             @endcan
         </div>

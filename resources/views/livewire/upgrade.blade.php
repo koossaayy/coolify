@@ -10,7 +10,7 @@
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M19.5 13.572l-7.5 7.428l-7.5 -7.428m0 0a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
                 </svg>
-                In progress
+                {{ __('In progress') }}
             </button>
             <button class="menu-item cursor-pointer" @click="modalOpen=true" x-show="!showProgress">
                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +23,7 @@
                     <path d="M9 21h6" />
                     <path d="M9 18h6" />
                 </svg>
-                Upgrade
+                {{ __('Upgrade') }}
             </button>
             <template x-teleport="body">
                 <div x-show="modalOpen"
@@ -41,7 +41,7 @@
                         x-transition:leave-end="opacity-0 -translate-y-2 sm:scale-95"
                         class="relative w-full py-6 border rounded-sm min-w-full lg:min-w-[36rem] max-w-fit bg-neutral-100 border-neutral-400 dark:bg-base px-7 dark:border-coolgray-300">
                         <div class="flex items-center justify-between pb-3">
-                            <h3 class="text-lg font-semibold">Upgrade confirmation</h3>
+                            <h3 class="text-lg font-semibold">{{ __('Upgrade confirmation') }}</h3>
                             <button x-show="!showProgress" @click="modalOpen=false"
                                 class="absolute top-0 right-0 flex items-center justify-center w-8 h-8 mt-5 mr-5 text-gray-600 rounded-full hover:text-gray-800 hover:bg-gray-50">
                                 <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -51,33 +51,32 @@
                             </button>
                         </div>
                         <div class="relative w-auto pb-8">
-                            <p>Are you sure you would like to upgrade your instance to {{ $latestVersion }}?</p>
+                            <p>{{ __('Are you sure you would like to upgrade your instance to') }} {{ $latestVersion }}?</p>
                             <br />
 
                             <x-callout type="warning" title="Caution">
-                                <p>Any deployments running during the update process will
-                                    fail. Please ensure no deployments are in progress on any server before continuing.
+                                <p>{{ __('Any deployments running during the update process will fail. Please ensure no deployments are in progress on any server before continuing.') }}
                                 </p>
                             </x-callout>
                             <br />
-                            <p>You can review the changelogs <a class="font-bold underline dark:text-white"
-                                    href="https://github.com/coollabsio/coolify/releases" target="_blank">here</a>.</p>
+                            <p>{{ __('You can review the changelogs') }} <a class="font-bold underline dark:text-white"
+                                    href="https://github.com/coollabsio/coolify/releases" target="_blank">{{ __('here') }}</a>.</p>
                             <br />
-                            <p>If something goes wrong and you cannot upgrade your instance, You can check the following
+                            <p>{{ __('If something goes wrong and you cannot upgrade your instance, You can check the following') }}
                                 <a class="font-bold underline dark:text-white" href="https://coolify.io/docs/upgrade"
-                                    target="_blank">guide</a> on what to do.
+                                    target="_blank">{{ __('guide') }}</a> {{ __('on what to do.') }}
                             </p>
                             <div class="flex flex-col pt-4" x-show="showProgress">
-                                <h2>Progress <x-loading /></h2>
+                                <h2>{{ __('Progress') }} <x-loading /></h2>
                                 <div x-html="currentStatus"></div>
                             </div>
                         </div>
                         <div class="flex gap-4" x-show="!showProgress">
                             <x-forms.button @click="modalOpen=false"
-                                class="w-24 dark:bg-coolgray-200 dark:hover:bg-coolgray-300">Cancel
+                                class="w-24 dark:bg-coolgray-200 dark:hover:bg-coolgray-300">{{ __('Cancel') }}
                             </x-forms.button>
                             <div class="flex-1"></div>
-                            <x-forms.button @click="confirmed" class="w-24" isHighlighted type="button">Continue
+                            <x-forms.button @click="confirmed" class="w-24" isHighlighted type="button">{{ __('Continue') }}
                             </x-forms.button>
                         </div>
                     </div>
