@@ -20,6 +20,6 @@
 
     <x-forms.checkbox id="is_multiline" label="Is Multiline?" />
     <x-forms.button type="submit" @click="slideOverOpen=false">
-        Save
+        {{ __('Save') }}
     </x-forms.button>
 </form>

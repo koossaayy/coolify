@@ -1,13 +1,13 @@
 <div>
-    <h2>Cloud Provider Tokens</h2>
-    <div class="pb-4">Manage API tokens for cloud providers (Hetzner, DigitalOcean, etc.).</div>
+    <h2>{{ __('Cloud Provider Tokens') }}</h2>
+    <div class="pb-4">{{ __('Manage API tokens for cloud providers (Hetzner, DigitalOcean, etc.).') }}</div>
 
-    <h3>New Token</h3>
+    <h3>{{ __('New Token') }}</h3>
     @can('create', App\Models\CloudProviderToken::class)
         <livewire:security.cloud-provider-token-form :modal_mode="false" />
     @endcan
 
-    <h3 class="py-4">Saved Tokens</h3>
+    <h3 class="py-4">{{ __('Saved Tokens') }}</h3>
     <div class="grid gap-2 lg:grid-cols-1">
         @forelse ($tokens as $savedToken)
             <div wire:key="token-{{ $savedToken->id }}"
@@ -18,12 +18,12 @@
                     </span>
                     <span class="font-bold dark:text-white">{{ $savedToken->name }}</span>
                 </div>
-                <div class="text-sm">Created: {{ $savedToken->created_at->diffForHumans() }}</div>
+                <div class="text-sm">{{ __('Created:') }} {{ $savedToken->created_at->diffForHumans() }}</div>
 
                 <div class="flex gap-2 pt-2">
                     @can('view', $savedToken)
                         <x-forms.button wire:click="validateToken({{ $savedToken->id }})" type="button">
-                            Validate Token
+                            {{ __('Validate Token') }}
                         </x-forms.button>
                     @endcan
 
@@ -41,7 +41,7 @@
             </div>
         @empty
             <div>
-                <div>No cloud provider tokens found.</div>
+                <div>{{ __('No cloud provider tokens found.') }}</div>
             </div>
         @endforelse
     </div>

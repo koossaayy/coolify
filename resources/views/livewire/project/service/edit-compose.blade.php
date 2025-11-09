@@ -15,10 +15,7 @@
         this.editorHeight = Math.max(300, Math.min(availableHeight, viewportHeight - 200));
     }
 }" x-init="calculateEditorHeight(); window.addEventListener('resize', () => calculateEditorHeight())">
-    <div class="pb-4">Volume names are updated upon save. The service UUID will be added as a prefix to all volumes, to
-        prevent
-        name collision. <br>To see the actual volume names, check the Deployable Compose file, or go to Storage
-        menu.</div>
+    <div class="pb-4">{{ __('Volume names are updated upon save. The service UUID will be added as a prefix to all volumes, to prevent name collision.') }} <br>{{ __('To see the actual volume names, check the Deployable Compose file, or go to Storage menu.') }}</div>
 
     <div class="compose-editor-container" x-bind:style="`--editor-height: ${editorHeight}px`">
         <div x-cloak x-show="raw" class="font-mono">
@@ -47,20 +44,19 @@
     </div>
     <div class="flex  w-full gap-2 pt-4">
         <div x-cloak x-show="raw">
-            <x-forms.button class="w-64" @click.prevent="raw = !raw">Show Deployable Compose</x-forms.button>
+            <x-forms.button class="w-64" @click.prevent="raw = !raw">{{ __('Show Deployable Compose') }}</x-forms.button>
         </div>
         <div x-cloak x-show="raw === false">
-            <x-forms.button class="w-64" @click.prevent="raw = !raw">Show Source
-                Compose</x-forms.button>
+            <x-forms.button class="w-64" @click.prevent="raw = !raw">{{ __('Show Source Compose') }}</x-forms.button>
         </div>
         <div class="flex-1"></div>
         @if (blank($service->service_type))
             <x-forms.button class="w-28" wire:click.prevent='validateCompose'>
-                Validate
+                {{ __('Validate') }}
             </x-forms.button>
         @endif
         <x-forms.button class="w-28" wire:click.prevent='saveEditedCompose'>
-            Save
+            {{ __('Save') }}
         </x-forms.button>
     </div>
 </div>

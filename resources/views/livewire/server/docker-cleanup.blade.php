@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($server, 'name')->limit(10) }} > Docker Cleanup | Coolify
+        {{ data_get_str($server, 'name')->limit(10) }} {{ __('> Docker Cleanup | Coolify') }}
     </x-slot>
     <livewire:server.navbar :server="$server" />
     <div x-data="{ activeTab: window.location.hash ? window.location.hash.substring(1) : 'general' }" class="flex flex-col h-full gap-8 sm:flex-row">
@@ -9,8 +9,8 @@
             <form wire:submit='submit'>
                 <div>
                     <div class="flex items-center gap-2">
-                        <h2>Docker Cleanup</h2>
-                        <x-forms.button type="submit" canGate="update" :canResource="$server">Save</x-forms.button>
+                        <h2>{{ __('Docker Cleanup') }}</h2>
+                        <x-forms.button type="submit" canGate="update" :canResource="$server">{{ __('Save') }}</x-forms.button>
                         @can('update', $server)
                             <x-modal-confirmation title="Confirm Docker Cleanup?" buttonTitle="Trigger Manual Cleanup"
                                 isHighlightedButton submitAction="manualCleanup" :actions="[
@@ -24,12 +24,12 @@
                                 :confirmWithPassword="false" step2ButtonText="Trigger Docker Cleanup" />
                         @endcan
                     </div>
-                    <div class="mt-1 mb-6">Configure Docker cleanup settings for your server.</div>
+                    <div class="mt-1 mb-6">{{ __('Configure Docker cleanup settings for your server.') }}</div>
                 </div>
 
                 <div class="flex flex-col gap-2">
                     <div class="flex gap-4">
-                        <h3>Cleanup Configuration</h3>
+                        <h3>{{ __('Cleanup Configuration') }}</h3>
                     </div>
                     <div class="flex items-center gap-4">
                         <x-forms.input canGate="update" :canResource="$server" placeholder="*/10 * * * *"
@@ -58,10 +58,9 @@
                 </div>
 
                 <div class="flex flex-col gap-2 mt-6">
-                    <h3>Advanced</h3>
+                    <h3>{{ __('Advanced') }}</h3>
                     <x-callout type="warning" title="Caution">
-                        <p>These options can cause permanent data loss and functional issues. Only enable if you fully
-                            understand the consequences.</p>
+                        <p>{{ __('These options can cause permanent data loss and functional issues. Only enable if you fully understand the consequences.') }}</p>
                     </x-callout>
                     <div class="w-full sm:w-96">
                         <x-forms.checkbox canGate="update" :canResource="$server" instantSave id="deleteUnusedVolumes"
@@ -83,8 +82,7 @@
             </form>
 
             <div class="mt-8">
-                <h3 class="mb-4">Recent executions <span class="text-xs text-neutral-500">(click to check
-                        output)</span></h3>
+                <h3 class="mb-4">{{ __('Recent executions') }} <span class="text-xs text-neutral-500">{{ __('(click to check output)') }}</span></h3>
                 <livewire:server.docker-cleanup-executions :server="$server" />
             </div>
         </div>

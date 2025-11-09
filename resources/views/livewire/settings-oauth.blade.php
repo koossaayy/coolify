@@ -1,17 +1,17 @@
 <div>
     <x-slot:title>
-        Settings | Coolify
+        {{ __('Settings | Coolify') }}
     </x-slot>
     <x-settings.navbar />
     <form wire:submit='submit' class="flex flex-col">
         <div class="flex flex-col">
             <div class="flex items-center gap-2 pb-2">
-                <h2>Authentication</h2>
+                <h2>{{ __('Authentication') }}</h2>
                 <x-forms.button type="submit">
-                    Save
+                    {{ __('Save') }}
                 </x-forms.button>
             </div>
-            <div class="pb-4 ">Custom authentication (OAuth) configurations.</div>
+            <div class="pb-4 ">{{ __('Custom authentication (OAuth) configurations.') }}</div>
         </div>
         <div class="flex flex-col gap-2 pt-4">
             @foreach ($oauth_settings_map as $oauth_setting)

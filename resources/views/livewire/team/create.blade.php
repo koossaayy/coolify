@@ -2,6 +2,6 @@
     <x-forms.input id="name" label="Name" required />
     <x-forms.input id="description" label="Description" />
     <x-forms.button type="submit">
-        Continue
+        {{ __('Continue') }}
     </x-forms.button>
 </form>

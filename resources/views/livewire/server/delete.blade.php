@@ -1,20 +1,19 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($server, 'name')->limit(10) }} > Delete Server | Coolify
+        {{ data_get_str($server, 'name')->limit(10) }} {{ __('> Delete Server | Coolify') }}
     </x-slot>
     <livewire:server.navbar :server="$server" />
     <div class="flex flex-col h-full gap-8 sm:flex-row">
         <x-server.sidebar :server="$server" activeMenu="danger" />
         <div class="w-full">
             @if ($server->id !== 0)
-                <h2>Danger Zone</h2>
-                <div class="">Woah. I hope you know what are you doing.</div>
-                <h4 class="pt-4">Delete Server</h4>
-                <div class="pb-4">This will remove this server from Coolify. Beware! There is no coming
-                    back!
+                <h2>{{ __('Danger Zone') }}</h2>
+                <div class="">{{ __('Woah. I hope you know what are you doing.') }}</div>
+                <h4 class="pt-4">{{ __('Delete Server') }}</h4>
+                <div class="pb-4">{{ __('This will remove this server from Coolify. Beware! There is no coming back!') }}
                 </div>
                 @if ($server->definedResources()->count() > 0)
-                    <div class="pb-2 text-red-500">You need to delete all resources before deleting this server.</div>
+                    <div class="pb-2 text-red-500">{{ __('You need to delete all resources before deleting this server.') }}</div>
                 @endif
 
                 <x-modal-confirmation title="Confirm Server Deletion?" isErrorButton buttonTitle="Delete"

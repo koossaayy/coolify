@@ -3,5 +3,5 @@
             <option value="{{ $environment->uuid }}">{{ $environment->name }}</option>
         @endforeach
         <option disabled>-----</option>
-        <option value="edit">Create / Edit</option>
+        <option value="edit">{{ __('Create / Edit') }}</option>
     </x-forms.select>

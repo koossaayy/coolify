@@ -1,10 +1,10 @@
 <div x-data x-init="$nextTick(() => { if ($refs.autofocusInput) $refs.autofocusInput.focus(); })">
-    <h1>Create a new Application</h1>
-    <div class="pb-4">You can deploy an existing Docker Image from any Registry.</div>
+    <h1>{{ __('Create a new Application') }}</h1>
+    <div class="pb-4">{{ __('You can deploy an existing Docker Image from any Registry.') }}</div>
     <form wire:submit="submit">
         <div class="flex gap-2 pt-4 pb-1">
-            <h2>Docker Image</h2>
-            <x-forms.button type="submit">Save</x-forms.button>
+            <h2>{{ __('Docker Image') }}</h2>
+            <x-forms.button type="submit">{{ __('Save') }}</x-forms.button>
         </div>
         <div class="space-y-4">
             <x-forms.input id="imageName" label="Image Name" placeholder="nginx, docker.io/nginx:latest, ghcr.io/user/app:v1.2.3, or nginx:stable@sha256:abc123..."
@@ -17,7 +17,7 @@
                     class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden md:flex items-center justify-center z-10">
                     <div
                         class="px-2 py-1 bg-white dark:bg-coolgray-100 border border-neutral-300 dark:border-coolgray-300 rounded text-xs font-bold text-neutral-500 dark:text-neutral-400">
-                        OR
+                        {{ __('OR') }}
                     </div>
                 </div>
                 <x-forms.input id="imageSha256" label="SHA256 Digest (optional)"

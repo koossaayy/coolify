@@ -213,7 +213,7 @@
                             <div class="flex flex-wrap gap-2 justify-between mt-4">
                                 <x-forms.button @click="modalOpen = false; resetModal()"
                                     class="w-24 dark:bg-coolgray-200 dark:hover:bg-coolgray-300">
-                                    Cancel
+                                    {{ __('Cancel') }}
                                 </x-forms.button>
                                 <x-forms.button @click="step++" class="w-auto" isError>
                                     <span x-text="step1ButtonText"></span>
@@ -227,7 +227,7 @@
                         <x-callout type="danger" title="Warning" class="mb-4">
                             {!! $warningMessage ?: 'This operation is permanent and cannot be undone. Please think again before proceeding!' !!}
                         </x-callout>
-                        <div class="mb-4">The following actions will be performed:</div>
+                        <div class="mb-4">{{ __('The following actions will be performed:') }}</div>
                         <ul class="mb-4 space-y-2">
                             @foreach ($actions as $action)
                                 <li class="flex items-center text-red-500">
@@ -267,7 +267,7 @@
                         @if (!$disableTwoStepConfirmation)
                             @if ($confirmWithText)
                                 <div class="mb-4">
-                                    <h4 class="mb-2 text-lg font-semibold">Confirm Actions</h4>
+                                    <h4 class="mb-2 text-lg font-semibold">{{ __('Confirm Actions') }}</h4>
                                     <p class="mb-2 text-sm">{{ $confirmationLabel }}</p>
                                     <div class="relative mb-2" x-data="{ decodedText: confirmationText }">
                                         <div class="relative">
@@ -300,12 +300,12 @@
                             @if (!empty($checkboxes))
                                 <x-forms.button @click="step--"
                                     class="w-24 dark:bg-coolgray-200 dark:hover:bg-coolgray-300">
-                                    Back
+                                    {{ __('Back') }}
                                 </x-forms.button>
                             @else
                                 <x-forms.button @click="modalOpen = false; resetModal()"
                                     class="w-24 dark:bg-coolgray-200 dark:hover:bg-coolgray-300">
-                                    Cancel
+                                    {{ __('Cancel') }}
                                 </x-forms.button>
                             @endif
                             <x-forms.button
@@ -333,7 +333,7 @@
                     @if (!$disableTwoStepConfirmation)
                         <div x-show="step === 3 && confirmWithPassword">
                             <x-callout type="danger" title="Final Confirmation" class="mb-4">
-                                Please enter your password to confirm this destructive action.
+                                {{ __('Please enter your password to confirm this destructive action.') }}
                             </x-callout>
                             <div class="flex flex-col gap-2 mb-4">
                                 @php
@@ -341,7 +341,7 @@
                                 @endphp
                                 <label for="password-confirm-{{ $passwordConfirm }}"
                                     class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                                    Your Password
+                                    {{ __('Your Password') }}
                                 </label>
                                 <form @submit.prevent="false" @keydown.enter.prevent>
                                     <input type="text" name="username" autocomplete="username"
@@ -360,7 +360,7 @@
                             <div class="flex flex-wrap gap-2 justify-between mt-4">
                                 <x-forms.button @click="step--"
                                     class="w-24 dark:bg-coolgray-200 dark:hover:bg-coolgray-300">
-                                    Back
+                                    {{ __('Back') }}
                                 </x-forms.button>
                                 <x-forms.button x-bind:disabled="!password" class="w-auto" isError
                                     @click="

@@ -68,19 +68,17 @@
             @if (!isCloud())
                 <x-popup>
                     <x-slot:title>
-                        <span class="font-bold text-left text-red-500">WARNING: </span> Cannot connect to real-time service
+                        <span class="font-bold text-left text-red-500">{{ __('WARNING:') }} </span> {{ __('Cannot connect to real-time service') }}
                     </x-slot:title>
                     <x-slot:description>
-                        <div>This will cause unusual problems on the
-                            UI! <br><br>
-                            Please ensure that you have opened the
+                        <div>{{ __('This will cause unusual problems on the UI!') }} <br><br>
+                            {{ __('Please ensure that you have opened the') }}
                             <a class="underline" href='https://coolify.io/docs/knowledge-base/server/firewall'
-                                target='_blank'>required ports</a> or get
-                            help on <a class="underline" href='https://coollabs.io/discord' target='_blank'>Discord</a>.
+                                target='_blank'>{{ __('required ports') }}</a> {{ __('or get help on') }} <a class="underline" href='https://coollabs.io/discord' target='_blank'>{{ __('Discord') }}</a>.
                         </div>
                     </x-slot:description>
                     <x-slot:button-text @click="disableRealtime()">
-                        Acknowledge & Disable This Popup
+                        {{ __('Acknowledge & Disable This Popup') }}
                     </x-slot:button-text>
                 </x-popup>
             @endif
@@ -96,35 +94,29 @@
                             <img src="{{ asset('heart.png') }}" class="w-20 h-20">
                         </div>
                         <div class="flex flex-col gap-2 lg:px-10 px-1">
-                            <div class="lg:text-xl text-md dark:text-white font-bold">Love Coolify? Support our work.
+                            <div class="lg:text-xl text-md dark:text-white font-bold">{{ __('Love Coolify? Support our work.') }}
                             </div>
                             <div class="lg:text-sm text-xs dark:text-white">
-                                We are already profitable thanks to <span class="font-bold text-pink-500">YOU</span>
-                                but...<br />We
-                                would
-                                like to
-                                make
-                                more cool features.
+                                {{ __('We are already profitable thanks to') }} <span class="font-bold text-pink-500">{{ __('YOU') }}</span>
+                                {{ __('but...') }}<br />{{ __('We would like to make more cool features.') }}
                             </div>
                             <div class="lg:text-sm text-xs dark:text-white pt-2 ">
-                                For this we need your help to support our work financially.
+                                {{ __('For this we need your help to support our work financially.') }}
                             </div>
                         </div>
                         <div class="flex flex-col gap-2 text-center md:mx-auto lg:py-0 pt-2">
                             <x-forms.button isHighlighted class="md:w-36 w-full"><a target="_blank"
                                     href="https://github.com/sponsors/coollabsio"
-                                    class="font-bold dark:text-white">GitHub
-                                    Sponsors</a></x-forms.button>
+                                    class="font-bold dark:text-white">{{ __('GitHub Sponsors') }}</a></x-forms.button>
                             <x-forms.button isHighlighted class="md:w-36 w-full"><a target="_blank"
                                     href="https://opencollective.com/coollabsio/donate?interval=month&amount=10&name=&legalName=&email="
-                                    class="font-bold dark:text-white">Open
-                                    Collective</a></x-forms.button>
+                                    class="font-bold dark:text-white">{{ __('Open Collective') }}</a></x-forms.button>
                             <x-forms.button isHighlighted class="md:w-36 w-full"><a
                                     href="https://donate.stripe.com/8x2bJ104ifmB9kB45u38402" target="_blank"
-                                    class="font-bold dark:text-white">Stripe</a></x-forms.button>
+                                    class="font-bold dark:text-white">{{ __('Stripe') }}</a></x-forms.button>
                             <div class="pt-4 dark:text-white hover:underline cursor-pointer lg:text-base text-xs"
                                 @click="bannerVisible=false;disableSponsorship()">
-                                Maybe next time
+                                {{ __('Maybe next time') }}
                             </div>
                         </div>
                     </div>
@@ -134,23 +126,15 @@
     @endif
     @if (currentTeam()->subscriptionPastOverDue())
         <x-banner :closable=false>
-            <div><span class="font-bold text-red-500">WARNING:</span> Your subscription is in over-due. If your
-                latest
-                payment is not paid within a week, all automations <span class="font-bold text-red-500">will
-                    be deactivated</span>. Visit <a href="{{ route('subscription.show') }}"
-                    class="underline dark:text-white">/subscription</a> to check your subscription status or pay
-                your
-                invoice (or check your email for the invoice).
+            <div><span class="font-bold text-red-500">{{ __('WARNING:') }}</span> {{ __('Your subscription is in over-due. If your latest payment is not paid within a week, all automations') }} <span class="font-bold text-red-500">{{ __('will be deactivated') }}</span>{{ __('. Visit') }} <a href="{{ route('subscription.show') }}"
+                    class="underline dark:text-white">/subscription</a> {{ __('to check your subscription status or pay your invoice (or check your email for the invoice).') }}
             </div>
         </x-banner>
     @endif
     @if (currentTeam()->serverOverflow())
         <x-banner :closable=false>
-            <div><span class="font-bold text-red-500">WARNING:</span> The number of active servers exceeds the limit
-                covered by your payment. If not resolved, some of your servers <span class="font-bold text-red-500">will
-                    be deactivated</span>. Visit <a href="{{ route('subscription.show') }}"
-                    class="underline dark:text-white">/subscription</a> to update your subscription or remove some
-                servers.
+            <div><span class="font-bold text-red-500">{{ __('WARNING:') }}</span> {{ __('The number of active servers exceeds the limit covered by your payment. If not resolved, some of your servers') }} <span class="font-bold text-red-500">{{ __('will be deactivated') }}</span>{{ __('. Visit') }} <a href="{{ route('subscription.show') }}"
+                    class="underline dark:text-white">/subscription</a> {{ __('to update your subscription or remove some servers.') }}
             </div>
         </x-banner>
     @endif
@@ -158,7 +142,7 @@
         <span x-show="popups.notification">
             <x-popup>
                 <x-slot:title>
-                    No notifications enabled.
+                    {{ __('No notifications enabled.') }}
                 </x-slot:title>
                 <x-slot:icon>
                     <svg xmlns="http://www.w3.org/2000/svg" class="text-red-500 stroke-current w-14 h-14 shrink-0"
@@ -168,15 +152,11 @@
                     </svg>
                 </x-slot:icon>
                 <x-slot:description>
-                    It is
-                    highly recommended to enable at least
-                    one
-                    notification channel to receive important alerts.<br>Visit <a
-                        href="{{ route('notifications.email') }}" class="underline dark:text-white">/notification</a> to
-                    enable notifications.</span>
+                    {{ __('It is highly recommended to enable at least one notification channel to receive important alerts.') }}<br>{{ __('Visit') }} <a
+                        href="{{ route('notifications.email') }}" class="underline dark:text-white">/notification</a> {{ __('to enable notifications.') }}</span>
         </x-slot:description>
         <x-slot:button-text @click="disableNotification()">
-            Accept and Close
+            {{ __('Accept and Close') }}
         </x-slot:button-text>
         </x-popup>
         </span>

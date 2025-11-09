@@ -1,11 +1,11 @@
 <div>
     <form wire:submit='submit' class="flex flex-col">
         <div class="flex items-center gap-2 ">
-            <h2>Resource Limits</h2>
-            <x-forms.button canGate="update" :canResource="$resource" type='submit'>Save</x-forms.button>
+            <h2>{{ __('Resource Limits') }}</h2>
+            <x-forms.button canGate="update" :canResource="$resource" type='submit'>{{ __('Save') }}</x-forms.button>
         </div>
-        <div class="">Limit your container resources by CPU & memory.</div>
-        <h3 class="pt-4">Limit CPUs</h3>
+        <div class="">{{ __('Limit your container resources by CPU & memory.') }}</div>
+        <h3 class="pt-4">{{ __('Limit CPUs') }}</h3>
         <div class="flex gap-2">
             <x-forms.input canGate="update" :canResource="$resource" placeholder="1.5"
                 helper="0 means use all CPUs. Floating point number, like 0.002 or 1.5. More info <a class='underline dark:text-white' target='_blank' href='https://docs.docker.com/engine/reference/run/#cpu-share-constraint'>here</a>."
@@ -17,7 +17,7 @@
                 helper="More info <a class='underline dark:text-white' target='_blank' href='https://docs.docker.com/engine/reference/run/#cpu-share-constraint'>here</a>."
                 label="CPU Weight" id="limitsCpuShares" />
         </div>
-        <h3 class="pt-4">Limit Memory</h3>
+        <h3 class="pt-4">{{ __('Limit Memory') }}</h3>
         <div class="flex flex-col gap-2">
             <div class="flex gap-2">
                 <x-forms.input canGate="update" :canResource="$resource"

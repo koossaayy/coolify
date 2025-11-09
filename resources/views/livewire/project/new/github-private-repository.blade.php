@@ -1,23 +1,23 @@
 <div>
     <div class="flex items-end gap-2">
-        <h1>Create a new Application</h1>
+        <h1>{{ __('Create a new Application') }}</h1>
         <x-modal-input buttonTitle="+ Add GitHub App" title="New GitHub App" closeOutside="false">
             <livewire:source.github.create />
         </x-modal-input>
         @if ($repositories->count() > 0)
             <a target="_blank" class="flex hover:no-underline" href="{{ getInstallationPath($github_app) }}">
                 <x-forms.button>
-                    Change Repositories on GitHub
+                    {{ __('Change Repositories on GitHub') }}
                     <x-external-link />
                 </x-forms.button>
             </a>
         @endif
     </div>
-    <div class="pb-4">Deploy any public or private Git repositories through a GitHub App.</div>
+    <div class="pb-4">{{ __('Deploy any public or private Git repositories through a GitHub App.') }}</div>
     @if ($github_apps->count() !== 0)
         <div class="flex flex-col gap-2">
             @if ($current_step === 'github_apps')
-                <h2 class="pt-4 pb-4">Select a Github App</h2>
+                <h2 class="pt-4 pb-4">{{ __('Select a Github App') }}</h2>
                 <div class="flex flex-col justify-center gap-2 text-left">
                     @foreach ($github_apps as $ghapp)
                         <div class="flex">
@@ -58,19 +58,19 @@
                                 @endforeach
                             </x-forms.select>
                         </div>
-                        <x-forms.button wire:click.prevent="loadBranches"> Load Repository </x-forms.button>
+                        <x-forms.button wire:click.prevent="loadBranches"> {{ __('Load Repository') }} </x-forms.button>
                     </div>
                 @else
-                    <div>No repositories found. Check your GitHub App configuration.</div>
+                    <div>{{ __('No repositories found. Check your GitHub App configuration.') }}</div>
                 @endif
                 @if ($branches->count() > 0)
-                    <h2 class="text-lg font-bold">Configuration</h2>
+                    <h2 class="text-lg font-bold">{{ __('Configuration') }}</h2>
                     <div class="flex flex-col gap-2 pb-6">
                         <form class="flex flex-col" wire:submit='submit'>
                             <div class="flex flex-col gap-2 pb-6">
                                 <div class="flex gap-2">
                                     <x-forms.select id="selected_branch_name" label="Branch">
-                                        <option value="default" disabled selected>Select a branch</option>
+                                        <option value="default" disabled selected>{{ __('Select a branch') }}</option>
                                         @foreach ($branches as $branch)
                                             @if ($loop->first)
                                                 <option selected value="{{ data_get($branch, 'name') }}">
@@ -84,10 +84,10 @@
                                         @endforeach
                                     </x-forms.select>
                                     <x-forms.select wire:model.live="build_pack" label="Build Pack" required>
-                                        <option value="nixpacks">Nixpacks</option>
-                                        <option value="static">Static</option>
-                                        <option value="dockerfile">Dockerfile</option>
-                                        <option value="dockercompose">Docker Compose</option>
+                                        <option value="nixpacks">{{ __('Nixpacks') }}</option>
+                                        <option value="static">{{ __('Static') }}</option>
+                                        <option value="dockerfile">{{ __('Dockerfile') }}</option>
+                                        <option value="dockercompose">{{ __('Docker Compose') }}</option>
                                     </x-forms.select>
                                     @if ($is_static)
                                         <x-forms.input id="publish_directory" label="Publish Directory"
@@ -106,7 +106,7 @@
                                             x-model="composeLocation" />
                                         <div class="pt-2">
                                             <span>
-                                                Compose file location in your repository: </span><span
+                                                {{ __('Compose file location in your repository:') }} </span><span
                                                 class='dark:text-warning'
                                                 x-text='(baseDir === "/" ? "" : baseDir) + (composeLocation.startsWith("/") ? composeLocation : "/" + composeLocation)'></span>
                                         </div>
@@ -125,14 +125,14 @@
                                 @endif
                             </div>
                             <x-forms.button type="submit">
-                                Continue
+                                {{ __('Continue') }}
                             </x-forms.button>
                 @endif
             @endif
         </div>
     @else
         <div class="hero">
-            No GitHub Application found. Please create a new GitHub Application.
+            {{ __('No GitHub Application found. Please create a new GitHub Application.') }}
         </div>
     @endif
 </div>

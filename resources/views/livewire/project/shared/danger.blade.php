@@ -1,8 +1,8 @@
 <div>
-    <h2>Danger Zone</h2>
-    <div class="">Woah. I hope you know what are you doing.</div>
-    <h4 class="pt-4">Delete Resource</h4>
-    <div class="pb-4">This will stop your containers, delete all related data, etc. Beware! There is no coming back!
+    <h2>{{ __('Danger Zone') }}</h2>
+    <div class="">{{ __('Woah. I hope you know what are you doing.') }}</div>
+    <h4 class="pt-4">{{ __('Delete Resource') }}</h4>
+    <div class="pb-4">{{ __('This will stop your containers, delete all related data, etc. Beware! There is no coming back!') }}
     </div>
 
     @if ($canDelete)
@@ -12,7 +12,7 @@
             shortConfirmationLabel="Resource Name" />
     @else
         <x-callout type="danger" title="Insufficient Permissions">
-            You don't have permission to delete this resource. Contact your team administrator for access.
+            {{ __("You don't have permission to delete this resource. Contact your team administrator for access.") }}
         </x-callout>
     @endif
 </div>

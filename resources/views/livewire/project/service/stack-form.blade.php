@@ -1,19 +1,19 @@
 <form wire:submit.prevent='submit' class="flex flex-col gap-4 pb-2">
     <div>
         <div class="flex gap-2">
-            <h2>Service Stack</h2>
+            <h2>{{ __('Service Stack') }}</h2>
             @if (isDev())
                 <div>{{ $service->compose_parsing_version }}</div>
             @endif
             <x-forms.button canGate="update" :canResource="$service" wire:target='submit'
-                type="submit">Save</x-forms.button>
+                type="submit">{{ __('Save') }}</x-forms.button>
             @can('update', $service)
                 <x-modal-input buttonTitle="Edit Compose File" title="Edit Docker Compose" :closeOutside="false">
                     <livewire:project.service.edit-compose serviceId="{{ $service->id }}" />
                 </x-modal-input>
             @endcan
         </div>
-        <div>Configuration</div>
+        <div>{{ __('Configuration') }}</div>
     </div>
     <div class="flex gap-2">
         <x-forms.input canGate="update" :canResource="$service" id="name" required label="Service Name"
@@ -27,7 +27,7 @@
     </div>
     @if ($fields->count() > 0)
         <div>
-            <h3>Service Specific Configuration</h3>
+            <h3>{{ __('Service Specific Configuration') }}</h3>
         </div>
         <div class="grid grid-cols-2 gap-2">
             @foreach ($fields as $serviceName => $field)

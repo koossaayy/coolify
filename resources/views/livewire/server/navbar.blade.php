@@ -1,12 +1,12 @@
 <div class="pb-6">
     <x-slide-over @startproxy.window="slideOverOpen = true" fullScreen>
-        <x-slot:title>Proxy Startup Logs</x-slot:title>
+        <x-slot:title>{{ __('Proxy Startup Logs') }}</x-slot:title>
         <x-slot:content>
             <livewire:activity-monitor header="Logs" fullHeight />
         </x-slot:content>
     </x-slide-over>
     <div class="flex items-center gap-2">
-        <h1>Server</h1>
+        <h1>{{ __('Server') }}</h1>
         @if ($server->proxySet())
             <div class="flex">
                 <div class="flex items-center">
@@ -30,7 +30,7 @@
                     <div wire:loading wire:target="checkProxy" class="badge badge-warning"></div>
                     <div wire:loading wire:target="checkProxy"
                         class="pl-2 pr-1 text-xs font-bold tracking-wider dark:text-warning">
-                        Checking Ports Availability...
+                        {{ __('Checking Ports Availability...') }}
                     </div>
                     @if ($proxyStatus !== 'exited')
                         <button wire:loading.remove title="Refresh Status" wire:click='checkProxyStatus'
@@ -60,7 +60,7 @@
                 href="{{ route('server.show', [
                     'server_uuid' => data_get($server, 'uuid'),
                 ]) }}">
-                Configuration
+                {{ __('Configuration') }}
             </a>
 
             @if (!$server->isSwarmWorker() && !$server->settings->is_build_server)
@@ -68,21 +68,21 @@
                     href="{{ route('server.proxy', [
                         'server_uuid' => data_get($server, 'uuid'),
                     ]) }}">
-                    Proxy
+                    {{ __('Proxy') }}
                 </a>
             @endif
             <a class="{{ request()->routeIs('server.resources') ? 'dark:text-white' : '' }}"
                 href="{{ route('server.resources', [
                     'server_uuid' => data_get($server, 'uuid'),
                 ]) }}">
-                Resources
+                {{ __('Resources') }}
             </a>
             @can('canAccessTerminal')
                 <a class="{{ request()->routeIs('server.command') ? 'dark:text-white' : '' }}"
                     href="{{ route('server.command', [
                         'server_uuid' => data_get($server, 'uuid'),
                     ]) }}">
-                    Terminal
+                    {{ __('Terminal') }}
                 </a>
             @endcan
             @can('update', $server)
@@ -90,7 +90,7 @@
                     href="{{ route('server.security.patches', [
                         'server_uuid' => data_get($server, 'uuid'),
                     ]) }}">
-                    Security
+                    {{ __('Security') }}
                 </a>
             @endcan
         </nav>
@@ -98,7 +98,7 @@
             <div>
                 @if ($server->proxySet())
                     <x-slide-over fullScreen @startproxy.window="slideOverOpen = true">
-                        <x-slot:title>Proxy Status</x-slot:title>
+                        <x-slot:title>{{ __('Proxy Status') }}</x-slot:title>
                         <x-slot:content>
                             <livewire:activity-monitor header="Logs" />
                         </x-slot:content>
@@ -111,7 +111,7 @@
                             @if ($traefikDashboardAvailable)
                                 <button>
                                     <a target="_blank" href="http://{{ $serverIp }}:8080">
-                                        Traefik Dashboard
+                                        {{ __('Traefik Dashboard') }}
                                         <x-external-link />
                                     </a>
                                 </button>
@@ -132,7 +132,7 @@
                                             <path d="M20 4v5h-5" />
                                         </g>
                                     </svg>
-                                    Restart Proxy
+                                    {{ __('Restart Proxy') }}
                                 </x-slot:button-title>
                             </x-modal-confirmation>
                             <x-modal-confirmation title="Confirm Proxy Stopping?" buttonTitle="Stop Proxy"
@@ -153,7 +153,7 @@
                                             d="M14 5m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z">
                                         </path>
                                     </svg>
-                                    Stop Proxy
+                                    {{ __('Stop Proxy') }}
                                 </x-slot:button-title>
                             </x-modal-confirmation>
                         </div>
@@ -165,7 +165,7 @@
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M7 4v16l13 -8z" />
                             </svg>
-                            Start Proxy
+                            {{ __('Start Proxy') }}
                         </button>
                     @endif
                 @endif

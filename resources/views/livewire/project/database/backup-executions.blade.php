@@ -1,7 +1,7 @@
 <div wire:init='refreshBackupExecutions'>
     @isset($backup)
         <div class="flex items-center gap-2">
-            <h3 class="py-4">Executions <span class="text-xs">({{ $executions_count }})</span></h3>
+            <h3 class="py-4">{{ __('Executions') }} <span class="text-xs">({{ $executions_count }})</span></h3>
             @if ($executions_count > 0)
                 <div class="flex items-center gap-2">
                     <x-forms.button disabled="{{ !$showPrev }}" wire:click="previousPage('{{ $defaultTake }}')">
@@ -11,7 +11,7 @@
                         </svg>
                     </x-forms.button>
                     <span class="text-sm text-gray-600 dark:text-gray-400 px-2">
-                        Page {{ $currentPage }} of {{ ceil($executions_count / $defaultTake) }}
+                        {{ __('Page') }} {{ $currentPage }} {{ __('of') }} {{ ceil($executions_count / $defaultTake) }}
                     </span>
                     <x-forms.button disabled="{{ !$showNext }}" wire:click="nextPage('{{ $defaultTake }}')">
                         <svg class="w-4 h-4" viewBox="0 0 24 24">
@@ -21,7 +21,7 @@
                     </x-forms.button>
                 </div>
             @endif
-            <x-forms.button wire:click='cleanupFailed'>Cleanup Failed Backups</x-forms.button>
+            <x-forms.button wire:click='cleanupFailed'>{{ __('Cleanup Failed Backups') }}</x-forms.button>
             <x-modal-confirmation title="Cleanup Deleted Backup Entries?" buttonTitle="Cleanup Deleted" isErrorButton
                 submitAction="cleanupDeleted()" 
                 :actions="['This will permanently delete all backup execution entries that are marked as deleted from local storage.', 'This only removes database entries, not actual backup files.']" 
@@ -68,29 +68,29 @@
                         </span>
                     </div>
                     <div class="text-gray-600 dark:text-gray-400 text-sm">
-                        Started: {{ formatDateInServerTimezone(data_get($execution, 'created_at'), $this->server()) }}
+                        {{ __('Started:') }} {{ formatDateInServerTimezone(data_get($execution, 'created_at'), $this->server()) }}
                         @if (data_get($execution, 'status') !== 'running')
-                            <br>Ended:
+                            <br>{{ __('Ended:') }}
                             {{ formatDateInServerTimezone(data_get($execution, 'finished_at'), $this->server()) }}
-                            <br>Duration:
+                            <br>{{ __('Duration:') }}
                             {{ calculateDuration(data_get($execution, 'created_at'), data_get($execution, 'finished_at')) }}
-                            <br>Finished {{ \Carbon\Carbon::parse(data_get($execution, 'finished_at'))->diffForHumans() }}
+                            <br>{{ __('Finished') }} {{ \Carbon\Carbon::parse(data_get($execution, 'finished_at'))->diffForHumans() }}
                         @endif
                     </div>
                     <div class="text-gray-600 dark:text-gray-400 text-sm">
-                        Database: {{ data_get($execution, 'database_name', 'N/A') }}
+                        {{ __('Database:') }} {{ data_get($execution, 'database_name', 'N/A') }}
                     </div>
                     <div class="text-gray-600 dark:text-gray-400 text-sm">
-                        Size: {{ data_get($execution, 'size') }} B /
-                        {{ round((int) data_get($execution, 'size') / 1024, 2) }} kB /
-                        {{ round((int) data_get($execution, 'size') / 1024 / 1024, 3) }} MB
+                        {{ __('Size:') }} {{ data_get($execution, 'size') }} {{ __('B /') }}
+                        {{ round((int) data_get($execution, 'size') / 1024, 2) }} {{ __('kB /') }}
+                        {{ round((int) data_get($execution, 'size') / 1024 / 1024, 3) }} {{ __('MB') }}
                     </div>
                     <div class="text-gray-600 dark:text-gray-400 text-sm">
-                        Location: {{ data_get($execution, 'filename', 'N/A') }}
+                        {{ __('Location:') }} {{ data_get($execution, 'filename', 'N/A') }}
                     </div>
                     <div class="flex items-center gap-3 mt-2">
                         <div class="text-gray-600 dark:text-gray-400 text-sm">
-                            Backup Availability:
+                            {{ __('Backup Availability:') }}
                         </div>
                         <span @class([
                             'px-2 py-1 rounded-sm text-xs font-medium',
@@ -158,7 +158,7 @@
                     <div class="flex gap-2 mt-4">
                         @if (data_get($execution, 'status') === 'success')
                             <x-forms.button class="dark:hover:bg-coolgray-400"
-                                x-on:click="download_file('{{ data_get($execution, 'id') }}')">Download</x-forms.button>
+                                x-on:click="download_file('{{ data_get($execution, 'id') }}')">{{ __('Download') }}</x-forms.button>
                         @endif
                         @php
                             $executionCheckboxes = [];
@@ -184,7 +184,7 @@
                     </div>
                 </div>
             @empty
-                <div class="p-4 bg-gray-100 dark:bg-coolgray-100 rounded-sm">No executions found.</div>
+                <div class="p-4 bg-gray-100 dark:bg-coolgray-100 rounded-sm">{{ __('No executions found.') }}</div>
             @endforelse
         </div>
         <script>

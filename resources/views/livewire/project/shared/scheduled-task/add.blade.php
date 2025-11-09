@@ -24,6 +24,6 @@
     @endif
 
     <x-forms.button @click="modalOpen=false" type="submit">
-        Save
+        {{ __('Save') }}
     </x-forms.button>
 </form>

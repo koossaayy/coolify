@@ -1,18 +1,18 @@
 <div>
     <x-slot:title>
-        Settings | Coolify
+        {{ __('Settings | Coolify') }}
     </x-slot>
     <x-settings.navbar />
     <div class="flex flex-col">
         <div class="flex items-center gap-2 pb-2">
-            <h2>Backup</h2>
+            <h2>{{ __('Backup') }}</h2>
             @if (isset($database) && $server->isFunctional())
                 <x-forms.button type="submit" wire:click="submit">
-                    Save
+                    {{ __('Save') }}
                 </x-forms.button>
             @endif
         </div>
-        <div class="pb-4">Backup configuration for Coolify instance.</div>
+        <div class="pb-4">{{ __('Backup configuration for Coolify instance.') }}</div>
         <div>
             @if ($server->isFunctional())
                 @if (isset($database) && isset($backup))
@@ -34,17 +34,16 @@
                 @else
                     To configure automatic backup for your Coolify instance, you first need to add a database resource
                     into Coolify.
-                    <x-forms.button class="mt-2" wire:click="addCoolifyDatabase">Configure Backup</x-forms.button>
+                    <x-forms.button class="mt-2" wire:click="addCoolifyDatabase">{{ __('Configure Backup') }}</x-forms.button>
                 @endif
             @else
                 <div class="p-6 bg-red-500/10 rounded-lg border border-red-500/20">
                     <div class="text-red-500 font-medium mb-4">
-                        Instance Backup is currently disabled because the localhost server is not properly validated.
-                        Please validate your server to enable Instance Backup.
+                        {{ __('Instance Backup is currently disabled because the localhost server is not properly validated. Please validate your server to enable Instance Backup.') }}
                     </div>
                     <a href="{{ route('server.show', [$server->uuid]) }}"
                         class="text-black hover:text-gray-700 dark:text-white dark:hover:text-gray-200 underline">
-                        Go to Server Settings to Validate
+                        {{ __('Go to Server Settings to Validate') }}
                     </a>
                 </div>
             @endif

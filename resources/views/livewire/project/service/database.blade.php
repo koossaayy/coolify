@@ -6,7 +6,7 @@
             @else
                 <h2>{{ Str::headline($database->name) }}</h2>
             @endif
-            <x-forms.button canGate="update" :canResource="$database" type="submit">Save</x-forms.button>
+            <x-forms.button canGate="update" :canResource="$database" type="submit">{{ __('Save') }}</x-forms.button>
             @can('update', $database)
                 <x-modal-confirmation wire:click="convertToApplication" title="Convert to Application"
                     buttonTitle="Convert to Application" submitAction="convertToApplication" :actions="['The selected resource will be converted to an application.']"
@@ -40,7 +40,7 @@
                     wire:model="db_url_public" />
             @endif
         </div>
-        <h3 class="pt-2">Advanced</h3>
+        <h3 class="pt-2">{{ __('Advanced') }}</h3>
         <div class="w-96">
             <x-forms.checkbox canGate="update" :canResource="$database" instantSave="instantSaveExclude" label="Exclude from service status"
                 helper="If you do not need to monitor this resource, enable. Useful if this service is optional."

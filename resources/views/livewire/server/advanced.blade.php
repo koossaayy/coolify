@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($server, 'name')->limit(10) }} > Advanced | Coolify
+        {{ data_get_str($server, 'name')->limit(10) }} {{ __('> Advanced | Coolify') }}
     </x-slot>
     <livewire:server.navbar :server="$server" />
     <div x-data="{ activeTab: window.location.hash ? window.location.hash.substring(1) : 'general' }" class="flex flex-col h-full gap-8 sm:flex-row">
@@ -8,13 +8,13 @@
         <form wire:submit='submit' class="w-full">
             <div>
                 <div class="flex items-center gap-2">
-                    <h2>Advanced</h2>
-                    <x-forms.button canGate="update" :canResource="$server" type="submit">Save</x-forms.button>
+                    <h2>{{ __('Advanced') }}</h2>
+                    <x-forms.button canGate="update" :canResource="$server" type="submit">{{ __('Save') }}</x-forms.button>
                 </div>
-                <div class="mb-4">Advanced configuration for your server.</div>
+                <div class="mb-4">{{ __('Advanced configuration for your server.') }}</div>
             </div>
 
-            <h3>Disk Usage</h3>
+            <h3>{{ __('Disk Usage') }}</h3>
             <div class="flex flex-col gap-6">
                 <div class="flex flex-col">
                     <div class="flex flex-wrap gap-2 sm:flex-nowrap pt-4">
@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="flex flex-col">
-                    <h3>Builds</h3>
+                    <h3>{{ __('Builds') }}</h3>
                     <div class="flex flex-wrap gap-2 sm:flex-nowrap pt-4">
                         <x-forms.input canGate="update" :canResource="$server" id="concurrentBuilds"
                             label="Number of concurrent builds" required

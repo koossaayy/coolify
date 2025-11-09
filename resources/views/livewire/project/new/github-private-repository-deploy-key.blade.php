@@ -1,9 +1,9 @@
 <div>
-    <h1>Create a new Application</h1>
-    <div class="pb-4">Deploy any public or private Git repositories through a Deploy Key.</div>
+    <h1>{{ __('Create a new Application') }}</h1>
+    <div class="pb-4">{{ __('Deploy any public or private Git repositories through a Deploy Key.') }}</div>
     <div class="flex flex-col ">
         @if ($current_step === 'private_keys')
-            <h2 class="pb-4">Select a private key</h2>
+            <h2 class="pb-4">{{ __('Select a private key') }}</h2>
             <div class="flex flex-col justify-center gap-2 text-left ">
                 @forelse ($private_keys as $key)
                     @if ($private_key_id == $key->id)
@@ -36,10 +36,10 @@
                 @empty
                     <div class="flex flex-col items-center justify-center gap-2">
                         <div>
-                            No private keys found.
+                            {{ __('No private keys found.') }}
                         </div>
                         <a href="{{ route('security.private-key.index') }}">
-                            <x-forms.button>Create a new private key</x-forms.button>
+                            <x-forms.button>{{ __('Create a new private key') }}</x-forms.button>
                         </a>
                     </div>
                 @endforelse
@@ -51,10 +51,10 @@
                 <div class="flex gap-2">
                     <x-forms.input id="branch" required label="Branch" />
                     <x-forms.select wire:model.live="build_pack" label="Build Pack" required>
-                        <option value="nixpacks">Nixpacks</option>
-                        <option value="static">Static</option>
-                        <option value="dockerfile">Dockerfile</option>
-                        <option value="dockercompose">Docker Compose</option>
+                        <option value="nixpacks">{{ __('Nixpacks') }}</option>
+                        <option value="static">{{ __('Static') }}</option>
+                        <option value="dockerfile">{{ __('Dockerfile') }}</option>
+                        <option value="dockercompose">{{ __('Docker Compose') }}</option>
                     </x-forms.select>
                     @if ($is_static)
                         <x-forms.input id="publish_directory" required label="Publish Directory" />
@@ -69,7 +69,7 @@
                             x-model="composeLocation" />
                         <div class="pt-2">
                             <span>
-                                Compose file location in your repository: </span><span class='dark:text-warning'
+                                {{ __('Compose file location in your repository:') }} </span><span class='dark:text-warning'
                                 x-text='(baseDir === "/" ? "" : baseDir) + (composeLocation.startsWith("/") ? composeLocation : "/" + composeLocation)'></span>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                     </div>
                 @endif
                 <x-forms.button type="submit" class="mt-4">
-                    Continue
+                    {{ __('Continue') }}
                 </x-forms.button>
             </form>
         @endif

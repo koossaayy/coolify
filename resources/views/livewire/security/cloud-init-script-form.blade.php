@@ -7,7 +7,7 @@
     <div class="flex justify-end gap-2">
         @if ($modal_mode)
             <x-forms.button type="button" @click="$dispatch('closeModal')">
-                Cancel
+                {{ __('Cancel') }}
             </x-forms.button>
         @endif
         <x-forms.button type="submit" isHighlighted>

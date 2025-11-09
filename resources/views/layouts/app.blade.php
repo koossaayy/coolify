@@ -25,7 +25,7 @@
                     <div class="relative flex flex-1 w-full max-w-56 ">
                         <div class="absolute top-0 flex justify-center w-16 pt-5 right-full">
                             <button type="button" class="-m-2.5 p-2.5" x-on:click="open = !open">
-                                <span class="sr-only">Close sidebar</span>
+                                <span class="sr-only">{{ __('Close sidebar') }}</span>
                                 <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                     stroke="currentColor" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -50,11 +50,11 @@
                 class="sticky top-0 z-40 flex items-center justify-between px-4 py-4 gap-x-6 sm:px-6 lg:hidden bg-white/95 dark:bg-base/95 backdrop-blur-sm border-b border-neutral-300/50 dark:border-coolgray-200/50">
                 <div class="flex items-center gap-3 flex-shrink-0">
                     <a href="/"
-                        class="text-xl font-bold tracking-wide dark:text-white hover:opacity-80 transition-opacity">Coolify</a>
+                        class="text-xl font-bold tracking-wide dark:text-white hover:opacity-80 transition-opacity">{{ __('Coolify') }}</a>
                     <livewire:switch-team />
                 </div>
                 <button type="button" class="-m-2.5 p-2.5 dark:text-warning" x-on:click="open = !open">
-                    <span class="sr-only">Open sidebar</span>
+                    <span class="sr-only">{{ __('Open sidebar') }}</span>
                     <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
                         <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                             stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />

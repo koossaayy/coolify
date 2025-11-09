@@ -1,7 +1,7 @@
 @can('create', App\Models\S3Storage::class)
     <div class="w-full">
-        <div class="mb-4">For more details, please visit the <a class="underline dark:text-warning"
-                href="https://coolify.io/docs/knowledge-base/s3/introduction" target="_blank">Coolify Docs</a>.</div>
+        <div class="mb-4">{{ __('For more details, please visit the') }} <a class="underline dark:text-warning"
+                href="https://coolify.io/docs/knowledge-base/s3/introduction" target="_blank">{{ __('Coolify Docs') }}</a>.</div>
         <form class="flex flex-col gap-2" wire:submit='submit'>
             <div class="flex gap-2">
                 <x-forms.input required label="Name" id="name" />
@@ -19,13 +19,12 @@
             </div>
 
             <x-forms.button class="mt-4" type="submit">
-                Validate Connection & Continue
+                {{ __('Validate Connection & Continue') }}
             </x-forms.button>
         </form>
     </div>
 @else
     <x-callout type="warning" title="Permission Required">
-        You don't have permission to create new S3 storage configurations. Please contact your team administrator for
-        access.
+        {{ __("You don't have permission to create new S3 storage configurations. Please contact your team administrator for access.") }}
     </x-callout>
 @endcan

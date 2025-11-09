@@ -9,17 +9,17 @@
             </a>
             <a class="menu-item" :class="activeTab === 'general' && 'menu-item-active'"
                 @click.prevent="activeTab = 'general'; window.location.hash = 'general'; if(window.location.search) window.location.search = ''"
-                href="#">General</a>
+                href="#">{{ __('General') }}</a>
             @if ($serviceDatabase?->isBackupSolutionAvailable() || $serviceDatabase?->is_migrated)
                 <a :class="activeTab === 'backups' && 'menu-item-active'" class="menu-item"
-                    @click.prevent="activeTab = 'backups'; window.location.hash = 'backups'" href="#backups">Backups</a>
+                    @click.prevent="activeTab = 'backups'; window.location.hash = 'backups'" href="#backups">{{ __('Backups') }}</a>
             @endif
         </div>
         <div class="w-full">
             @isset($serviceApplication)
                 <x-slot:title>
                     {{ data_get_str($service, 'name')->limit(10) }} >
-                    {{ data_get_str($serviceApplication, 'name')->limit(10) }} | Coolify
+                    {{ data_get_str($serviceApplication, 'name')->limit(10) }} {{ __('| Coolify') }}
                 </x-slot>
                 <div x-cloak x-show="activeTab === 'general'" class="h-full">
                     <livewire:project.service.service-application-view :application="$serviceApplication" />
@@ -28,7 +28,7 @@
             @isset($serviceDatabase)
                 <x-slot:title>
                     {{ data_get_str($service, 'name')->limit(10) }} >
-                    {{ data_get_str($serviceDatabase, 'name')->limit(10) }} | Coolify
+                    {{ data_get_str($serviceDatabase, 'name')->limit(10) }} {{ __('| Coolify') }}
                 </x-slot>
                 <div x-cloak x-show="activeTab === 'general'" class="h-full">
                     <livewire:project.service.database :database="$serviceDatabase" />
@@ -36,7 +36,7 @@
                 @if ($serviceDatabase?->isBackupSolutionAvailable() || $serviceDatabase?->is_migrated)
                     <div x-cloak x-show="activeTab === 'backups'">
                         <div class="flex gap-2">
-                            <h2 class="pb-4">Scheduled Backups</h2>
+                            <h2 class="pb-4">{{ __('Scheduled Backups') }}</h2>
                             @if (filled($serviceDatabase->custom_type) || !$serviceDatabase->is_migrated)
                                 @can('update', $serviceDatabase)
                                     <x-modal-input buttonTitle="+ Add" title="New Scheduled Backup">

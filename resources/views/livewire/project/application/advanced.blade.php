@@ -1,11 +1,11 @@
 <div>
     <div class="flex flex-col md:w-96">
         <div class="flex items-center gap-2">
-            <h2>Advanced</h2>
+            <h2>{{ __('Advanced') }}</h2>
         </div>
-        <div>Advanced configuration for your application.</div>
+        <div>{{ __('Advanced configuration for your application.') }}</div>
         <div class="flex flex-col gap-1 pt-4">
-            <h3>General</h3>
+            <h3>{{ __('General') }}</h3>
             @if ($application->git_based())
                 <x-forms.checkbox helper="Automatically deploy new commits based on Git webhooks." instantSave
                     id="isAutoDeployEnabled" label="Auto Deploy" canGate="update" :canResource="$application" />
@@ -44,12 +44,12 @@
                     instantSave id="isStripprefixEnabled" label="Strip Prefixes" canGate="update" :canResource="$application" />
             @endif
             @if ($application->build_pack === 'dockercompose')
-                <h3>Docker Compose</h3>
+                <h3>{{ __('Docker Compose') }}</h3>
                 <x-forms.checkbox instantSave id="isRawComposeDeploymentEnabled" label="Raw Compose Deployment"
                     helper="WARNING: Advanced use cases only. Your docker compose file will be deployed as-is. Nothing is modified by Coolify. You need to configure the proxy parts. More info in the <a class='underline dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/compose#raw-docker-compose-deployment'>documentation.</a>"
                     canGate="update" :canResource="$application" />
             @endif
-            <h3 class="pt-4">Container Names</h3>
+            <h3 class="pt-4">{{ __('Container Names') }}</h3>
             <x-forms.checkbox
                 helper="The deployed container will have the same name ({{ $application->uuid }}). <span class='font-bold dark:text-warning'>You will lose the rolling update feature!</span>"
                 instantSave id="isConsistentContainerNameEnabled" label="Consistent Container Names" canGate="update"
@@ -60,20 +60,20 @@
                         helper="You can add a custom name for your container.<br><br>The name will be converted to slug format when you save it. <span class='font-bold dark:text-warning'>You will lose the rolling update feature!</span>"
                         instantSave id="customInternalName" label="Custom Container Name" canGate="update"
                         :canResource="$application" />
-                    <x-forms.button canGate="update" :canResource="$application" type="submit">Save</x-forms.button>
+                    <x-forms.button canGate="update" :canResource="$application" type="submit">{{ __('Save') }}</x-forms.button>
                 </form>
             @endif
             @if ($application->build_pack === 'dockercompose')
-                <h3 class="pt-4">Network</h3>
+                <h3 class="pt-4">{{ __('Network') }}</h3>
                 <x-forms.checkbox instantSave id="isConnectToDockerNetworkEnabled" label="Connect To Predefined Network"
                     helper="By default, you do not reach the Coolify defined networks.<br>Starting a docker compose based resource will have an internal network. <br>If you connect to a Coolify defined network, you maybe need to use different internal DNS names to connect to a resource.<br><br>For more information, check <a class='underline dark:text-white' target='_blank' href='https://coolify.io/docs/knowledge-base/docker/compose#connect-to-predefined-networks'>this</a>."
                     canGate="update" :canResource="$application" />
             @endif
-            <h3 class="pt-4">Logs</h3>
+            <h3 class="pt-4">{{ __('Logs') }}</h3>
             <x-forms.checkbox helper="Drain logs to your configured log drain endpoint in your Server settings."
                 instantSave id="isLogDrainEnabled" label="Drain Logs" canGate="update" :canResource="$application" />
             @if ($application->git_based())
-                <h3>Git</h3>
+                <h3>{{ __('Git') }}</h3>
                 <x-forms.checkbox instantSave id="isGitSubmodulesEnabled" label="Submodules"
                     helper="Allow Git Submodules during build process." canGate="update" :canResource="$application" />
                 <x-forms.checkbox instantSave id="isGitLfsEnabled" label="LFS"
@@ -88,9 +88,9 @@
     <form wire:submit="submit" class="flex flex-col gap-2">
         @if ($application->build_pack !== 'dockercompose')
             <div class="flex gap-2 items-end pt-4">
-                <h3>GPU</h3>
+                <h3>{{ __('GPU') }}</h3>
                 @if ($isGpuEnabled)
-                    <x-forms.button canGate="update" :canResource="$application" type="submit">Save</x-forms.button>
+                    <x-forms.button canGate="update" :canResource="$application" type="submit">{{ __('Save') }}</x-forms.button>
                 @endif
             </div>
         @endif

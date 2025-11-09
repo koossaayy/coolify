@@ -191,8 +191,8 @@
                     <x-environment-variable-warning :problematic-variables="$problematicVariables" />
                     <div class="flex w-full justify-end gap-2">
                         @if ($isDisabled)
-                            <x-forms.button disabled type="submit">Update</x-forms.button>
-                            <x-forms.button wire:click='lock'>Lock</x-forms.button>
+                            <x-forms.button disabled type="submit">{{ __('Update') }}</x-forms.button>
+                            <x-forms.button wire:click='lock'>{{ __('Lock') }}</x-forms.button>
                             <x-modal-confirmation title="Confirm Environment Variable Deletion?" isErrorButton
                                 buttonTitle="Delete" submitAction="delete" :actions="['The selected environment variable will be permanently deleted.']"
                                 confirmationText="{{ $key }}" buttonFullWidth="true"
@@ -200,8 +200,8 @@
                                 shortConfirmationLabel="Environment Variable Name" :confirmWithPassword="false"
                                 step2ButtonText="Permanently Delete" />
                         @else
-                            <x-forms.button type="submit">Update</x-forms.button>
-                            <x-forms.button wire:click='lock'>Lock</x-forms.button>
+                            <x-forms.button type="submit">{{ __('Update') }}</x-forms.button>
+                            <x-forms.button wire:click='lock'>{{ __('Lock') }}</x-forms.button>
                             <x-modal-confirmation title="Confirm Environment Variable Deletion?" isErrorButton
                                 buttonTitle="Delete" submitAction="delete" :actions="['The selected environment variable will be permanently deleted.']"
                                 confirmationText="{{ $key }}" buttonFullWidth="true"

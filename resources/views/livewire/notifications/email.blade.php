@@ -1,13 +1,13 @@
 <div>
     <x-slot:title>
-        Notifications | Coolify
+        {{ __('Notifications | Coolify') }}
     </x-slot>
     <x-notification.navbar />
     <form wire:submit='submit' class="flex flex-col gap-4 pb-4">
         <div class="flex items-center gap-2">
-            <h2>Email</h2>
+            <h2>{{ __('Email') }}</h2>
             <x-forms.button canGate="update" :canResource="$settings" type="submit">
-                Save
+                {{ __('Save') }}
             </x-forms.button>
             @if (auth()->user()->isAdminFromSession())
                 @can('sendTest', $settings)
@@ -17,13 +17,13 @@
                                 <x-forms.input wire:model="testEmailAddress" placeholder="test@example.com"
                                     id="testEmailAddress" label="Recipient" required />
                                 <x-forms.button type="submit" @click="modalOpen=false">
-                                    Send Email
+                                    {{ __('Send Email') }}
                                 </x-forms.button>
                             </form>
                         </x-modal-input>
                     @else
                         <x-forms.button disabled class="normal-case dark:text-white btn btn-xs no-animation btn-primary">
-                            Send Test Email
+                            {{ __('Send Test Email') }}
                         </x-forms.button>
                     @endif
                 @endcan
@@ -43,7 +43,7 @@
             </div>
             @if (isInstanceAdmin() && !$useInstanceEmailSettings)
                 <x-forms.button canGate="update" :canResource="$settings" wire:click='copyFromInstanceSettings'>
-                    Copy from Instance Settings
+                    {{ __('Copy from Instance Settings') }}
                 </x-forms.button>
             @endif
         @endif
@@ -59,9 +59,9 @@
             <form wire:submit='submitSmtp'
                 class="p-4 border dark:border-coolgray-300 border-neutral-200 rounded-lg flex flex-col gap-2">
                 <div class="flex items-center gap-2">
-                    <h3>SMTP Server</h3>
+                    <h3>{{ __('SMTP Server') }}</h3>
                     <x-forms.button canGate="update" :canResource="$settings" type="submit">
-                        Save
+                        {{ __('Save') }}
                     </x-forms.button>
                 </div>
                 <div class="w-32">
@@ -74,9 +74,9 @@
                             <x-forms.input canGate="update" :canResource="$settings" required id="smtpHost" placeholder="smtp.mailgun.org" label="Host" />
                             <x-forms.input canGate="update" :canResource="$settings" required id="smtpPort" placeholder="587" label="Port" />
                             <x-forms.select canGate="update" :canResource="$settings" required id="smtpEncryption" label="Encryption">
-                                <option value="starttls">StartTLS</option>
-                                <option value="tls">TLS/SSL</option>
-                                <option value="none">None</option>
+                                <option value="starttls">{{ __('StartTLS') }}</option>
+                                <option value="tls">{{ __('TLS/SSL') }}</option>
+                                <option value="none">{{ __('None') }}</option>
                             </x-forms.select>
                         </div>
                         <div class="flex flex-col w-full gap-2 xl:flex-row">
@@ -91,9 +91,9 @@
             <form wire:submit='submitResend'
                 class="p-4 border dark:border-coolgray-300 border-neutral-200 rounded-lg flex flex-col gap-2">
                 <div class="flex items-center gap-2">
-                    <h3>Resend</h3>
+                    <h3>{{ __('Resend') }}</h3>
                     <x-forms.button canGate="update" :canResource="$settings" type="submit">
-                        Save
+                        {{ __('Save') }}
                     </x-forms.button>
                 </div>
                 <div class="w-32">
@@ -111,13 +111,13 @@
             </form>
         </div>
     @endif
-    <h2 class="mt-4">Notification Settings</h2>
+    <h2 class="mt-4">{{ __('Notification Settings') }}</h2>
     <p class="mb-4">
-        Select events for which you would like to receive email notifications.
+        {{ __('Select events for which you would like to receive email notifications.') }}
     </p>
     <div class="flex flex-col gap-4 max-w-2xl">
         <div class="border dark:border-coolgray-300 border-neutral-200 p-4 rounded-lg">
-            <h3 class="font-medium mb-3">Deployments</h3>
+            <h3 class="font-medium mb-3">{{ __('Deployments') }}</h3>
             <div class="flex flex-col gap-1.5 pl-1">
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="deploymentSuccessEmailNotifications"
                     label="Deployment Success" />
@@ -129,7 +129,7 @@
             </div>
         </div>
         <div class="border dark:border-coolgray-300 border-neutral-200 p-4 rounded-lg">
-            <h3 class="font-medium mb-3">Backups</h3>
+            <h3 class="font-medium mb-3">{{ __('Backups') }}</h3>
             <div class="flex flex-col gap-1.5 pl-1">
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="backupSuccessEmailNotifications"
                     label="Backup Success" />
@@ -138,7 +138,7 @@
             </div>
         </div>
         <div class="border dark:border-coolgray-300 border-neutral-200 p-4 rounded-lg">
-            <h3 class="font-medium mb-3">Scheduled Tasks</h3>
+            <h3 class="font-medium mb-3">{{ __('Scheduled Tasks') }}</h3>
             <div class="flex flex-col gap-1.5 pl-1">
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="scheduledTaskSuccessEmailNotifications"
                     label="Scheduled Task Success" />
@@ -147,7 +147,7 @@
             </div>
         </div>
         <div class="border dark:border-coolgray-300 border-neutral-200 p-4 rounded-lg">
-            <h3 class="font-medium mb-3">Server</h3>
+            <h3 class="font-medium mb-3">{{ __('Server') }}</h3>
             <div class="flex flex-col gap-1.5 pl-1">
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="dockerCleanupSuccessEmailNotifications"
                     label="Docker Cleanup Success" />

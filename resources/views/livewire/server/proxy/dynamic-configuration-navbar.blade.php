@@ -1,5 +1,5 @@
 <div class="flex gap-2">
-    <h3 class="dark:text-white">File: {{ str_replace('|', '.', $fileName) }}</h3>
+    <h3 class="dark:text-white">{{ __('File:') }} {{ str_replace('|', '.', $fileName) }}</h3>
     @can('update', $server)
         <div class="flex gap-2">
             <x-modal-input buttonTitle="Edit" title="Edit Configuration">
@@ -7,6 +7,6 @@
                     :newFile="$newFile" wire:key="{{ $fileName }}" />
             </x-modal-input>
         </div>
-        <x-forms.button isError wire:click="delete('{{ $fileName }}')">Delete</x-forms.button>
+        <x-forms.button isError wire:click="delete('{{ $fileName }}')">{{ __('Delete') }}</x-forms.button>
     @endcan
 </div>

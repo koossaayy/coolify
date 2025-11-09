@@ -1,9 +1,9 @@
 <div>
     <form wire:submit="submit" class="flex flex-col gap-2">
         <div class="flex items-center gap-2">
-            <h2>General</h2>
+            <h2>{{ __('General') }}</h2>
             <x-forms.button type="submit" canGate="update" :canResource="$database">
-                Save
+                {{ __('Save') }}
             </x-forms.button>
         </div>
         <div class="flex gap-2">
@@ -22,8 +22,7 @@
                     helper="You can only change this in the database." canGate="update" :canResource="$database" />
             </div>
         @else
-            <div class=" dark:text-warning">Please verify these values. You can only modify them before the initial
-                start. After that, you need to modify it in the database.
+            <div class=" dark:text-warning">{{ __('Please verify these values. You can only modify them before the initial start. After that, you need to modify it in the database.') }}
             </div>
             <div class="flex gap-2">
                 <x-forms.input label="Password" id="dragonflyPassword" type="password" required canGate="update"
@@ -31,7 +30,7 @@
             </div>
         @endif
         <div class="flex flex-col gap-2">
-            <h3 class="py-2">Network</h3>
+            <h3 class="py-2">{{ __('Network') }}</h3>
             <div class="flex items-end gap-2">
                 <x-forms.input placeholder="3000:5432" id="portsMappings" label="Ports Mappings"
                     helper="A comma separated list of ports you would like to map to the host system.<br><span class='inline-block font-bold dark:text-warning'>Example</span>3000:5432,3002:5433"
@@ -54,7 +53,7 @@
         <div class="flex flex-col gap-2">
             <div class="flex items-center justify-between py-2">
                 <div class="flex items-center justify-between w-full">
-                    <h3>SSL Configuration</h3>
+                    <h3>{{ __('SSL Configuration') }}</h3>
                     @if ($database->enable_ssl && $certificateValidUntil)
                         <x-modal-confirmation title="Regenerate SSL Certificates"
                             buttonTitle="Regenerate SSL Certificates" :actions="[
@@ -66,12 +65,11 @@
                 </div>
             </div>
             @if ($database->enable_ssl && $certificateValidUntil)
-                <span class="text-sm">Valid until:
+                <span class="text-sm">{{ __('Valid until:') }}
                     @if (now()->gt($certificateValidUntil))
-                        <span class="text-red-500">{{ $certificateValidUntil->format('d.m.Y H:i:s') }} - Expired</span>
+                        <span class="text-red-500">{{ $certificateValidUntil->format('d.m.Y H:i:s') }} {{ __('- Expired') }}</span>
                     @elseif(now()->addDays(30)->gt($certificateValidUntil))
-                        <span class="text-red-500">{{ $certificateValidUntil->format('d.m.Y H:i:s') }} - Expiring
-                            soon</span>
+                        <span class="text-red-500">{{ $certificateValidUntil->format('d.m.Y H:i:s') }} {{ __('- Expiring soon') }}</span>
                     @else
                         <span>{{ $certificateValidUntil->format('d.m.Y H:i:s') }}</span>
                     @endif
@@ -95,18 +93,18 @@
             <div class="flex flex-col py-2 w-64">
                 <div class="flex items-center gap-2 pb-2">
                     <div class="flex items-center">
-                        <h3>Proxy</h3>
+                        <h3>{{ __('Proxy') }}</h3>
                         <x-loading wire:loading wire:target="instantSave" />
                     </div>
                     @if ($isPublic)
                         <x-slide-over fullScreen>
-                            <x-slot:title>Proxy Logs</x-slot:title>
+                            <x-slot:title>{{ __('Proxy Logs') }}</x-slot:title>
                             <x-slot:content>
                                 <livewire:project.shared.get-logs :server="$server" :resource="$database"
                                     container="{{ data_get($database, 'uuid') }}-proxy" lazy />
                             </x-slot:content>
                             <x-forms.button disabled="{{ !$isPublic }}"
-                                @click="slideOverOpen=true">Logs</x-forms.button>
+                                @click="slideOverOpen=true">{{ __('Logs') }}</x-forms.button>
                         </x-slide-over>
                     @endif
                 </div>
@@ -117,7 +115,7 @@
                 canGate="update" :canResource="$database" />
         </div>
     </form>
-    <h3 class="pt-4">Advanced</h3>
+    <h3 class="pt-4">{{ __('Advanced') }}</h3>
     <div class="w-64">
         <x-forms.checkbox helper="Drain logs to your configured log drain endpoint in your Server settings."
             instantSave="instantSaveAdvanced" id="isLogDrainEnabled" label="Drain Logs" canGate="update"

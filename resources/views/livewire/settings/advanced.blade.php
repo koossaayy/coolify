@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Advanced Settings | Coolify
+        {{ __('Advanced Settings | Coolify') }}
         </x-slot>
         <x-settings.navbar />
         <div x-data="{ activeTab: window.location.hash ? window.location.hash.substring(1) : 'general' }"
@@ -8,12 +8,12 @@
             <x-settings.sidebar activeMenu="advanced" />
             <form wire:submit='submit' class="flex flex-col w-full">
                 <div class="flex items-center gap-2">
-                    <h2>Advanced</h2>
+                    <h2>{{ __('Advanced') }}</h2>
                     <x-forms.button type="submit">
-                        Save
+                        {{ __('Save') }}
                     </x-forms.button>
                 </div>
-                <div class="pb-4">Advanced settings for your Coolify instance.</div>
+                <div class="pb-4">{{ __('Advanced settings for your Coolify instance.') }}</div>
 
                 <div class="flex flex-col gap-1">
                     <div class="md:w-96">
@@ -26,7 +26,7 @@
                             helper="If enabled, Coolify will not track any data. This is useful if you are concerned about privacy."
                             label="Do Not Track" />
                     </div>
-                    <h4 class="pt-4">DNS Settings</h4>
+                    <h4 class="pt-4">{{ __('DNS Settings') }}</h4>
                     <div class="md:w-96">
                         <x-forms.checkbox instantSave id="is_dns_validation_enabled"
                             helper="If you set a custom domain, Coolify will validate the domain in your DNS provider."
@@ -36,7 +36,7 @@
                     <x-forms.input id="custom_dns_servers" label="Custom DNS Servers"
                         helper="DNS servers to validate domains against. A comma separated list of DNS servers."
                         placeholder="1.1.1.1,8.8.8.8" />
-                    <h4 class="pt-4">API Settings</h4>
+                    <h4 class="pt-4">{{ __('API Settings') }}</h4>
                     <div class="md:w-96">
                         <x-forms.checkbox instantSave id="is_api_enabled" label="API Access"
                             helper="If enabled, the API will be enabled. If disabled, the API will be disabled." />
@@ -46,11 +46,10 @@
                         placeholder="192.168.1.100,10.0.0.0/8,203.0.113.0/24" />
                     @if (empty($allowed_ips) || in_array('0.0.0.0', array_map('trim', explode(',', $allowed_ips ?? ''))))
                         <x-callout type="warning" title="Warning" class="mt-2">
-                            Using 0.0.0.0 (or empty) allows API access from anywhere. This is not recommended for production
-                            environments!
+                            {{ __('Using 0.0.0.0 (or empty) allows API access from anywhere. This is not recommended for production environments!') }}
                         </x-callout>
                     @endif
-                    <h4 class="pt-4">Confirmation Settings</h4>
+                    <h4 class="pt-4">{{ __('Confirmation Settings') }}</h4>
                     <div class="md:w-96">
                         <x-forms.checkbox instantSave id=" is_sponsorship_popup_enabled" label="Show Sponsorship Popup"
                             helper="When enabled, sponsorship popups will be shown monthly to users. When disabled, the sponsorship popup will be permanently hidden for all users." />
@@ -67,7 +66,7 @@
                                     <div class="pb-4 flex items-center justify-between gap-2 md:w-96"
                                         wire:key="two-step-confirmation-disabled">
                                         <label class="flex items-center gap-2">
-                                            Disable Two Step Confirmation
+                                            {{ __('Disable Two Step Confirmation') }}
                                             <x-helper
                                                 helper="When disabled, you will not need to confirm actions with a text and user password. This significantly reduces security and may lead to accidental deletions or unwanted changes. Use with extreme caution, especially on production servers.">
                                             </x-helper>
@@ -83,8 +82,7 @@
                                             shortConfirmationLabel="Confirmation text" />
                                     </div>
                                     <x-callout type="danger" title="Warning!" class="mb-4">
-                                        Disabling two step confirmation reduces security (as anyone can easily delete anything) and
-                                        increases the risk of accidental actions. This is not recommended for production servers.
+                                        {{ __('Disabling two step confirmation reduces security (as anyone can easily delete anything) and increases the risk of accidental actions. This is not recommended for production servers.') }}
                                     </x-callout>
                     @endif
                 </div>
