@@ -1,27 +1,26 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($project, 'name')->limit(10) }} > Resources | Coolify
+        {{ data_get_str($project, 'name')->limit(10) }} {{ __('> Resources | Coolify') }}
     </x-slot>
     <div class="flex flex-col">
         <div class="flex items-center gap-2">
-            <h1>Resources</h1>
+            <h1>{{ __('Resources') }}</h1>
             @if ($environment->isEmpty())
                 @can('createAnyResource')
                     <a class="button"
                         href="{{ route('project.clone-me', ['project_uuid' => data_get($project, 'uuid'), 'environment_uuid' => data_get($environment, 'uuid')]) }}">
-                        Clone
+                        {{ __('Clone') }}
                     </a>
                 @endcan
             @else
                 @can('createAnyResource')
                     <a href="{{ route('project.resource.create', ['project_uuid' => data_get($parameters, 'project_uuid'), 'environment_uuid' => data_get($environment, 'uuid')]) }}"
-                        class="button">+
-                        New</a>
+                        class="button">{{ __('+ New') }}</a>
                 @endcan
                 @can('createAnyResource')
                     <a class="button"
                         href="{{ route('project.clone-me', ['project_uuid' => data_get($project, 'uuid'), 'environment_uuid' => data_get($environment, 'uuid')]) }}">
-                        Clone
+                        {{ __('Clone') }}
                     </a>
                 @endcan
             @endif
@@ -54,14 +53,14 @@
     @if ($environment->isEmpty())
         @can('createAnyResource')
             <a href="{{ route('project.resource.create', ['project_uuid' => data_get($parameters, 'project_uuid'), 'environment_uuid' => data_get($environment, 'uuid')]) }}"
-                class="items-center justify-center coolbox">+ Add Resource</a>
+                class="items-center justify-center coolbox">{{ __('+ Add Resource') }}</a>
         @else
             <div
                 class="flex flex-col items-center justify-center p-8 text-center border border-dashed border-neutral-300 dark:border-coolgray-300 rounded-lg">
-                <h3 class="mb-2 text-lg font-semibold text-neutral-600 dark:text-neutral-400">No Resources Found</h3>
+                <h3 class="mb-2 text-lg font-semibold text-neutral-600 dark:text-neutral-400">{{ __('No Resources Found') }}</h3>
                 <p class="text-sm text-neutral-600 dark:text-neutral-400">
-                    This environment doesn't have any resources yet.<br>
-                    Contact your team administrator to add resources.
+                    {{ __("This environment doesn't have any resources yet.") }}<br>
+                    {{ __('Contact your team administrator to add resources.') }}
                 </p>
             </div>
         @endcan
@@ -72,23 +71,21 @@
                 x-if="filteredApplications.length === 0 && filteredDatabases.length === 0 && filteredServices.length === 0">
                 <div class="flex flex-col items-center justify-center p-8 text-center">
                     <div x-show="search.length > 0">
-                        <p class="text-neutral-600 dark:text-neutral-400">No resource found with the search term "<span
+                        <p class="text-neutral-600 dark:text-neutral-400">{{ __('No resource found with the search term "') }}<span
                                 class="font-semibold" x-text="search"></span>".</p>
-                        <p class="text-sm text-neutral-500 dark:text-neutral-500 mt-1">Try adjusting your search
-                            criteria.</p>
+                        <p class="text-sm text-neutral-500 dark:text-neutral-500 mt-1">{{ __('Try adjusting your search criteria.') }}</p>
                     </div>
                     <div x-show="search.length === 0">
-                        <p class="text-neutral-600 dark:text-neutral-400">No resources found in this environment.</p>
+                        <p class="text-neutral-600 dark:text-neutral-400">{{ __('No resources found in this environment.') }}</p>
                         @cannot('createAnyResource')
-                            <p class="text-sm text-neutral-500 dark:text-neutral-500 mt-1">Contact your team administrator
-                                to add resources.</p>
+                            <p class="text-sm text-neutral-500 dark:text-neutral-500 mt-1">{{ __('Contact your team administrator to add resources.') }}</p>
                         @endcannot
                     </div>
                 </div>
             </template>
 
             <template x-if="filteredApplications.length > 0">
-                <h2 class="pt-4">Applications</h2>
+                <h2 class="pt-4">{{ __('Applications') }}</h2>
             </template>
             <div x-show="filteredApplications.length > 0"
                 class="grid grid-cols-1 gap-4 pt-4 lg:grid-cols-2 xl:grid-cols-3">
@@ -118,7 +115,7 @@
                                 <div class="max-w-full px-4 truncate box-description" x-text="item.description"></div>
                                 <div class="max-w-full px-4 truncate box-description" x-text="item.fqdn"></div>
                                 <template x-if="item.server_status == false">
-                                    <div class="px-4 text-xs font-bold text-error">Server is unreachable or misconfigured
+                                    <div class="px-4 text-xs font-bold text-error">{{ __('Server is unreachable or misconfigured') }}
                                     </div>
                                 </template>
                             </div>
@@ -130,14 +127,14 @@
                                 </a>
                             </template>
                             <a :href="`${item.hrefLink}/tags`" class="add-tag">
-                                Add tag
+                                {{ __('Add tag') }}
                             </a>
                         </div>
                     </span>
                 </template>
             </div>
             <template x-if="filteredDatabases.length > 0">
-                <h2 class="pt-4">Databases</h2>
+                <h2 class="pt-4">{{ __('Databases') }}</h2>
             </template>
             <div x-show="filteredDatabases.length > 0"
                 class="grid grid-cols-1 gap-4 pt-4 lg:grid-cols-2 xl:grid-cols-3">
@@ -167,7 +164,7 @@
                                 <div class="max-w-full px-4 truncate box-description" x-text="item.description"></div>
                                 <div class="max-w-full px-4 truncate box-description" x-text="item.fqdn"></div>
                                 <template x-if="item.server_status == false">
-                                    <div class="px-4 text-xs font-bold text-error">Server is unreachable or misconfigured
+                                    <div class="px-4 text-xs font-bold text-error">{{ __('Server is unreachable or misconfigured') }}
                                     </div>
                                 </template>
                             </div>
@@ -179,14 +176,14 @@
                                 </a>
                             </template>
                             <a :href="`${item.hrefLink}/tags`" class="add-tag">
-                                Add tag
+                                {{ __('Add tag') }}
                             </a>
                         </div>
                     </span>
                 </template>
             </div>
             <template x-if="filteredServices.length > 0">
-                <h2 class="pt-4">Services</h2>
+                <h2 class="pt-4">{{ __('Services') }}</h2>
             </template>
             <div x-show="filteredServices.length > 0"
                 class="grid grid-cols-1 gap-4 pt-4 lg:grid-cols-2 xl:grid-cols-3">
@@ -216,7 +213,7 @@
                                 <div class="max-w-full px-4 truncate box-description" x-text="item.description"></div>
                                 <div class="max-w-full px-4 truncate box-description" x-text="item.fqdn"></div>
                                 <template x-if="item.server_status == false">
-                                    <div class="px-4 text-xs font-bold text-error">Server is unreachable or misconfigured
+                                    <div class="px-4 text-xs font-bold text-error">{{ __('Server is unreachable or misconfigured') }}
                                     </div>
                                 </template>
                             </div>
@@ -228,7 +225,7 @@
                                 </a>
                             </template>
                             <a :href="`${item.hrefLink}/tags`" class="add-tag">
-                                Add tag
+                                {{ __('Add tag') }}
                             </a>
                         </div>
                     </span>

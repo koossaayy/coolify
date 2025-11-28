@@ -1,22 +1,21 @@
 <div>
     <x-slot:title>
-        Dashboard | Coolify
+        {{ __('Dashboard | Coolify') }}
     </x-slot>
     @if (session('error'))
         <span x-data x-init="$wire.emit('error', '{{ session('error') }}')" />
     @endif
-    <h1>Dashboard</h1>
-    <div class="subtitle">Your self-hosted infrastructure.</div>
+    <h1>{{ __('Dashboard') }}</h1>
+    <div class="subtitle">{{ __('Your self-hosted infrastructure.') }}</div>
     @if (request()->query->get('success'))
         <div class=" mb-10 font-bold alert alert-success">
-            Your subscription has been activated! Welcome onboard! It could take a few seconds before your
-            subscription is activated.<br> Please be patient.
+            {{ __('Your subscription has been activated! Welcome onboard! It could take a few seconds before your subscription is activated.') }}<br> {{ __('Please be patient.') }}
         </div>
     @endif
 
     <section class="-mt-2">
         <div class="flex items-center gap-2 pb-2">
-            <h3>Projects</h3>
+            <h3>{{ __('Projects') }}</h3>
             @if ($projects->count() > 0)
                 <x-modal-input buttonTitle="Add" title="New Project">
                     <x-slot:content>
@@ -52,14 +51,14 @@
                                                 'project_uuid' => $project->uuid,
                                                 'environment_uuid' => $project->environments->first()->uuid,
                                             ]) }}">
-                                            + Add Resource
+                                            {{ __('+ Add Resource') }}
                                         </a>
                                     @endcan
                                 @endif
                                 @can('update', $project)
                                     <a class="hover:underline"
                                         href="{{ route('project.edit', ['project_uuid' => $project->uuid]) }}">
-                                        Settings
+                                        {{ __('Settings') }}
                                     </a>
                                 @endcan
                             </div>
@@ -69,12 +68,11 @@
             </div>
         @else
             <div class="flex flex-col gap-1">
-                <div class='font-bold dark:text-warning'>No projects found.</div>
+                <div class='font-bold dark:text-warning'>{{ __('No projects found.') }}</div>
                 <div class="flex items-center gap-1">
                     <x-modal-input buttonTitle="Add" title="New Project">
                         <livewire:project.add-empty />
-                    </x-modal-input> your first project or
-                    go to the <a class="underline dark:text-white" href="{{ route('onboarding') }}">onboarding</a> page.
+                    </x-modal-input> {{ __('your first project or go to the') }} <a class="underline dark:text-white" href="{{ route('onboarding') }}">{{ __('onboarding') }}</a> {{ __('page.') }}
                 </div>
             </div>
         @endif
@@ -82,7 +80,7 @@
 
     <section>
         <div class="flex items-center gap-2 pb-2">
-            <h3>Servers</h3>
+            <h3>{{ __('Servers') }}</h3>
             @if ($servers->count() > 0 && $privateKeys->count() > 0)
                 <x-modal-input buttonTitle="Add" title="New Server" :closeOutside="false">
                     <x-slot:content>
@@ -132,26 +130,22 @@
         @else
             @if ($privateKeys->count() === 0)
                 <div class="flex flex-col gap-1">
-                    <div class='font-bold dark:text-warning'>No private keys found.</div>
-                    <div class="flex items-center gap-1">Before you can add your server, first <x-modal-input
+                    <div class='font-bold dark:text-warning'>{{ __('No private keys found.') }}</div>
+                    <div class="flex items-center gap-1">{{ __('Before you can add your server, first') }} <x-modal-input
                             buttonTitle="add" title="New Private Key">
                             <livewire:security.private-key.create from="server" />
-                        </x-modal-input> a private key
-                        or
-                        go to the <a class="underline dark:text-white" href="{{ route('onboarding') }}">onboarding</a>
-                        page.
+                        </x-modal-input> {{ __('a private key or go to the') }} <a class="underline dark:text-white" href="{{ route('onboarding') }}">{{ __('onboarding') }}</a>
+                        {{ __('page.') }}
                     </div>
                 </div>
             @else
                 <div class="flex flex-col gap-1">
-                    <div class='font-bold dark:text-warning'>No servers found.</div>
+                    <div class='font-bold dark:text-warning'>{{ __('No servers found.') }}</div>
                     <div class="flex items-center gap-1">
                         <x-modal-input buttonTitle="Add" title="New Server" :closeOutside="false">
                             <livewire:server.create />
-                        </x-modal-input> your first server
-                        or
-                        go to the <a class="underline dark:text-white" href="{{ route('onboarding') }}">onboarding</a>
-                        page.
+                        </x-modal-input> {{ __('your first server or go to the') }} <a class="underline dark:text-white" href="{{ route('onboarding') }}">{{ __('onboarding') }}</a>
+                        {{ __('page.') }}
                     </div>
                 </div>
             @endif

@@ -5,7 +5,7 @@
             @if ($selectedProxy !== 'NONE')
                 <form wire:submit='submit'>
                     <div class="flex items-center gap-2">
-                        <h2>Configuration</h2>
+                        <h2>{{ __('Configuration') }}</h2>
                         @if ($server->proxy->status === 'exited' || $server->proxy->status === 'removing')
                             @can('update', $server)
                                 <x-modal-confirmation title="Confirm Proxy Switching?" buttonTitle="Switch Proxy"
@@ -16,21 +16,19 @@
                             @endcan
                         @else
                             <x-forms.button canGate="update" :canResource="$server"
-                                wire:click="$dispatch('error', 'Currently running proxy must be stopped before switching proxy')">Switch
-                                Proxy</x-forms.button>
+                                wire:click="$dispatch('error', 'Currently running proxy must be stopped before switching proxy')">{{ __('Switch Proxy') }}</x-forms.button>
                         @endif
-                        <x-forms.button canGate="update" :canResource="$server" type="submit">Save</x-forms.button>
+                        <x-forms.button canGate="update" :canResource="$server" type="submit">{{ __('Save') }}</x-forms.button>
                     </div>
-                    <div class="pb-4">Configure your proxy settings and advanced options.</div>
+                    <div class="pb-4">{{ __('Configure your proxy settings and advanced options.') }}</div>
                     @if (
                         $server->proxy->last_applied_settings &&
                             $server->proxy->last_saved_settings !== $server->proxy->last_applied_settings)
                         <x-callout type="warning" title="Configuration Out of Sync" class="my-4">
-                            The saved proxy configuration differs from the currently running configuration. Restart the
-                            proxy to apply your changes.
+                            {{ __('The saved proxy configuration differs from the currently running configuration. Restart the proxy to apply your changes.') }}
                         </x-callout>
                     @endif
-                    <h3>Advanced</h3>
+                    <h3>{{ __('Advanced') }}</h3>
                     <div class="pb-6 w-96">
                         <x-forms.checkbox canGate="update" :canResource="$server"
                             helper="If set, all resources will only have docker container labels for {{ str($server->proxyType())->title() }}.<br>For applications, labels needs to be regenerated manually. <br>Resources needs to be restarted."
@@ -56,7 +54,7 @@
                                 <h3>{{ $proxyTitle }}</h3>
                                 @can('update', $server)
                                     <div wire:loading wire:target="loadProxyConfiguration">
-                                        <x-forms.button disabled>Reset Configuration</x-forms.button>
+                                        <x-forms.button disabled>{{ __('Reset Configuration') }}</x-forms.button>
                                     </div>
                                     <div wire:loading.remove wire:target="loadProxyConfiguration">
                                         @if ($proxySettings)
@@ -95,39 +93,31 @@
                                      x-transition:leave-end="opacity-0 -translate-y-2">
                                     @if ($server->detected_traefik_version === 'latest')
                                         <x-callout dismissible onDismiss="traefikWarningsDismissed = true; localStorage.setItem('callout-dismissed-traefik-warnings-{{ $server->id }}', 'true')" type="warning" title="Using 'latest' Traefik Tag" class="my-4">
-                                            Your proxy container is running the <span class="font-mono">latest</span> tag. While
-                                            this ensures you always have the newest version, it may introduce unexpected breaking
-                                            changes.
+                                            {{ __('Your proxy container is running the') }} <span class="font-mono">{{ __('latest') }}</span> {{ __('tag. While this ensures you always have the newest version, it may introduce unexpected breaking changes.') }}
                                             <br><br>
-                                            <strong>Recommendation:</strong> Pin to a specific version (e.g., <span
-                                                class="font-mono">traefik:{{ $this->latestTraefikVersion }}</span>) to ensure
-                                            stability and predictable updates.
+                                            <strong>{{ __('Recommendation:') }}</strong> {{ __('Pin to a specific version (e.g.,') }} <span
+                                                class="font-mono">{{ __('traefik:') }}{{ $this->latestTraefikVersion }}</span>{{ __(') to ensure stability and predictable updates.') }}
                                         </x-callout>
                                     @elseif($this->isTraefikOutdated)
                                         <x-callout dismissible onDismiss="traefikWarningsDismissed = true; localStorage.setItem('callout-dismissed-traefik-warnings-{{ $server->id }}', 'true')" type="warning" title="Traefik Patch Update Available" class="my-4">
-                                            Your Traefik proxy container is running version <span
-                                                class="font-mono">v{{ $server->detected_traefik_version }}</span>, but version <span
-                                                class="font-mono">{{ $this->latestTraefikVersion }}</span> is available.
+                                            {{ __('Your Traefik proxy container is running version') }} <span
+                                                class="font-mono">{{ __('v') }}{{ $server->detected_traefik_version }}</span>{{ __(', but version') }} <span
+                                                class="font-mono">{{ $this->latestTraefikVersion }}</span> {{ __('is available.') }}
                                             <br><br>
-                                            <strong>Recommendation:</strong> Update to the latest patch version for security fixes
-                                            and
-                                            bug fixes. Please test in a non-production environment first.
+                                            <strong>{{ __('Recommendation:') }}</strong> {{ __('Update to the latest patch version for security fixes and bug fixes. Please test in a non-production environment first.') }}
                                         </x-callout>
                                     @endif
                                     @if ($this->newerTraefikBranchAvailable)
                                         <x-callout dismissible onDismiss="traefikWarningsDismissed = true; localStorage.setItem('callout-dismissed-traefik-warnings-{{ $server->id }}', 'true')" type="info" title="New Minor Traefik Version Available" class="my-4">
-                                            A new minor version of Traefik is available: <span
+                                            {{ __('A new minor version of Traefik is available:') }} <span
                                                 class="font-mono">{{ $this->newerTraefikBranchAvailable }}</span>
                                             <br><br>
-                                            You are currently running <span class="font-mono">v{{ $server->detected_traefik_version }}</span>.
-                                            Upgrading to <span class="font-mono">{{ $this->newerTraefikBranchAvailable }}</span> will give you access to new features and improvements.
+                                            {{ __('You are currently running') }} <span class="font-mono">{{ __('v') }}{{ $server->detected_traefik_version }}</span>{{ __('. Upgrading to') }} <span class="font-mono">{{ $this->newerTraefikBranchAvailable }}</span> {{ __('will give you access to new features and improvements.') }}
                                             <br><br>
-                                            <strong>Important:</strong> Before upgrading to a new minor version, please read
-                                            the <a href="https://github.com/traefik/traefik/releases" target="_blank"
-                                                class="underline text-white">Traefik changelog</a> to understand breaking changes
-                                            and new features.
+                                            <strong>{{ __('Important:') }}</strong> {{ __('Before upgrading to a new minor version, please read the') }} <a href="https://github.com/traefik/traefik/releases" target="_blank"
+                                                class="underline text-white">{{ __('Traefik changelog') }}</a> {{ __('to understand breaking changes and new features.') }}
                                             <br><br>
-                                            <strong>Recommendation:</strong> Test the upgrade in a non-production environment first.
+                                            <strong>{{ __('Recommendation:') }}</strong> {{ __('Test the upgrade in a non-production environment first.') }}
                                         </x-callout>
                                     @endif
                                 </div>
@@ -150,34 +140,34 @@
                 </form>
             @elseif($selectedProxy === 'NONE')
                 <div class="flex items-center gap-2">
-                    <h2>Configuration</h2>
+                    <h2>{{ __('Configuration') }}</h2>
                     @can('update', $server)
-                        <x-forms.button wire:click.prevent="changeProxy">Switch Proxy</x-forms.button>
+                        <x-forms.button wire:click.prevent="changeProxy">{{ __('Switch Proxy') }}</x-forms.button>
                     @endcan
                 </div>
-                <div class="pt-2 pb-4">Custom (None) Proxy Selected</div>
+                <div class="pt-2 pb-4">{{ __('Custom (None) Proxy Selected') }}</div>
             @else
                 <div class="flex items-center gap-2">
-                    <h2>Configuration</h2>
+                    <h2>{{ __('Configuration') }}</h2>
                     @can('update', $server)
-                        <x-forms.button wire:click.prevent="changeProxy">Switch Proxy</x-forms.button>
+                        <x-forms.button wire:click.prevent="changeProxy">{{ __('Switch Proxy') }}</x-forms.button>
                     @endcan
                 </div>
             @endif
         @else
             <div>
-                <h2>Configuration</h2>
-                <div class="subtitle">Select a proxy you would like to use on this server.</div>
+                <h2>{{ __('Configuration') }}</h2>
+                <div class="subtitle">{{ __('Select a proxy you would like to use on this server.') }}</div>
                 @can('update', $server)
                     <div class="grid gap-4">
                         <x-forms.button class="coolbox" wire:click="selectProxy('NONE')">
-                            Custom (None)
+                            {{ __('Custom (None)') }}
                         </x-forms.button>
                         <x-forms.button class="coolbox" wire:click="selectProxy('TRAEFIK')">
-                            Traefik
+                            {{ __('Traefik') }}
                         </x-forms.button>
                         <x-forms.button class="coolbox" wire:click="selectProxy('CADDY')">
-                            Caddy
+                            {{ __('Caddy') }}
                         </x-forms.button>
                         {{-- <x-forms.button disabled class="box">
                             Nginx
@@ -185,7 +175,7 @@
                     </div>
                 @else
                     <x-callout type="warning" title="Permission Required" class="mb-4">
-                        You don't have permission to configure proxy settings for this server.
+                        {{ __("You don't have permission to configure proxy settings for this server.") }}
                     </x-callout>
                 @endcan
             </div>
