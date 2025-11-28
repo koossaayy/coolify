@@ -1,7 +1,7 @@
 <nav wire:poll.10000ms="checkStatus" class="pb-6">
     <x-resources.breadcrumbs :resource="$database" :parameters="$parameters" />
     <x-slide-over @startdatabase.window="slideOverOpen = true" closeWithX fullScreen>
-        <x-slot:title>Database Startup</x-slot:title>
+        <x-slot:title>{{ __('Database Startup') }}</x-slot:title>
         <x-slot:content>
             <div wire:ignore>
                 <livewire:activity-monitor header="Logs" fullHeight />
@@ -13,17 +13,17 @@
             class="flex overflow-x-scroll shrink-0 gap-6 items-center whitespace-nowrap sm:overflow-x-hidden scrollbar min-h-10">
             <a class="{{ request()->routeIs('project.database.configuration') ? 'dark:text-white' : '' }}"
                 href="{{ route('project.database.configuration', $parameters) }}">
-                Configuration
+                {{ __('Configuration') }}
             </a>
 
             <a class="{{ request()->routeIs('project.database.logs') ? 'dark:text-white' : '' }}"
                 href="{{ route('project.database.logs', $parameters) }}">
-                Logs
+                {{ __('Logs') }}
             </a>
             @can('canAccessTerminal')
                 <a class="{{ request()->routeIs('project.database.command') ? 'dark:text-white' : '' }}"
                     href="{{ route('project.database.command', $parameters) }}">
-                    Terminal
+                    {{ __('Terminal') }}
                 </a>
             @endcan
             @if (
@@ -33,7 +33,7 @@
                     $database->getMorphClass() === 'App\Models\StandaloneMariadb')
                 <a class="{{ request()->routeIs('project.database.backup.index') ? 'dark:text-white' : '' }}"
                     href="{{ route('project.database.backup.index', $parameters) }}">
-                    Backups
+                    {{ __('Backups') }}
                 </a>
             @endif
         </nav>
@@ -55,7 +55,7 @@
                                     <path d="M20 4v5h-5" />
                                 </g>
                             </svg>
-                            Restart
+                            {{ __('Restart') }}
                         </x-slot:button-title>
                     </x-modal-confirmation>
                     <x-modal-confirmation title="Confirm Database Stopping?" buttonTitle="Stop" submitAction="stop"
@@ -76,7 +76,7 @@
                                     d="M14 5m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z">
                                 </path>
                             </svg>
-                            Stop
+                            {{ __('Stop') }}
                         </x-slot:button-title>
                     </x-modal-confirmation>
                 @else
@@ -87,7 +87,7 @@
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M7 4v16l13 -8z" />
                         </svg>
-                        Start
+                        {{ __('Start') }}
                     </button>
                 @endif
                 @script
@@ -105,7 +105,7 @@
                 @endscript
             </div>
         @else
-            <div class="text-error">Underlying server is not functional.</div>
+            <div class="text-error">{{ __('Underlying server is not functional.') }}</div>
         @endif
     </div>
 </nav>

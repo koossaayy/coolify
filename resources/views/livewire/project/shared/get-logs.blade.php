@@ -54,7 +54,7 @@
                     id="numberOfLines" :readonly="$streamLogs"></x-forms.input>
             </div>
             <div class="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-2 sm:items-center">
-                <x-forms.button type="submit">Refresh</x-forms.button>
+                <x-forms.button type="submit">{{ __('Refresh') }}</x-forms.button>
                 <x-forms.checkbox instantSave label="Stream Logs" id="streamLogs"></x-forms.checkbox>
                 <x-forms.checkbox instantSave label="Include Timestamps" id="showTimeStamps"></x-forms.checkbox>
             </div>
@@ -158,7 +158,7 @@
                     </div>
                 @else
                     <div id="logs" class="font-mono text-sm py-4 px-2 text-gray-500 dark:text-gray-400">
-                        Refresh to get the logs...
+                        {{ __('Refresh to get the logs...') }}
                     </div>
                 @endif
             </div>

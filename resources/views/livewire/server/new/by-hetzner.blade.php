@@ -9,7 +9,7 @@
                         <div class="flex-1">
                             <x-forms.select label="Select Hetzner Token" id="selected_token_id"
                                 wire:change="selectToken($event.target.value)" required>
-                                <option value="">Select a saved token...</option>
+                                <option value="">{{ __('Select a saved token...') }}</option>
                                 @foreach ($available_tokens as $token)
                                     <option value="{{ $token->id }}">
                                         {{ $token->name ?? 'Hetzner Token' }}
@@ -20,12 +20,12 @@
                         <div class="flex items-end">
                             <x-forms.button canGate="create" :canResource="App\Models\Server::class" wire:click="nextStep"
                                 :disabled="!$selected_token_id">
-                                Continue
+                                {{ __('Continue') }}
                             </x-forms.button>
                         </div>
                     </div>
 
-                    <div class="text-center text-sm dark:text-neutral-500">OR</div>
+                    <div class="text-center text-sm dark:text-neutral-500">{{ __('OR') }}</div>
                 @endif
 
                 <x-modal-input isFullWidth
@@ -39,7 +39,7 @@
                 <div class="flex items-center justify-center py-8">
                     <div class="text-center">
                         <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-                        <p class="mt-4 text-sm dark:text-neutral-400">Loading Hetzner data...</p>
+                        <p class="mt-4 text-sm dark:text-neutral-400">{{ __('Loading Hetzner data...') }}</p>
                     </div>
                 </div>
             @else
@@ -50,7 +50,7 @@
 
                     <div>
                         <x-forms.select label="Location" id="selected_location" wire:model.live="selected_location" required>
-                            <option value="">Select a location...</option>
+                            <option value="">{{ __('Select a location...') }}</option>
                             @foreach ($locations as $location)
                                 <option value="{{ $location['name'] }}">
                                     {{ $location['city'] }} - {{ $location['country'] }}
@@ -69,12 +69,12 @@
                             @foreach ($this->availableServerTypes as $serverType)
                                 <option value="{{ $serverType['name'] }}">
                                     {{ $serverType['description'] }} -
-                                    {{ $serverType['cores'] }} vCPU
+                                    {{ $serverType['cores'] }} {{ __('vCPU') }}
                                     @if (isset($serverType['cpu_vendor_info']) && $serverType['cpu_vendor_info'])
                                         ({{ $serverType['cpu_vendor_info'] }})
                                     @endif
-                                    , {{ $serverType['memory'] }}GB RAM, 
-                                    {{ $serverType['disk'] }}GB
+                                    , {{ $serverType['memory'] }}{{ __('GB RAM,') }} 
+                                    {{ $serverType['disk'] }}{{ __('GB') }}
                                     @if (isset($serverType['architecture']))
                                         [{{ $serverType['architecture'] }}]
                                     @endif
@@ -107,13 +107,13 @@
                         @if ($private_keys->count() === 0)
                             <div class="flex flex-col gap-2">
                                 <label class="flex gap-1 items-center mb-1 text-sm font-medium">
-                                    Private Key
+                                    {{ __('Private Key') }}
                                     <x-highlighted text="*" />
                                 </label>
                                 <div
                                     class="p-4 border border-warning-500 dark:border-warning-600 rounded bg-warning-50 dark:bg-warning-900/10">
                                     <p class="text-sm mb-3 text-neutral-700 dark:text-neutral-300">
-                                        No private keys found. You need to create a private key to continue.
+                                        {{ __('No private keys found. You need to create a private key to continue.') }}
                                     </p>
                                     <x-modal-input buttonTitle="Create New Private Key" title="New Private Key" isHighlightedButton>
                                         <livewire:security.private-key.create :modal_mode="true" from="server" />
@@ -122,7 +122,7 @@
                             </div>
                         @else
                             <x-forms.select label="Private Key" id="private_key_id" required>
-                                <option value="">Select a private key...</option>
+                                <option value="">{{ __('Select a private key...') }}</option>
                                 @foreach ($private_keys as $key)
                                     <option value="{{ $key->id }}">
                                         {{ $key->name }}
@@ -130,8 +130,7 @@
                                 @endforeach
                             </x-forms.select>
                             <p class="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
-                                This SSH key will be automatically added to your Hetzner account and used to access the
-                                server.
+                                {{ __('This SSH key will be automatically added to your Hetzner account and used to access the server.') }}
                             </p>
                         @endif
                     </div>
@@ -150,7 +149,7 @@
                     </div>
 
                     <div class="flex flex-col gap-2">
-                        <label class="text-sm font-medium">Network Configuration</label>
+                        <label class="text-sm font-medium">{{ __('Network Configuration') }}</label>
                         <div class="flex gap-4">
                             <x-forms.checkbox id="enable_ipv4" label="Enable IPv4"
                                 helper="Enable public IPv4 address for this server" />
@@ -161,17 +160,17 @@
 
                     <div class="flex flex-col gap-2">
                         <div class="flex justify-between items-center gap-2">
-                            <label class="text-sm font-medium w-32">Cloud-Init Script</label>
+                            <label class="text-sm font-medium w-32">{{ __('Cloud-Init Script') }}</label>
                             @if ($saved_cloud_init_scripts->count() > 0)
                                 <div class="flex items-center gap-2 flex-1">
                                     <x-forms.select wire:model.live="selected_cloud_init_script_id" label="" helper="">
-                                        <option value="">Load saved script...</option>
+                                        <option value="">{{ __('Load saved script...') }}</option>
                                         @foreach ($saved_cloud_init_scripts as $script)
                                             <option value="{{ $script->id }}">{{ $script->name }}</option>
                                         @endforeach
                                     </x-forms.select>
                                     <x-forms.button type="button" wire:click="clearCloudInitScript">
-                                        Clear
+                                        {{ __('Clear') }}
                                     </x-forms.button>
                                 </div>
                             @endif
@@ -190,11 +189,11 @@
 
                     <div class="flex gap-2 justify-between">
                         <x-forms.button type="button" wire:click="previousStep">
-                            Back
+                            {{ __('Back') }}
                         </x-forms.button>
                         <x-forms.button isHighlighted canGate="create" :canResource="App\Models\Server::class" type="submit"
                             :disabled="!$private_key_id">
-                            Buy & Create Server{{ $this->selectedServerPrice ? ' (' . $this->selectedServerPrice . '/mo)' : '' }}
+                            {{ __('Buy & Create Server') }}{{ $this->selectedServerPrice ? ' (' . $this->selectedServerPrice . '/mo)' : '' }}
                         </x-forms.button>
                     </div>
                 </form>

@@ -1,6 +1,6 @@
 <div x-data x-init="@if ($server->hetzner_server_id && $server->cloudProviderToken && !$hetznerServerStatus) $wire.checkHetznerServerStatus() @endif">
     <x-slot:title>
-        {{ data_get_str($server, 'name')->limit(10) }} > General | Coolify
+        {{ data_get_str($server, 'name')->limit(10) }} {{ __('> General | Coolify') }}
     </x-slot>
     <livewire:server.navbar :server="$server" />
     <div class="flex flex-col h-full gap-8 sm:flex-row">
@@ -8,7 +8,7 @@
         <div class="w-full">
             <form wire:submit.prevent='submit' class="flex flex-col">
                 <div class="flex gap-2">
-                    <h2>General</h2>
+                    <h2>{{ __('General') }}</h2>
                     @if ($server->hetzner_server_id)
                         <div class="flex items-center">
                             <div @class([
@@ -50,7 +50,7 @@
                                                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                                             </path>
                                         </svg>
-                                        <span>Checking status...</span>
+                                        <span>{{ __('Checking status...') }}</span>
                                     </span>
                                 @endif
                             </div>
@@ -74,7 +74,7 @@
                         @if ($server->cloudProviderToken && !$server->isFunctional() && $hetznerServerStatus === 'off')
                             <x-forms.button wire:click.prevent='startHetznerServer' isHighlighted canGate="update"
                                 :canResource="$server">
-                                Power On
+                                {{ __('Power On') }}
                             </x-forms.button>
                         @endif
                     @endif
@@ -89,7 +89,7 @@
                                     d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                                 </path>
                             </svg>
-                            <span>Validating...</span>
+                            <span>{{ __('Validating...') }}</span>
                         </div>
                     @endif
                     @if ($server->id === 0)
@@ -100,16 +100,16 @@
                             step2ButtonText="Save" canGate="update" :canResource="$server" />
                     @else
                         <x-forms.button type="submit" canGate="update" :canResource="$server"
-                            :disabled="$isValidating">Save</x-forms.button>
+                            :disabled="$isValidating">{{ __('Save') }}</x-forms.button>
                         @if ($server->isFunctional())
                             <x-slide-over closeWithX fullScreen>
-                                <x-slot:title>Validate & configure</x-slot:title>
+                                <x-slot:title>{{ __('Validate & configure') }}</x-slot:title>
                                 <x-slot:content>
                                     <livewire:server.validate-and-install :server="$server" ask />
                                 </x-slot:content>
                                 <x-forms.button @click="slideOverOpen=true" wire:click.prevent='validateServer'
                                     isHighlighted canGate="update" :canResource="$server">
-                                    Revalidate server
+                                    {{ __('Revalidate server') }}
                                 </x-forms.button>
                             </x-slide-over>
                         @endif
@@ -123,7 +123,7 @@
                 @if ($isValidating)
                     <div x-data="{ slideOverOpen: true }">
                         <x-slide-over closeWithX fullScreen>
-                            <x-slot:title>Validation in Progress</x-slot:title>
+                            <x-slot:title>{{ __('Validation in Progress') }}</x-slot:title>
                             <x-slot:content>
                                 <livewire:server.validate-and-install :server="$server" />
                             </x-slot:content>
@@ -136,18 +136,18 @@
                         !$isValidating &&
                         !in_array($hetznerServerStatus, ['initializing', 'starting', 'stopping', 'off']))
                     <x-slide-over closeWithX fullScreen>
-                        <x-slot:title>Validate & configure</x-slot:title>
+                        <x-slot:title>{{ __('Validate & configure') }}</x-slot:title>
                         <x-slot:content>
                             <livewire:server.validate-and-install :server="$server" />
                         </x-slot:content>
                         <x-forms.button @click="slideOverOpen=true"
                             class="mt-8 mb-4 w-full font-bold box-without-bg bg-coollabs hover:bg-coollabs-100"
                             wire:click.prevent='validateServer' isHighlighted>
-                            Validate Server & Install Docker Engine
+                            {{ __('Validate Server & Install Docker Engine') }}
                         </x-forms.button>
                     </x-slide-over>
                     @if ($server->validation_logs)
-                        <h4>Previous Validation Logs</h4>
+                        <h4>{{ __('Previous Validation Logs') }}</h4>
                         <div class="pb-8">
                             {!! $server->validation_logs !!}
                         </div>
@@ -156,13 +156,12 @@
                 @if ((!$isReachable || !$isUsable) && $server->id === 0)
                     <x-forms.button class="mt-8 mb-4 font-bold box-without-bg bg-coollabs hover:bg-coollabs-100"
                         wire:click.prevent='checkLocalhostConnection' isHighlighted>
-                        Validate Server
+                        {{ __('Validate Server') }}
                     </x-forms.button>
                 @endif
                 @if ($server->isForceDisabled() && isCloud())
                     <x-callout type="danger" title="Server Disabled" class="mt-4">
-                        The system has disabled the server because you have exceeded the
-                        number of servers for which you have paid.
+                        {{ __('The system has disabled the server because you have exceeded the number of servers for which you have paid.') }}
                     </x-callout>
                 @endif
                 <div class="flex flex-col gap-2 pt-4">
@@ -193,7 +192,7 @@
                     </div>
                     <div class="w-full">
                         <div class="flex items-center mb-1">
-                            <label for="serverTimezone">Server Timezone</label>
+                            <label for="serverTimezone">{{ __('Server Timezone') }}</label>
                             <x-helper class="ml-2"
                                 helper="Server's timezone. This is used for backups, cron jobs, etc." />
                         </div>
@@ -286,11 +285,11 @@
                             </div>
 
                             @if (!$server->isBuildServer() && !$server->settings->is_cloudflare_tunnel)
-                                <h3 class="pt-6">Swarm <span class="text-xs text-neutral-500">(experimental)</span>
+                                <h3 class="pt-6">{{ __('Swarm') }} <span class="text-xs text-neutral-500">{{ __('(experimental)') }}</span>
                                 </h3>
-                                <div class="pb-4">Read the docs <a class='underline dark:text-white'
+                                <div class="pb-4">{{ __('Read the docs') }} <a class='underline dark:text-white'
                                         href='https://coolify.io/docs/knowledge-base/docker/swarm'
-                                        target='_blank'>here</a>.
+                                        target='_blank'>{{ __('here') }}</a>.
                                 </div>
                                 <div class="w-96">
                                     @if ($server->settings->is_swarm_worker)
@@ -323,40 +322,40 @@
             @if ($server->isFunctional() && !$server->isSwarm() && !$server->isBuildServer())
                 <form wire:submit.prevent='submit'>
                     <div class="flex gap-2 items-center pt-4 pb-2">
-                        <h3>Sentinel</h3>
+                        <h3>{{ __('Sentinel') }}</h3>
                         <x-helper helper="Sentinel reports your server's & container's health and collects metrics." />
                         @if ($server->isSentinelEnabled())
                             <div class="flex gap-2 items-center">
                                 @if ($server->isSentinelLive())
                                     <x-status.running status="In sync" noLoading title="{{ $sentinelUpdatedAt }}" />
                                     <x-forms.button type="submit" canGate="update" :canResource="$server"
-                                        :disabled="$isValidating">Save</x-forms.button>
+                                        :disabled="$isValidating">{{ __('Save') }}</x-forms.button>
                                     <x-forms.button wire:click='restartSentinel' canGate="update" :canResource="$server"
-                                        :disabled="$isValidating">Restart</x-forms.button>
+                                        :disabled="$isValidating">{{ __('Restart') }}</x-forms.button>
                                     <x-slide-over fullScreen>
-                                        <x-slot:title>Sentinel Logs</x-slot:title>
+                                        <x-slot:title>{{ __('Sentinel Logs') }}</x-slot:title>
                                         <x-slot:content>
                                             <livewire:project.shared.get-logs :server="$server"
                                                 container="coolify-sentinel" displayName="Sentinel" lazy />
                                         </x-slot:content>
                                         <x-forms.button @click="slideOverOpen=true"
-                                            :disabled="$isValidating">Logs</x-forms.button>
+                                            :disabled="$isValidating">{{ __('Logs') }}</x-forms.button>
                                     </x-slide-over>
                                 @else
                                     <x-status.stopped status="Out of sync" noLoading
                                         title="{{ $sentinelUpdatedAt }}" />
                                     <x-forms.button type="submit" canGate="update" :canResource="$server"
-                                        :disabled="$isValidating">Save</x-forms.button>
+                                        :disabled="$isValidating">{{ __('Save') }}</x-forms.button>
                                     <x-forms.button wire:click='restartSentinel' canGate="update" :canResource="$server"
-                                        :disabled="$isValidating">Sync</x-forms.button>
+                                        :disabled="$isValidating">{{ __('Sync') }}</x-forms.button>
                                     <x-slide-over fullScreen>
-                                        <x-slot:title>Sentinel Logs</x-slot:title>
+                                        <x-slot:title>{{ __('Sentinel Logs') }}</x-slot:title>
                                         <x-slot:content>
                                             <livewire:project.shared.get-logs :server="$server"
                                                 container="coolify-sentinel" displayName="Sentinel" lazy />
                                         </x-slot:content>
                                         <x-forms.button @click="slideOverOpen=true"
-                                            :disabled="$isValidating">Logs</x-forms.button>
+                                            :disabled="$isValidating">{{ __('Logs') }}</x-forms.button>
                                     </x-slide-over>
                                 @endif
                             </div>
@@ -401,7 +400,7 @@
                                 <x-forms.input canGate="update" :canResource="$server" type="password" id="sentinelToken"
                                     label="Sentinel token" required helper="Token for Sentinel." :disabled="$isValidating" />
                                 <x-forms.button canGate="update" :canResource="$server"
-                                    wire:click="regenerateSentinelToken" :disabled="$isValidating">Regenerate</x-forms.button>
+                                    wire:click="regenerateSentinelToken" :disabled="$isValidating">{{ __('Regenerate') }}</x-forms.button>
                             </div>
 
                             <x-forms.input canGate="update" :canResource="$server" id="sentinelCustomUrl" required
